@@ -2,7 +2,7 @@
 
 ## Quick start
 ```
-npm install --save
+npm install
 npm start
 ```
 ## Dependencies
