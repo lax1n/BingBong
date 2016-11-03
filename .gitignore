@@ -52,7 +52,7 @@ fabric.properties
 
 # *.iml
 # modules.xml
-# .idea/misc.xml 
+# .idea/misc.xml
 # *.ipr
 
 
@@ -101,3 +101,7 @@ jspm_packages
 
 # Output of 'npm pack'
 *.tgz
+
+# misc
+.DS_Store
+.env
