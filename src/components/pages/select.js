@@ -5,30 +5,49 @@ import MenuItem from 'material-ui/MenuItem';
 import {isEmpty} from 'lodash';
 
 import {getAllOrganizations} from '../../actions/org_actions';
+import {getAllProgramsByOrganization} from '../../actions/program_actions';
 
 class Select extends Component {
     constructor (props){
         super(props);
 
         this.state = {
-            orgUnit: 1,
+            orgUnit: null,
             orgUnitSelected: false,
             orgUnits: [],
+            program: null,
+            programSelected: false,
+            programs: [],
         }
 
         this.renderSelect = this.renderSelect.bind(this);
+        this.handleChangeSelect = this.handleChangeSelect.bind(this);
     }
 
     componentDidMount(){
+        // Load organization units
         getAllOrganizations().then((organizationUnits) => {
-            this.setState({orgUnits: organizationUnits});
-        }).catch(function (e) {
-            alert(e.message);
+            this.setState({orgUnits: organizationUnits, orgUnit: organizationUnits[0].id});
+        }).catch((e) => {
+            console.log('Error while loading organization units', e.message);
         });
     }
 
-    handleChangeOrgUnit(event, index, value){
-        this.setState({orgUnit: value, orgUnitSelected: true});
+    loadPrograms(){
+        getAllProgramsByOrganization(this.state.orgUnit).then((programs) => {
+            this.setState({programs: programs, program: programs[0].id})
+        }).catch((e) => {
+            console.log('Error while loading programs', e.message);
+        })
+    }
+
+    handleChangeSelect(identifier, value){
+        this.setState({[identifier]: value})
+        console.log(eval(`this.state.${identifier}`));
+        if(identifier === 'orgUnit')
+            this.loadPrograms();
+        else if(identifier === 'program')
+            console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
     }
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
@@ -37,7 +56,7 @@ class Select extends Component {
             <SelectField
                 floatingLabelText={title}
                 value={eval(`this.state.${identifier}`)}
-                onChange={(value) => this.setState({[identifier]: value})}
+                onChange={(event, index, value) => this.handleChangeSelect(identifier, value)}
                 autoWidth={true}
             >
                 {data.map((element, i) => {
@@ -50,7 +69,7 @@ class Select extends Component {
     }
 
     render() {
-        let programmeSelect = '';
+        let programSelect = '';
         if(isEmpty(this.state.orgUnits)){
             return (
                 <div>
@@ -59,14 +78,14 @@ class Select extends Component {
             );
         }
 
-        if(this.state.orgUnitSelected){
-            programmeSelect = this.renderSelect('Select Programme', 'orgUnit', this.state.orgUnits);
+        if(!(isEmpty(this.state.programs))){
+            programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
         return (
             <MuiThemeProvider>
                 <div>
                     {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
-                    {programmeSelect}
+                    {programSelect}
                 </div>
             </MuiThemeProvider>
         );
