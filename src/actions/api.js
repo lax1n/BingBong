@@ -1,5 +1,6 @@
-export const serverUrl = 'https://play.dhis2.org/demo/api/';
+//export const serverUrl = 'https://play.dhis2.org/demo/api/';
 //export const serverUrl = `http://localhost:8080/api/`;
+export const serverUrl = 'https://play.dhis2.org/test/api/';
 export const basicAuth = `Basic ${btoa('admin:district')}`;
 
 export const fetchOptionsGet = {
