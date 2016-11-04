@@ -11,9 +11,12 @@ class Select extends Component {
         super(props);
 
         this.state = {
-            selected: 1,
+            orgUnit: 1,
+            orgUnitSelected: false,
             orgUnits: [],
         }
+
+        this.renderSelect = this.renderSelect.bind(this);
     }
 
     componentDidMount(){
@@ -24,11 +27,30 @@ class Select extends Component {
         });
     }
 
-    handleChange(event, index, value){
-        this.setState({selected: value});
+    handleChangeOrgUnit(event, index, value){
+        this.setState({orgUnit: value, orgUnitSelected: true});
+    }
+
+    // Only supports data containing ids & displayName (e.g orgUnits & programs)
+    renderSelect(title, identifier, data){
+        return (
+            <SelectField
+                floatingLabelText={title}
+                value={eval(`this.state.${identifier}`)}
+                onChange={(value) => this.setState({[identifier]: value})}
+                autoWidth={true}
+            >
+                {data.map((element, i) => {
+                    return (
+                        <MenuItem value={element.id} primaryText={element.displayName} key={i} />
+                    );
+                })}
+            </SelectField>
+        );
     }
 
     render() {
+        let programmeSelect = '';
         if(isEmpty(this.state.orgUnits)){
             return (
                 <div>
@@ -36,20 +58,16 @@ class Select extends Component {
                 </div>
             );
         }
+
+        if(this.state.orgUnitSelected){
+            programmeSelect = this.renderSelect('Select Programme', 'orgUnit', this.state.orgUnits);
+        }
         return (
             <MuiThemeProvider>
-                <SelectField
-                    floatingLabelText="Select Organization(Clinic)"
-                    value={this.state.selected}
-                    onChange={this.handleChange.bind(this)}
-                    autoWidth={true}
-                >
-                    {this.state.orgUnits.map((orgUnit, i) => {
-                        return (
-                            <MenuItem value={orgUnit.id} primaryText={orgUnit.displayName} key={i} />
-                        );
-                    })}
-                </SelectField>
+                <div>
+                    {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                    {programmeSelect}
+                </div>
             </MuiThemeProvider>
         );
     }
