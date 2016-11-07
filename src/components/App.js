@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from '../images/logo.jpg';
 import '../styles/App.css';
+import '../libs/bootstrap.min.css';
 
 
 import SelectPage from './pages/select';

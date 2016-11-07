@@ -4,8 +4,11 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import {isEmpty} from 'lodash';
 
+//import '../../libs/bootstrap.min.css';
+
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
+import {getAllTEIsByOrganization} from '../../actions/tei_actions';
 
 class Select extends Component {
     constructor (props){
@@ -18,6 +21,7 @@ class Select extends Component {
             program: null,
             programSelected: false,
             programs: [],
+            teis: [],
         }
 
         this.renderSelect = this.renderSelect.bind(this);
@@ -35,17 +39,29 @@ class Select extends Component {
 
     loadPrograms(){
         getAllProgramsByOrganization(this.state.orgUnit).then((programs) => {
-            this.setState({programs: programs, program: programs[0].id})
+            this.setState({programs: programs, program: programs[0].id});
         }).catch((e) => {
             console.log('Error while loading programs', e.message);
-        })
+        });
+    }
+
+    loadTEIs(){
+        console.log('Loading TEISs');
+        getAllTEIsByOrganization(this.state.orgUnit).then((teis) => {
+            this.setState({teis: teis});
+            console.log(teis);
+        }).catch((e) => {
+            console.log('Error while loading TEIs', e.message);
+        });
     }
 
     handleChangeSelect(identifier, value){
         this.setState({[identifier]: value})
         console.log(eval(`this.state.${identifier}`));
-        if(identifier === 'orgUnit')
+        if(identifier === 'orgUnit'){
             this.loadPrograms();
+            this.loadTEIs();
+        }
         else if(identifier === 'program')
             console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
     }
@@ -81,13 +97,39 @@ class Select extends Component {
         if(!(isEmpty(this.state.programs))){
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
+        console.log(this.state.teis);
         return (
-            <MuiThemeProvider>
-                <div>
-                    {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
-                    {programSelect}
+            <div className='container-fluid'>
+                <div className='row'>
+                    <MuiThemeProvider>
+                        <div>
+                            {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                            {programSelect}
+                        </div>
+                    </MuiThemeProvider>
                 </div>
-            </MuiThemeProvider>
+                <div className='row'>
+                    <div className='col-md-12'>
+                        {this.state.teis}
+                        <table className='table table-striped'>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Something</th>
+                                    <th>Age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bing Bong</td>
+                                    <td>Best friend</td>
+                                    <td>11</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
