@@ -57,12 +57,12 @@ class Select extends Component {
     }
 
     handleChangeSelect(identifier, value, name){
-        console.log('kommer den hit');
+        console.log('Bing handleChangeSelect()');
         let identifierName = identifier + 'Name';
-        console.log(identifierName );
+        console.log("Bing identifierName: "+ identifierName);
         this.setState({[identifier]: value, [identifierName]: name})
-        console.log('VALUE:'+value);
-        console.log(eval(`this.state.${identifier}`));
+        console.log('Bing VALUE:'+value);
+        console.log("Bing this.state.${identifier}: "+eval(`this.state.${identifier}`));
         if(identifier === 'orgUnit'){
             this.loadPrograms();
             this.loadTEIs();
@@ -74,10 +74,10 @@ class Select extends Component {
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
         let currentTitle = '';
-        console.log('NYOMMMMM');
+        console.log('Bing renderSelect()');
         if(eval(`this.state.${identifier}`) !== ''){
 
-            console.log(eval(`this.state.${identifier}Name`));
+            console.log("Bing eval(`this.state.${identifier}Name`): "+eval(`this.state.${identifier}Name`));
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
@@ -91,7 +91,7 @@ class Select extends Component {
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
                 onSelect={(event) => {
-                    console.log(this);
+                    console.log("Bing this: "+ this);
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
             >
@@ -116,13 +116,13 @@ class Select extends Component {
         }
 
         if(!(isEmpty(this.state.programs))){
-            console.log(this.state.programs);
+            console.log("Bing this.state.programs: "+this.state.programs);
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
 
         let teis = '';
         if(!(isEmpty(this.state.teis))){
-            console.log(this.state.teis);
+            console.log("Bing this.state.teis: "+this.state.teis);
             teis = (
                 <div className='row'>
                     {this.state.teis.map((tei, i) => {
@@ -176,7 +176,7 @@ class Select extends Component {
                         </table>
                     </div>
                 </div>
-            </div> 
+            </div>
             */
         );
     }
