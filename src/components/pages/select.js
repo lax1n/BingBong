@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+//import MenuItem from 'material-ui/MenuItem';
 import {isEmpty} from 'lodash';
 
-//import '../../libs/bootstrap.min.css';
+import {DropdownButton, MenuItem} from 'react-bootstrap'
+import '../../libs/bootstrap.min.css';
 
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
@@ -22,6 +23,8 @@ class Select extends Component {
             programSelected: false,
             programs: [],
             teis: [],
+            orgUnitName:  '',
+            programName: '',
         }
 
         this.renderSelect = this.renderSelect.bind(this);
@@ -31,7 +34,7 @@ class Select extends Component {
     componentDidMount(){
         // Load organization units
         getAllOrganizations().then((organizationUnits) => {
-            this.setState({orgUnits: organizationUnits, orgUnit: organizationUnits[0].id});
+            this.setState({orgUnits: organizationUnits, orgUnit: organizationUnits[0].id, orgUnitName: organizationUnits[0].displayName});
         }).catch((e) => {
             console.log('Error while loading organization units', e.message);
         });
@@ -39,7 +42,7 @@ class Select extends Component {
 
     loadPrograms(){
         getAllProgramsByOrganization(this.state.orgUnit).then((programs) => {
-            this.setState({programs: programs, program: programs[0].id});
+            this.setState({programs: programs, program: programs[0].id, programName: programs[0].displayName});
         }).catch((e) => {
             console.log('Error while loading programs', e.message);
         });
@@ -53,8 +56,12 @@ class Select extends Component {
         });
     }
 
-    handleChangeSelect(identifier, value){
-        this.setState({[identifier]: value})
+    handleChangeSelect(identifier, value, name){
+        console.log('kommer den hit');
+        let identifierName = identifier + 'Name';
+        console.log(identifierName );
+        this.setState({[identifier]: value, [identifierName]: name})
+        console.log('VALUE:'+value);
         console.log(eval(`this.state.${identifier}`));
         if(identifier === 'orgUnit'){
             this.loadPrograms();
@@ -66,21 +73,37 @@ class Select extends Component {
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
+        let currentTitle = '';
+        console.log('NYOMMMMM');
+        if(eval(`this.state.${identifier}`) !== ''){
+
+            console.log(eval(`this.state.${identifier}Name`));
+            currentTitle = eval(`this.state.${identifier}Name`);
+        }else{
+            currentTitle = title;
+        }
+        //this.handleChangeSelect(identifier, event.target.value
+        //(event) => console.log('OONTZ OONTZ'+event)
+        //(event) => {console.log('event: ', event)}
         return (
-            <SelectField
-                floatingLabelText={title}
+            <DropdownButton
+                bsStyle="primary"
+                title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
-                onChange={(event, index, value) => this.handleChangeSelect(identifier, value)}
-                autoWidth={true}
+                onSelect={(event) => {
+                    console.log(this);
+                    this.handleChangeSelect(identifier, event.id, event.displayName);
+                }}
             >
                 {data.map((element, i) => {
                     return (
-                        <MenuItem value={element.id} primaryText={element.displayName} key={i} />
+                        <MenuItem eventKey={element} id={i}> {element.displayName} </MenuItem>
                     );
                 })}
-            </SelectField>
+            </DropdownButton>
         );
     }
+
 
     render() {
         let programSelect = '';
@@ -114,6 +137,15 @@ class Select extends Component {
         }
 
         return (
+            <div className="dropdown">
+                {
+                    this.renderSelect('Select Organization(Clinic) ','orgUnit',this.state.orgUnits)
+                }
+                {
+                    programSelect
+                }
+            </div>
+            /*
             <div className='container-fluid'>
                 <div className='row'>
                     <MuiThemeProvider>
@@ -144,7 +176,8 @@ class Select extends Component {
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> 
+            */
         );
     }
 }
