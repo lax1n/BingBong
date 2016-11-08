@@ -46,10 +46,8 @@ class Select extends Component {
     }
 
     loadTEIs(){
-        console.log('Loading TEISs');
         getAllTEIsByOrganization(this.state.orgUnit).then((teis) => {
             this.setState({teis: teis});
-            console.log(teis);
         }).catch((e) => {
             console.log('Error while loading TEIs', e.message);
         });
@@ -95,9 +93,26 @@ class Select extends Component {
         }
 
         if(!(isEmpty(this.state.programs))){
+            console.log(this.state.programs);
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
-        console.log(this.state.teis);
+
+        let teis = '';
+        if(!(isEmpty(this.state.teis))){
+            console.log(this.state.teis);
+            teis = (
+                <div className='row'>
+                    {this.state.teis.map((tei, i) => {
+                        return (
+                            <p key={i}>
+                                {tei.trackedEntityInstance}
+                            </p>
+                        );
+                    })}
+                </div>
+            )
+        }
+
         return (
             <div className='container-fluid'>
                 <div className='row'>
@@ -110,7 +125,7 @@ class Select extends Component {
                 </div>
                 <div className='row'>
                     <div className='col-md-12'>
-                        {this.state.teis}
+                        {teis}
                         <table className='table table-striped'>
                             <thead>
                                 <tr>
