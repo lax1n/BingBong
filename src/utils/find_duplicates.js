@@ -26,9 +26,9 @@ export function giveMeData(){
 	return [headers,instances];
 }
 export function findPeopleWithTheSameName(){
-	[headers,instances] = giveMeData();
-	for(var i= 0; i < headers.length; i++){
+	//[headers,instances] = giveMeData();
+	//for(var i= 0; i < headers.length; i++){
 		//
-	}
+	//}
 	return "HEllo this doesn't return much"
 }
