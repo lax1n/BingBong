@@ -1,4 +1,5 @@
 import {getAllTEIsByOrganizationAndProgram} from '../actions/tei_actions';
+import {getNorrisJoke} from '../actions/norris_actions';
 //import {size} from 'lodash';
 
 export function giveMeData(){
@@ -6,11 +7,11 @@ export function giveMeData(){
 		var i, j;
 		//var headers = [];
 		var instances = [];
-		console.log("everything: " + everything);
+		/*console.log("everything: " + everything);
 		console.log("everything.grid: " + everything.grid);
 		console.log("everything.headers: " + everything.headers);
 		console.log("everything.headers[0]: " + everything.headers[0]);
-		console.log("everything.headers[0].name: " + everything.headers[0].name);
+		console.log("everything.headers[0].name: " + everything.headers[0].name);*/
 		var headerCount = everything.headers.length;
 		var instanceCount = everything.rows.length;
 		for (i = 0; i < instanceCount; i++) {
@@ -26,6 +27,7 @@ export function giveMeData(){
 	});
 }
 export function findPeopleWithTheSameName(){
+	var joke = "(there is no joke)"
 	giveMeData().then((instances) => {
 		for (var i = 0; i < instances.length; i++) {
 			/*instances.each(key, value){
@@ -42,5 +44,13 @@ export function findPeopleWithTheSameName(){
 			}
 		}
 	});
-	return "WARNING! joke ahead--------------------------------------------------------------> (There is no joke)"
+	getNorrisJoke().then((value) => {
+		joke = value.joke;
+		//Jokes only exist in the log for now
+		console.log("Joke: " + joke)
+	}).catch((e) => {
+		console.log('Error while loading joke', e.message);
+	});
+	return "WARNING! joke ahead--------------------------------------------------------------> " + joke;
+
 }
