@@ -57,12 +57,8 @@ class Select extends Component {
     }
 
     handleChangeSelect(identifier, value, name){
-        console.log('Bing handleChangeSelect()');
         let identifierName = identifier + 'Name';
-        console.log("Bing identifierName: "+ identifierName);
         this.setState({[identifier]: value, [identifierName]: name})
-        console.log('Bing VALUE:'+value);
-        console.log("Bing this.state.${identifier}: "+eval(`this.state.${identifier}`));
         if(identifier === 'orgUnit'){
             this.loadPrograms();
             this.loadTEIs();
@@ -76,7 +72,6 @@ class Select extends Component {
         let currentTitle = '';
         console.log('Bing renderSelect()');
         if(eval(`this.state.${identifier}`) !== ''){
-
             console.log("Bing eval(`this.state.${identifier}Name`): "+eval(`this.state.${identifier}Name`));
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
@@ -91,7 +86,6 @@ class Select extends Component {
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
                 onSelect={(event) => {
-                    console.log("Bing this: "+ this);
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
             >
@@ -116,13 +110,11 @@ class Select extends Component {
         }
 
         if(!(isEmpty(this.state.programs))){
-            console.log("Bing this.state.programs: "+this.state.programs);
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
 
         let teis = '';
         if(!(isEmpty(this.state.teis))){
-            console.log("Bing this.state.teis: "+this.state.teis);
             teis = (
                 <div className='row'>
                     {this.state.teis.map((tei, i) => {
@@ -138,12 +130,8 @@ class Select extends Component {
 
         return (
             <div className="dropdown">
-                {
-                    this.renderSelect('Select Organization(Clinic) ','orgUnit',this.state.orgUnits)
-                }
-                {
-                    programSelect
-                }
+                {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
+                {programSelect}
             </div>
             /*
             <div className='container-fluid'>
