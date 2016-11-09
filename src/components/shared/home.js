@@ -6,7 +6,8 @@ class Home extends Component {
 		return(
 			<div>
 				<p></p>
-				<p>Hello, welcome to BINGBONG's Open Source Development Project</p>
+				<p>Hello, welcome to the DHIS Deduplicator.</p>
+				<p>To start, choose one of the tabs in order to start finding duplicates of events.<p>
 			</div>
 		);
 	}

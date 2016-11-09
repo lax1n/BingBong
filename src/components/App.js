@@ -13,17 +13,17 @@ import TabBar from './shared/tabs.js';
 class App extends Component {
 	render() {
 		return (
-		    <div className='container-fluid'>
-		        <div className='row'>
-		            <div className="App">
-		              <div className="App-header">
-		                <img src={logo} className="App-logo" alt="logo" />
-		              </div>
-		              <TabBar />
-					  <p>{findPeopleWithTheSameName()}</p>
-		            </div>
-		        </div>
-		    </div>
+  		    <div className='container-fluid'>
+  		      <div className='row'>
+  		        <div className="App">
+  		          <div className="App-header">
+  		            <img src={logo} className="App-logo" alt="logo" />
+  		          </div>
+		            <TabBar />
+  				      <p>{findPeopleWithTheSameName()}</p>
+  	            </div>
+  		      </div>
+  		  </div>
 		);
 	}
 }
