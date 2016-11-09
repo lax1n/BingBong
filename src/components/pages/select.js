@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {isEmpty} from 'lodash';
+import DatePicker from 'react-bootstrap-date-picker';
 
 import {DropdownButton, MenuItem, Button, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
@@ -23,10 +24,14 @@ class Select extends Component {
             teis: [],
             orgUnitName:  '',
             programName: '',
+            startDate: (new Date()),
+            endDate: (new Date()),
         }
 
         this.renderSelect = this.renderSelect.bind(this);
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
+        this.changeStartDate = this.changeStartDate.bind(this);
+        this.changeEndDate = this.changeEndDate.bind(this);
     }
 
     componentDidMount(){
@@ -65,6 +70,14 @@ class Select extends Component {
         }
         else if(identifier === 'program')
             console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
+    }
+
+    changeStartDate(){
+
+    }
+
+    changeEndDate(){
+
     }
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
@@ -134,18 +147,26 @@ class Select extends Component {
         }
 
         return (
-            <div>
-                <Col md={3} className='clinicDropdown' >
-                    {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
-                </Col>
-                <Col md={3} className='progDropdown' >
-                    {programSelect}
-                </Col>
-                <Col md={3} className='dateDropdown' >
-                </Col>
-                <Col md={3} className='resBtn' >
-                    {resultBtn}
-                </Col>
+            <div className='row'>
+                <div className='row'>
+                    <Col sm={3} id='organizationSelect' >
+                        {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
+                    </Col>
+                    <Col sm={3} id='programSelect'>
+                        {programSelect}
+                    </Col>
+                    <Col sm={3} id='startDateSelect' >
+                        <DatePicker value={this.state.startDate} onChange={this.changeStartDate} />
+                    </Col>
+                    <Col sm={3} id='endDateSelect' >
+                        <DatePicker value={this.state.endDate} onChange={this.changeEndDate} />
+                    </Col>
+                </div>
+                <div className='row'>
+                    <Col sm={3} className='resBtn' >
+                        {resultBtn}
+                    </Col>
+                </div>
             </div>
         );
     }
