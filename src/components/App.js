@@ -3,7 +3,7 @@ import logo from '../images/logo_new.png';
 import '../styles/App.css';
 import '../libs/bootstrap.min.css';
 
-import {doTheThing} from '../utils/find_duplicates.js';
+import {findPeopleWithTheSameName} from '../utils/find_duplicates.js';
 
 import TabBar from './shared/tabs.js';
 //import SelectPage from './pages/select';
@@ -20,7 +20,7 @@ class App extends Component {
 		                <img src={logo} className="App-logo" alt="logo" />
 		              </div>
 		              <TabBar />
-					  <p>{doTheThing()}</p>
+					  <p>{findPeopleWithTheSameName()}</p>
 		            </div>
 		        </div>
 		    </div>

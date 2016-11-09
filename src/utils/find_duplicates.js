@@ -1,6 +1,6 @@
 import {getAllTEIsByOrganizationAndProgram} from '../actions/tei_actions';
 
-export function doTheThing(){
+export function giveMeData(){
 	console.log("Hello")
 	var headers = [];
 	var instances = [];
@@ -23,5 +23,12 @@ export function doTheThing(){
 	}).catch((e) => {
 		console.log('Error while loading stuff', e.message);
 	});
+	return [headers,instances];
+}
+export function findPeopleWithTheSameName(){
+	[headers,instances] = giveMeData();
+	for(var i= 0; i < headers.length; i++){
+		//
+	}
 	return "HEllo this doesn't return much"
 }
