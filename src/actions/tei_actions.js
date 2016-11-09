@@ -10,6 +10,6 @@ export function getAllTEIsByOrganization(orgUnitId){
 export function getAllTEIsByOrganizationAndProgram(orgUnitId, programId){
     return fetch(`${serverUrl}trackedEntityInstances/query?ou=${orgUnitId}&program=${programId}`, fetchOptionsGet)
         .then(onlySuccessResponses)
-        .then(response => response.json())
-        .then(( response ) => response);
+        .then(response => response.json());
+        //.then(( response ) => response);
 }
