@@ -2,7 +2,7 @@ import {serverUrl, fetchOptionsGet, onlySuccessResponses} from './api';
 
 // Add '&paging=false' to the url to include ALL units at once. Might be time consuming for testing.
 export function getAllOrganizations(){
-    return fetch(`${serverUrl}organisationUnits?fields=[id,displayName]`, fetchOptionsGet)
+    return fetch(`${serverUrl}organisationUnits?fields=[id,displayName]&paging=false`, fetchOptionsGet)
         .then(onlySuccessResponses)
         .then(response => response.json())
         .then(({ organisationUnits }) => organisationUnits);
