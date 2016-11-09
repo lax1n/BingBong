@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SelectField from 'material-ui/SelectField';
-//import MenuItem from 'material-ui/MenuItem';
 import {isEmpty} from 'lodash';
 
 import {DropdownButton, MenuItem} from 'react-bootstrap'
@@ -70,9 +67,7 @@ class Select extends Component {
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
         let currentTitle = '';
-        console.log('Bing renderSelect()');
         if(eval(`this.state.${identifier}`) !== ''){
-            console.log("Bing eval(`this.state.${identifier}Name`): "+eval(`this.state.${identifier}Name`));
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
@@ -85,13 +80,14 @@ class Select extends Component {
                 bsStyle="primary"
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
+                id={`${identifier} dropdown`}
                 onSelect={(event) => {
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
             >
                 {data.map((element, i) => {
                     return (
-                        <MenuItem eventKey={element} id={i}> {element.displayName} </MenuItem>
+                        <MenuItem eventKey={element} key={i}>{element.displayName}</MenuItem>
                     );
                 })}
             </DropdownButton>
@@ -133,39 +129,6 @@ class Select extends Component {
                 {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
                 {programSelect}
             </div>
-            /*
-            <div className='container-fluid'>
-                <div className='row'>
-                    <MuiThemeProvider>
-                        <div>
-                            {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
-                            {programSelect}
-                        </div>
-                    </MuiThemeProvider>
-                </div>
-                <div className='row'>
-                    <div className='col-md-12'>
-                        {teis}
-                        <table className='table table-striped'>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Something</th>
-                                    <th>Age</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Bing Bong</td>
-                                    <td>Best friend</td>
-                                    <td>11</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            */
         );
     }
 }
