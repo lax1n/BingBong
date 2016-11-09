@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {isEmpty} from 'lodash';
 
-import {DropdownButton, MenuItem} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -56,8 +56,10 @@ class Select extends Component {
 
     handleChangeSelect(identifier, value, name){
         let identifierName = identifier + 'Name';
-        this.setState({[identifier]: value, [identifierName]: name})
+        let identifierSelected = identifier + 'Selected';
+        this.setState({[identifier]: value, [identifierName]: name, [identifierSelected]: true})
         if(identifier === 'orgUnit'){
+            this.setState({programSelected: false})
             this.loadPrograms();
             this.loadTEIs();
         }
@@ -69,7 +71,7 @@ class Select extends Component {
     renderSelect(title, identifier, data){
         let currentTitle = '';
         if(eval(`this.state.${identifier}Selected`)){
-
+            console.log('YELLING');
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
@@ -102,7 +104,7 @@ class Select extends Component {
         let programSelect = '';
         if(isEmpty(this.state.orgUnits)){
             return (
-                <div>
+                <div className='row'>
                     <p>Loading organization units...</p>
                 </div>
             );
@@ -126,11 +128,24 @@ class Select extends Component {
                 </div>
             )
         }
+        let resultBtn = '';
+        if(!(isEmpty(this.state.programs))){
+            resultBtn = <Button bsStyle='success'>Find Results</Button>;
+        }
 
         return (
-            <div className="dropdown">
-                {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
-                {programSelect}
+            <div>
+                <Col md={3} className='clinicDropdown' >
+                    {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
+                </Col>
+                <Col md={3} className='progDropdown' >
+                    {programSelect}
+                </Col>
+                <Col md={3} className='dateDropdown' >
+                </Col>
+                <Col md={3} className='resBtn' >
+                    {resultBtn}
+                </Col>
             </div>
         );
     }

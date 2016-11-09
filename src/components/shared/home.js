@@ -4,7 +4,10 @@ class Home extends Component {
 
 	render(){
 		return(
-			<p>Hello, welcome to BINGBONG's Open Source Development Project</p>
+			<div>
+				<p></p>
+				<p>Hello, welcome to BINGBONG's Open Source Development Project</p>
+			</div>
 		);
 	}
 
