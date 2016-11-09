@@ -3,7 +3,7 @@ import logo from '../images/logo_new.png';
 import '../styles/App.css';
 import '../libs/bootstrap.min.css';
 
-import Tabs from './shared/tabs.js';
+import TabBar from './shared/tabs.js';
 import SelectPage from './pages/select';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                     <h2>B⏀NG</h2>
                   </div>
-                  <Tabs />
+                  <TabBar />
                   <SelectPage />
                 </div>
             </div>

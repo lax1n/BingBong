@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 
-class Navbar extends Component {
+class TabBar extends Component {
     constructor(props){
         super(props);
 
@@ -30,4 +30,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default TabBar;
