@@ -3,6 +3,7 @@ import {isEmpty} from 'lodash';
 
 import {DropdownButton, MenuItem} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
+import '../../styles/select.css';
 
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
@@ -67,7 +68,8 @@ class Select extends Component {
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
         let currentTitle = '';
-        if(eval(`this.state.${identifier}`)){
+        if(eval(`this.state.${identifier}Selected`)){
+
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
@@ -81,6 +83,7 @@ class Select extends Component {
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
                 id={`${identifier}-dropdown`}
+                className='scrollable-menu'
                 onSelect={(event) => {
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}

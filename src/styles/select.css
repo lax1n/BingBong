@@ -1,0 +1,4 @@
+.scrollable-menu:first-of-type + ul {
+  overflow: scroll;
+  max-height: 300px;
+}
