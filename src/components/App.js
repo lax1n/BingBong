@@ -4,7 +4,7 @@ import '../styles/App.css';
 import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tabs.js';
-import SelectPage from './pages/select';
+//import SelectPage from './pages/select';
 
 import {getAllTEIsByOrganizationAndProgram} from '../actions/tei_actions';
 
@@ -41,10 +41,8 @@ class App extends Component {
 		            <div className="App">
 		              <div className="App-header">
 		                <img src={logo} className="App-logo" alt="logo" />
-		                <h2>B⏀NG</h2>
 		              </div>
 		              <TabBar />
-		              <SelectPage />
 		            </div>
 		        </div>
 		    </div>

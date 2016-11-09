@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 
+import SelectPage from '../pages/select';
+
+
 class TabBar extends Component {
     constructor(props){
         super(props);
@@ -13,18 +16,21 @@ class TabBar extends Component {
     }
 
     handleSelect(eventKey){
-        event.preventDefault();
+        //event.preventDefault();
         this.setState({tabKey: eventKey});
     }
 
     render() {
         return (
             <Tabs
+                justified
                 id="select-deduplicator"
                 activeKey={this.state.tabKey}
                 onSelect={this.handleSelect}>
-                <Tab eventKey={1} title="Tracked Entity Instances">PLEASE WORK</Tab>
-                <Tab eventKey={2} title="Singletons">HUUUUUUUUUUUUUUU</Tab>
+                <Tab eventKey={1} title="Home">Hello, welcome to BONG</Tab>
+                <Tab eventKey={2} title="Tracked Entity Instances"><SelectPage /></Tab>
+                <Tab eventKey={3} title="Singletons"><SelectPage /></Tab>
+                <Tab eventKey={4} title="About">We are stoned af</Tab>
             </Tabs>
         );
     }

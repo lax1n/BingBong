@@ -67,7 +67,7 @@ class Select extends Component {
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
         let currentTitle = '';
-        if(eval(`this.state.${identifier}`) !== ''){
+        if(eval(`this.state.${identifier}`)){
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
@@ -80,7 +80,7 @@ class Select extends Component {
                 bsStyle="primary"
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
-                id={`${identifier} dropdown`}
+                id={`${identifier}-dropdown`}
                 onSelect={(event) => {
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
