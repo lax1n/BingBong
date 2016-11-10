@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 
-import SelectPage from '../pages/select';
+import Instructions from '../shared/instructions.js';
+
+// Import pages to be shown in the different Tabs
 import Home from '../pages/home.js';
-import Instructions from '../pages/instructions.js';
+import Tei from '../pages/tei';
+import Singleton from '../pages/singleton';
+import About from '../pages/about';
 
 
 class TabBar extends Component {
@@ -29,12 +33,19 @@ class TabBar extends Component {
                 id="select-deduplicator"
                 activeKey={this.state.tabKey}
                 onSelect={this.handleSelect}>
-                <Tab eventKey={1} title="Home"><Home /></Tab>
-                <Tab eventKey={2} title="Tracked Entity Instances"><Instructions /><SelectPage /></Tab>
-                <Tab eventKey={3} title="Singletons"><Instructions /><SelectPage /></Tab>
+                <Tab eventKey={1} title="Home">
+                    <Home />
+                </Tab>
+                <Tab eventKey={2} title="Tracked Entity Instances">
+                    <Instructions />
+                    <Tei />
+                </Tab>
+                <Tab eventKey={3} title="Singletons">
+                    <Instructions />
+                    <Singleton />
+                </Tab>
                 <Tab eventKey={4} title="About">
-                    <p>Use Tracked Entity Instances to gather duplicates of TEIs </p>
-                    <p>Use Singletons to gather duplicates of single events that are not associated with persons</p>
+                    <About />
                 </Tab>
             </Tabs>
         );

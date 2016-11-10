@@ -4,7 +4,7 @@ class Instructions extends Component {
 
 	render(){
 		return(
-			<div>
+			<div className='text-center'>
 				<p></p>
 				<p>Select <b>Clinic</b>, <b>Program</b>(optional) and <b>date</b> frame(optional)</p>
 				<p></p>

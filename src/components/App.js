@@ -13,17 +13,18 @@ import TabBar from './shared/tab_bar.js';
 class App extends Component {
 	render() {
 		return (
-  		    <div className='container-fluid'>
-  		      <div className='row'>
-  		        <div className="App">
-  		          <div className="App-header">
-  		            <img src={logo} className="App-logo" alt="logo" />
-  		          </div>
-		            <TabBar />
-  				      <p>{findDuplicatePeople()}</p>
-  	            </div>
-  		      </div>
-  		  </div>
+			<div className='container-fluid'>
+				<div className='row'>
+					<div className="App">
+						<div className="App-header">
+							<img src={logo} className="App-logo" alt="logo" />
+						</div>
+					</div>
+				</div>
+				<div className='row'>
+					<TabBar />
+				</div>
+			</div>
 		);
 	}
 }

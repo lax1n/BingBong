@@ -5,19 +5,12 @@ import {getNorrisJoke} from '../actions/norris_actions';
 export function giveMeData(){
 	return getAllTEIsByOrganizationAndProgram("DiszpKrYNg8", "ur1Edk5Oe2n").then((everything) => {
 		var i, j;
-		//var headers = [];
 		var instances = [];
-		/*console.log("everything: " + everything);
-		console.log("everything.grid: " + everything.grid);
-		console.log("everything.headers: " + everything.headers);
-		console.log("everything.headers[0]: " + everything.headers[0]);
-		console.log("everything.headers[0].name: " + everything.headers[0].name);*/
 		var headerCount = everything.headers.length;
 		var instanceCount = everything.rows.length;
 		for (i = 0; i < instanceCount; i++) {
 			instances[i] = {};
 			for (j = 0; j < headerCount; j++) {
-				//console.log('instances.push({"'+everything.headers[j].column+'":"'+ everything.rows[i][j]+'"})');
 				eval('instances['+i+']["'+everything.headers[j].column+'"] = "'+ everything.rows[i][j]+'"');
 			}
 		}
@@ -28,13 +21,16 @@ export function giveMeData(){
 	});
 }
 
+// This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
 export function isDuplicate(obj1, obj2){
+	/*
 	const attributes = {
 		"Instance": false,
 		"First name": true,
 		"Last name": true,
 		"Date of birth": true,
 	}
+	*/
 	return (
 		(obj1["Instance"] !== obj2["Instance"]) &&
 		(obj1["First name"] === obj2["First name"]) &&
@@ -62,7 +58,6 @@ export function findPeopleWithTheSameName(){
 	var joke = "(there is no joke)"
 	giveMeData().then((instances) => {
 		for (var i = 0; i < instances.length; i++) {
-			//console.log("Here:");
 			console.log(instances[i])
 			for (var key in instances[i]) {
 				//console.log("key: "+key+" values: "+instances[i][key])

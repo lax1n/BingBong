@@ -24,8 +24,8 @@ class Select extends Component {
             teis: [],
             orgUnitName:  '',
             programName: '',
-            startDate: (new Date()),
-            endDate: (new Date()),
+            startDate: '',
+            endDate: '',
         }
 
         this.renderSelect = this.renderSelect.bind(this);
@@ -126,21 +126,7 @@ class Select extends Component {
         if(!(isEmpty(this.state.programs))){
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
-
-        let teis = '';
-        if(!(isEmpty(this.state.teis))){
-            teis = (
-                <div className='row'>
-                    {this.state.teis.map((tei, i) => {
-                        return (
-                            <p key={i}>
-                                {tei.trackedEntityInstance}
-                            </p>
-                        );
-                    })}
-                </div>
-            )
-        }
+        
         let resultBtn = '';
         if(!(isEmpty(this.state.programs))){
             resultBtn = <Button bsStyle='success'>Find Results</Button>;

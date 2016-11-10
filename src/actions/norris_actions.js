@@ -1,4 +1,4 @@
-import {serverUrl, fetchOptionsGet, onlySuccessResponses} from './api';
+import {onlySuccessResponses} from './api';
 
 // Add '&paging=false' to the url to include ALL units at once. Might be time consuming for testing.
 export function getNorrisJoke(){
