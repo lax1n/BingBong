@@ -8,7 +8,6 @@ import '../../styles/select.css';
 
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
-import {getAllTEIsByOrganization} from '../../actions/tei_actions';
 
 class Select extends Component {
     constructor (props){
@@ -51,14 +50,6 @@ class Select extends Component {
         });
     }
 
-    loadTEIs(){
-        getAllTEIsByOrganization(this.state.orgUnit).then((teis) => {
-            this.setState({teis: teis});
-        }).catch((e) => {
-            console.log('Error while loading TEIs', e.message);
-        });
-    }
-
     handleChangeSelect(identifier, value, name){
         let identifierName = identifier + 'Name';
         let identifierSelected = identifier + 'Selected';
@@ -84,14 +75,13 @@ class Select extends Component {
     renderSelect(title, identifier, data){
         let currentTitle = '';
         if(eval(`this.state.${identifier}Selected`)){
-            console.log('YELLING');
             currentTitle = eval(`this.state.${identifier}Name`);
         }else{
             currentTitle = title;
         }
         return (
             <DropdownButton
-                bsStyle="primary"
+                bsStyle="default"
                 title={currentTitle}
                 value={eval(`this.state.${identifier}`)}
                 id={`${identifier}-dropdown`}
@@ -109,45 +99,86 @@ class Select extends Component {
         );
     }
 
+    findResults(){
+        const params = {
+            orgUnit: this.state.orgUnit,
+            program: this.state.program,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+        }
+        this.props.findResults(params);
+    }
 
     render() {
-        let programSelect = '';
         if(isEmpty(this.state.orgUnits)){
             return (
-                <div className='row'>
+                <div className='row text-center'>
                     <p>Loading organization units...</p>
                 </div>
             );
         }
 
-        if(!(isEmpty(this.state.programs))){
-            programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
-        }
-
-        let resultBtn = '';
-        if(!(isEmpty(this.state.programs))){
-            resultBtn = <Button bsStyle='success'>Find Results</Button>;
+        if(this.state.orgUnitSelected == false){
+            return (
+                <div className='row text-center'>
+                    <div className='col-sm-12'>
+                        {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                    </div>
+                </div>
+            );
         }
 
         return (
             <div className='row'>
                 <div className='row'>
                     <Col sm={3} id='organizationSelect' >
-                        {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                        <div className='form-group text-center'>
+                            <div className='row'>
+                                <label>Organization(Clinic)</label>
+                            </div>
+                            <div className='row'>
+                                {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                            </div>
+                        </div>
                     </Col>
                     <Col sm={3} id='programSelect'>
-                        {programSelect}
+                        <div className='form-group text-center'>
+                            <div className='row'>
+                                <label>Program (Optional)</label>
+                            </div>
+                            <div className='row'>
+                                {this.renderSelect('Select Program', 'program', this.state.programs)}
+                            </div>
+                        </div>
                     </Col>
-                    <Col sm={3} id='startDateSelect' >
-                        <DatePicker value={this.state.startDate} onChange={this.changeStartDate} />
-                    </Col>
-                    <Col sm={3} id='endDateSelect' >
-                        <DatePicker value={this.state.endDate} onChange={this.changeEndDate} />
+                    <Col sm={6} id='dateSelect'>
+                        <div className='form-group text-center'>
+                            <div className='row'>
+                                <label>Time frame (Optional)</label>
+                            </div>
+                            <div className='row'>
+                                <Col sm={6} id='startDateSelect'>
+                                    <DatePicker
+                                        placeholder='Start date'
+                                        value={this.state.startDate}
+                                        onChange={this.changeStartDate} />
+                                </Col>
+                                <Col sm={6} id='endDateSelect'>
+                                    <DatePicker
+                                        placeholder='End date'
+                                        value={this.state.endDate}
+                                        onChange={this.changeEndDate} />
+                                </Col>
+                            </div>
+                        </div>
                     </Col>
                 </div>
                 <div className='row'>
-                    <Col sm={3} className='resBtn' >
-                        {resultBtn}
+                    <Col sm={3} className='resBtn'>
+                        <Button
+                            bsStyle='primary'
+                            onClick={this.findResults.bind(this)}
+                            >Find Results</Button>
                     </Col>
                 </div>
             </div>

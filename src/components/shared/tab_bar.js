@@ -15,7 +15,7 @@ class TabBar extends Component {
         super(props);
 
         this.state = {
-            tabKey: 1,
+            tabKey: 2,
         }
 
         this.handleSelect = this.handleSelect.bind(this);
@@ -37,11 +37,9 @@ class TabBar extends Component {
                     <Home />
                 </Tab>
                 <Tab eventKey={2} title="Tracked Entity Instances">
-                    <Instructions />
                     <Tei />
                 </Tab>
                 <Tab eventKey={3} title="Singletons">
-                    <Instructions />
                     <Singleton />
                 </Tab>
                 <Tab eventKey={4} title="About">
