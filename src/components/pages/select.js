@@ -72,12 +72,12 @@ class Select extends Component {
             console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
     }
 
-    changeStartDate(){
-
+    changeStartDate(value){
+        this.setState({startDate: value});
     }
 
-    changeEndDate(){
-
+    changeEndDate(value){
+        this.setState({endDate: value});
     }
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
@@ -89,9 +89,6 @@ class Select extends Component {
         }else{
             currentTitle = title;
         }
-        //this.handleChangeSelect(identifier, event.target.value
-        //(event) => console.log('OONTZ OONTZ'+event)
-        //(event) => {console.log('event: ', event)}
         return (
             <DropdownButton
                 bsStyle="primary"
@@ -126,7 +123,7 @@ class Select extends Component {
         if(!(isEmpty(this.state.programs))){
             programSelect = this.renderSelect('Select Program', 'program', this.state.programs);
         }
-        
+
         let resultBtn = '';
         if(!(isEmpty(this.state.programs))){
             resultBtn = <Button bsStyle='success'>Find Results</Button>;
@@ -136,7 +133,7 @@ class Select extends Component {
             <div className='row'>
                 <div className='row'>
                     <Col sm={3} id='organizationSelect' >
-                        {this.renderSelect('Select Organization(Clinic) ', 'orgUnit', this.state.orgUnits)}
+                        {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
                     </Col>
                     <Col sm={3} id='programSelect'>
                         {programSelect}
