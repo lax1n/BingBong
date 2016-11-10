@@ -20,7 +20,7 @@ export function giveMeData(){
 		return -1;
 	});
 }
-// This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
+// This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty. 
 export function isDuplicate(obj1, obj2){
 	/*
 	const attributes = {
