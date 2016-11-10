@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 
 import SelectPage from '../pages/select';
-import Home from './home.js';
-import Instructions from './instructions.js';
+import Home from '../pages/home.js';
+import Instructions from '../pages/instructions.js';
 
 
 class TabBar extends Component {
