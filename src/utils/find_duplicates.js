@@ -15,9 +15,10 @@ export function giveMeData(){
 		var headerCount = everything.headers.length;
 		var instanceCount = everything.rows.length;
 		for (i = 0; i < instanceCount; i++) {
+			instances[i] = {};
 			for (j = 0; j < headerCount; j++) {
 				//console.log('instances.push({"'+everything.headers[j].column+'":"'+ everything.rows[i][j]+'"})');
-				eval('instances.push({"'+everything.headers[j].column+'":"'+ everything.rows[i][j]+'"})');
+				eval('instances['+i+']["'+everything.headers[j].column+'"] = "'+ everything.rows[i][j]+'"');
 			}
 		}
 		return instances;
@@ -30,15 +31,8 @@ export function findPeopleWithTheSameName(){
 	var joke = "(there is no joke)"
 	giveMeData().then((instances) => {
 		for (var i = 0; i < instances.length; i++) {
-			/*instances.each(key, value){
-				console.log("Hello");
-			}*/
-			/*instances.each((instance, i) => {
-				console.log(instance);
-				console.log(i);
-			});*/
 			//console.log("Here:");
-			//console.log(instances[i].City)
+			console.log(instances[i])
 			for (var key in instances[i]) {
 				//console.log("key: "+key+" values: "+instances[i][key])
 			}
