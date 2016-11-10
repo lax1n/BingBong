@@ -54,11 +54,12 @@ export function findDuplicatePeople(){
 	});
 }
 
-export function findPeopleWithTheSameName(){
+export function testFunction(){
 	var joke = "(there is no joke)"
 	giveMeData().then((instances) => {
 		for (var i = 0; i < instances.length; i++) {
-			console.log(instances[i])
+			//console.log("Here:");
+			//console.log(instances[i])
 			for (var key in instances[i]) {
 				//console.log("key: "+key+" values: "+instances[i][key])
 			}
@@ -72,4 +73,25 @@ export function findPeopleWithTheSameName(){
 		console.log('Error while loading joke', e.message);
 	});
 	return "WARNING! joke ahead--------------------------------------------------------------> " + joke;
+}
+
+export function sameFirstName(){
+	var duplicates = {};
+	giveMeData().then((teis) => {
+		for (var i = 0; i < teis.length; i++) {
+			for (var j = 0; j < teis.length; j++) {
+				if(i !== j && teis[i]["First name"] === teis[j]["First name"]){
+					if(duplicates[teis[i]["First name"]] == undefined){
+						duplicates[teis[i]["First name"]] = [];
+					}
+					duplicates[teis[i]["First name"]].push(teis[i]);
+
+				}
+			}
+		}
+		console.log("duplicates");
+		console.log(duplicates);
+	});
+	return "WARNING! joke ahead--------------------------------------------------------------> ";
+
 }
