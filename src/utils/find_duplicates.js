@@ -19,7 +19,7 @@ export function parseQueryResults(response){
 	for (i = 0; i < instanceCount; i++) {
 		teis[i] = {};
 		for (j = 0; j < headerCount; j++) {
-			eval('teis['+i+']["'+response.headers[j].column+'"] = "'+ response.rows[i][j]+'"');
+			teis[i][response.headers[j].column] = response.rows[i][j];
 		}
 	}
 	return teis;
