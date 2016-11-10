@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {isEmpty} from 'lodash';
 import DatePicker from 'react-bootstrap-date-picker';
+//import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, Col} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, ButtonToolbar, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
+
 
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
@@ -88,7 +90,7 @@ class Select extends Component {
                 onSelect={(event) => {
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
-            >
+            >   
                 {data.map((element, i) => {
                     return (
                         <MenuItem eventKey={element} key={i}>{element.displayName}</MenuItem>
@@ -121,7 +123,7 @@ class Select extends Component {
             return (
                 <div className='row text-center'>
                     <div className='col-sm-12'>
-                        {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                        {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
                     </div>
                 </div>
             );
@@ -136,7 +138,7 @@ class Select extends Component {
                                 <label>Organization(Clinic)</label>
                             </div>
                             <div className='row'>
-                                {this.renderSelect('Select Organization(Clinic)', 'orgUnit', this.state.orgUnits)}
+                                {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
                             </div>
                         </div>
                     </Col>
@@ -178,6 +180,11 @@ class Select extends Component {
                             bsStyle='primary'
                             onClick={this.findResults.bind(this)}
                             >Find Results</Button>
+                    </Col>
+                    <Col sm={7} smPush={4} className='favBtn'>
+                        <Button 
+                            bsStyle='info'
+                            >Add to Favourites</Button>
                     </Col>
                 </div>
             </div>
