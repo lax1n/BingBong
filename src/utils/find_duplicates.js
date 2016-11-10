@@ -27,6 +27,37 @@ export function giveMeData(){
 		return -1;
 	});
 }
+
+export function isDuplicate(obj1, obj2){
+	const attributes = {
+		"Instance": false,
+		"First name": true,
+		"Last name": true,
+		"Date of birth": true,
+	}
+	return (
+		(obj1["Instance"] !== obj2["Instance"]) &&
+		(obj1["First name"] === obj2["First name"]) &&
+		(obj1["Last name"] === obj2["Last name"]) &&
+		(obj1["Date of birth"] === obj2["Date of birth"])
+	)
+}
+
+export function findDuplicatePeople(){
+	giveMeData().then((teis) => {
+		let duplicates = [[]];
+		teis.forEach((tei, i) => {
+			teis.forEach((tempTei, j) => {
+				if(isDuplicate(tei, tempTei)){
+					console.log("Possible duplicate found:");
+					console.log(tei);
+					console.log(tempTei);
+				}
+			});
+		});
+	});
+}
+
 export function findPeopleWithTheSameName(){
 	var joke = "(there is no joke)"
 	giveMeData().then((instances) => {
@@ -46,5 +77,4 @@ export function findPeopleWithTheSameName(){
 		console.log('Error while loading joke', e.message);
 	});
 	return "WARNING! joke ahead--------------------------------------------------------------> " + joke;
-
 }
