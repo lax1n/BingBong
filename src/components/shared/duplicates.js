@@ -18,8 +18,8 @@ class Duplicates extends Component {
             )
         }
 		return(
-			<div className='well'>
-                <div className='col-sm-12'>
+            <div>
+                <div className='well'>
                     {duplicates.map((duplicateRow, i) => {
                         return (
                             <div className='row' key={i}>
@@ -32,7 +32,7 @@ class Duplicates extends Component {
                         );
                     })}
                 </div>
-			</div>
+            </div>
 		);
 	}
 

@@ -181,7 +181,7 @@ class Select extends Component {
                             onClick={this.findResults.bind(this)}
                             >Find Results</Button>
                     </Col>
-                    <Col sm={7} smPush={4} className='favBtn'>
+                    <Col sm={3} className='favBtn pull-right'>
                         <Button 
                             bsStyle='info'
                             >Add to Favourites</Button>
