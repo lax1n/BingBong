@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Tab} from 'react-bootstrap';
 
-import Instructions from '../shared/instructions.js';
-
 // Import pages to be shown in the different Tabs
 import Home from '../pages/home.js';
 import Tei from '../pages/tei';

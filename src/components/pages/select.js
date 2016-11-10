@@ -3,7 +3,7 @@ import {isEmpty} from 'lodash';
 import DatePicker from 'react-bootstrap-date-picker';
 //import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, ButtonToolbar, Col} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -119,7 +119,7 @@ class Select extends Component {
             );
         }
 
-        if(this.state.orgUnitSelected == false){
+        if(this.state.orgUnitSelected === false){
             return (
                 <div className='row text-center'>
                     <div className='col-sm-12'>
