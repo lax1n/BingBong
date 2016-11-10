@@ -44,8 +44,8 @@ class Select extends Component {
         });
     }
 
-    loadPrograms(){
-        getAllProgramsByOrganization(this.state.orgUnit).then((programs) => {
+    loadPrograms(orgUnit){
+        getAllProgramsByOrganization(orgUnit).then((programs) => {
             this.setState({programs: programs, program: programs[0].id, programName: programs[0].displayName});
         }).catch((e) => {
             console.log('Error while loading programs', e.message);
@@ -55,13 +55,13 @@ class Select extends Component {
     handleChangeSelect(identifier, value, name){
         let identifierName = identifier + 'Name';
         let identifierSelected = identifier + 'Selected';
-        this.setState({[identifier]: value, [identifierName]: name, [identifierSelected]: true})
+        this.setState({[identifier]: value, [identifierName]: name, [identifierSelected]: true});
         if(identifier === 'orgUnit'){
             this.setState({programSelected: false})
-            this.loadPrograms();
+            this.loadPrograms(value);
         }
         else if(identifier === 'program')
-            console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
+            console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + value);
     }
 
     changeStartDate(value){
@@ -90,7 +90,7 @@ class Select extends Component {
                 onSelect={(event) => {
                     this.handleChangeSelect(identifier, event.id, event.displayName);
                 }}
-            >   
+            >
                 {data.map((element, i) => {
                     return (
                         <MenuItem eventKey={element} key={i}>{element.displayName}</MenuItem>
@@ -182,7 +182,7 @@ class Select extends Component {
                             >Find Results</Button>
                     </Col>
                     <Col sm={7} smPush={4} className='favBtn'>
-                        <Button 
+                        <Button
                             bsStyle='info'
                             >Add to Favourites</Button>
                     </Col>
