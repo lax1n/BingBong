@@ -94,3 +94,27 @@ export function sameFirstName(){
 	return "WARNING! joke ahead--------------------------------------------------------------> ";
 
 }
+
+export function findSimiliraities(){
+	var similarites = {};
+	giveMeData().then((teis) => {
+		for (var category in teis[0]) {
+			similarites[category] = {};
+			for (var i = 0; i < teis.length; i++) {
+				for (var j = 0; j < teis.length; j++) {
+					if(i !== j && teis[i][category] === teis[j][category]){
+						if(similarites[category][teis[i][category]] == undefined){
+							similarites[category][teis[i][category]] = [];
+						}
+						similarites[category][teis[i][category]].push(teis[i]);
+					}
+				}
+			}
+			//console.log("similarites[category]");
+			//console.log(similarites[category]);
+		}
+		console.log(similarites);
+	});
+	return "No joke";
+
+}
