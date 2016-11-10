@@ -50,12 +50,14 @@ export function findDuplicatePeople(teis){
 			if(isDuplicate(tei, tempTei)){
 				// Add duplicate to tempDuplicates & remove it from teis to avoid redundancy later
 				tempDuplicates.push(tempTei);
+
+				// NOTE TO SELF: THIS MIGHT DELETE THE WRONG ELEMENT FOR FUCK SAKEEEEE ARRRRGHHHHHHH
 				teis.splice(j, 1);
 
 				// Some logs
-				console.log("Possible duplicate found:");
-				console.log(tei);
-				console.log(tempTei);
+				//console.log("Possible duplicate found:");
+				//console.log(tei);
+				//console.log(tempTei);
 			}
 		});
 		if (!(isEmpty(tempDuplicates))){
