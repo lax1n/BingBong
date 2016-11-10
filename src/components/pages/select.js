@@ -57,7 +57,6 @@ class Select extends Component {
         if(identifier === 'orgUnit'){
             this.setState({programSelected: false})
             this.loadPrograms();
-            this.loadTEIs();
         }
         else if(identifier === 'program')
             console.log('Ready to find results with orgUnit: ' + this.state.orgUnit + ' and program: ' + this.state.program);
