@@ -41,6 +41,16 @@ class Tei extends Component {
                     <Instructions />
                     <Select findResults={this.findResults} />
                 </div>
+                <div className='row'>
+                    <button
+                        className='btn btn-default'
+                        onClick={this.findResults.bind(this, {
+                            orgUnit: 'DiszpKrYNg8',
+                            program: 'ur1Edk5Oe2n',
+                        })}
+                    > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
+                    </button>
+                </div>
                 {results}
 			</div>
 		);

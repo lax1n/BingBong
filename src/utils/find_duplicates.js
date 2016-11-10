@@ -53,6 +53,8 @@ export function findDuplicatePeople(teis){
 
 				// NOTE TO SELF: THIS MIGHT DELETE THE WRONG ELEMENT FOR FUCK SAKEEEEE ARRRRGHHHHHHH
 				teis.splice(j, 1);
+				console.log(j);
+				console.log(teis[j]);
 
 				// Some logs
 				//console.log("Possible duplicate found:");
