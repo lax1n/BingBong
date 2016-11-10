@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {isEmpty} from 'lodash';
 
 class Duplicates extends Component {
     constructor(props){
@@ -7,7 +8,7 @@ class Duplicates extends Component {
 
 	render(){
         const duplicates = this.props.duplicates;
-        if(duplicates === []){
+        if(isEmpty(duplicates)){
             return (
                 <div className='row'>
                     <div className='col-sm-12'>
