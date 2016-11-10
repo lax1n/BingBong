@@ -18,7 +18,7 @@ class Duplicates extends Component {
             )
         }
 		return(
-			<div className='row'>
+			<div className='well'>
                 <div className='col-sm-12'>
                     {duplicates.map((duplicateRow, i) => {
                         return (
