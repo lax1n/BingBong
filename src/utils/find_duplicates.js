@@ -66,7 +66,7 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		}
 	}
 	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
-		if(!((obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === "") (obj1[strict_test_params[i]] === undefined) || (obj1[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
+		if(!((obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === undefined) || (obj1[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
 			if((obj1[strict_test_params[i]] === obj2[strict_test_params[i]]) === false){ //Checking if they are equal
 				return false;
 			}
