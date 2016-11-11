@@ -27,29 +27,27 @@ export function parseQueryResults(response){
 	return teis;
 }
 // This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
-export function isDuplicate(obj1, obj2, test_params){
-	/*
-	const attributes = {
-		"Instance": false,
-		"First name": true,
-		"Last name": true,
-		"Date of birth": true,
-	}
-	*/
+export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance){
 	//console.log(test_params);
 	var editDistance = -1;
-	for (var i = 0; i<test_params.length; i++){
-		if(!((obj1[test_params[i]] === "") || (obj1[test_params[i]] === ""))){
-			if((obj1[test_params[i]] === obj2[test_params[i]]) === false){
-				editDistance = getEditDistance(obj1[test_params[i]], obj2[test_params[i]]);
-				if(editDistance > 3){
-					//console.log(obj1[test_params[i]] +" , "+ obj2[test_params[i]]+": "+editDistance);
+	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
+		if(!((obj1[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === ""))){ //Ignoring if one of them are empty
+			if((obj1[loose_test_params[i]] === obj2[loose_test_params[i]]) === false){ //Checking if they are equal
+				editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
+				if(editDistance > maxEditDistance){
 					return false;
 				}
 			}
 		}
 	}
-	return true
+	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
+		if(!((obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === ""))){ //Ignoring if one of them are empty
+			if((obj1[strict_test_params[i]] === obj2[strict_test_params[i]]) === false){ //Checking if they are equal
+				return false;
+			}
+		}
+	}
+	return true;
 	/*return (
 		//(obj1["Instance"] !== obj2["Instance"]) &&
 		(obj1["First name"] === obj2["First name"]) &&
@@ -69,12 +67,14 @@ export function contains(needle, indexes) {
 
 export function findDuplicatePeople(teis){
 	let duplicates = [];
-	var test_params = ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
+	var loose_test_params = ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
+	var strict_test_params = ["Blood type"];
 	let duplicate_indexes = []
+	let maxEditDistance = 2;
 	teis.forEach((tei, i) => {
 		let tempDuplicates = []
 		teis.forEach((tempTei, j) => {
-			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, test_params)){
+			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
 			}
