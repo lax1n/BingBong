@@ -21,9 +21,13 @@ class Duplicates extends Component {
 
     showDuplicates(duplicates){
         const tableAttributes = [
+            'Instance',
             'First name',
             'Last name',
             'Date of birth',
+            'Mother maiden name',
+            'Gender',
+            'Occupation',
         ];
         return(
             <div>
