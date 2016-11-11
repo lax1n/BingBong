@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-import {findTEIDuplicatesByOrganizationAndProgram} from '../../utils/find_duplicates';
+import {
+    findTEIDuplicatesByOrganizationAndProgram,
+    findTEIDuplicatesByOrganization,
+} from '../../utils/find_duplicates';
 
 import Select from './select';
 import Duplicates from '../shared/duplicates';
@@ -21,10 +24,17 @@ class Tei extends Component {
     findResults(params){
         // Handle what to do depending on which params were recevied
         console.log(params);
-        findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
-            console.log(duplicates);
-            this.setState({resultsFound: true, results: duplicates});
-        });
+        if(params.program === ''){
+            findTEIDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
+                console.log(duplicates);
+                this.setState({resultsFound: true, results: duplicates});
+            });
+        }else if(params.program !== '' && params.startDate === ''){
+            findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
+                console.log(duplicates);
+                this.setState({resultsFound: true, results: duplicates});
+            });
+        }
     }
 
 	render(){

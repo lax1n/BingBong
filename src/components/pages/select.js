@@ -38,7 +38,7 @@ class Select extends Component {
     componentDidMount(){
         // Load organization units
         getAllOrganizations().then((organizationUnits) => {
-            this.setState({orgUnits: organizationUnits, orgUnit: organizationUnits[0].id, orgUnitName: organizationUnits[0].displayName});
+            this.setState({orgUnits: organizationUnits, orgUnit: '', orgUnitName: ''});
         }).catch((e) => {
             console.log('Error while loading organization units', e.message);
         });
@@ -46,7 +46,7 @@ class Select extends Component {
 
     loadPrograms(orgUnit){
         getAllProgramsByOrganization(orgUnit).then((programs) => {
-            this.setState({programs: programs, program: programs[0].id, programName: programs[0].displayName});
+            this.setState({programs: programs, program: '', programName: ''});
         }).catch((e) => {
             console.log('Error while loading programs', e.message);
         });
