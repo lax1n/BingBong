@@ -82,10 +82,6 @@ class Duplicates extends Component {
         });
     }
 
-    helloWorld(param){
-        console.log(param);
-    }
-
 	render(){
         const duplicates = this.props.duplicates;
 
@@ -106,6 +102,7 @@ class Duplicates extends Component {
         }
 		return(
             <Well>
+                <h4>Duplicates (click on a row to expand)</h4>
                 <Table striped condensed
                     className='hover-info'>
                     <thead className='center'>
@@ -116,26 +113,19 @@ class Duplicates extends Component {
                                     <th key={i}>{attribute}</th>
                                 );
                             })}
-                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody>
                         {duplicates.map((duplicateRow, i) => {
                             return (
                                 <tr key={i}
-                                    onClick={() => this.helloWorld("huehahuehauhe")}>
+                                    onClick={() => this.viewDuplicates(duplicateRow)}>
                                     <td><Checkbox /></td>
                                     {tableAttributes.map((attribute, j) => {
                                         return (
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
                                         );
                                     })}
-                                    <td>
-                                        <Button default
-                                            onClick={this.viewDuplicates.bind(this, duplicateRow)}
-                                        > View details
-                                        </Button>
-                                    </td>
                                 </tr>
                             );
                         })}
