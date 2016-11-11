@@ -1,7 +1,9 @@
 import {getAllTEIsByOrganizationAndProgram} from '../actions/tei_actions';
+import {getEditDistance} from '../libs/levenshtein';
 //import {getNorrisJoke} from '../actions/norris_actions';
 
 import {isEmpty} from 'lodash';
+
 
 export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program){
 	return getAllTEIsByOrganizationAndProgram(orgUnit, program).then((response) => {
@@ -35,10 +37,15 @@ export function isDuplicate(obj1, obj2, test_params){
 	}
 	*/
 	//console.log(test_params);
+	var editDistance = -1;
 	for (var i = 0; i<test_params.length; i++){
 		if(!((obj1[test_params[i]] === "") || (obj1[test_params[i]] === ""))){
 			if((obj1[test_params[i]] === obj2[test_params[i]]) === false){
-				return false;
+				editDistance = getEditDistance(obj1[test_params[i]], obj2[test_params[i]]);
+				if(editDistance > 3){
+					//console.log(obj1[test_params[i]] +" , "+ obj2[test_params[i]]+": "+editDistance);
+					return false;
+				}
 			}
 		}
 	}
@@ -62,33 +69,18 @@ export function contains(needle, indexes) {
 
 export function findDuplicatePeople(teis){
 	let duplicates = [];
-	var test_params = ["First name", "Last name", "Date of birth", "Blood type"];
+	var test_params = ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
 	let duplicate_indexes = []
 	teis.forEach((tei, i) => {
 		let tempDuplicates = []
 		teis.forEach((tempTei, j) => {
 			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, test_params)){
-				// Add duplicate to tempDuplicates & remove it from teis to avoid redundancy later
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
-
-				// NOTE TO SELF: THIS MIGHT DELETE THE WRONG ELEMENT FOR FUCK SAKEEEEE ARRRRGHHHHHHH
-				//teis.splice(j, 1);
-				//console.log(j);
-				//console.log(teis[j]);
-
-				// Some logs
-				//console.log("Possible duplicate found:");
-				//console.log(tei);
-				//console.log(tempTei);
 			}
 		});
 		if (!(isEmpty(tempDuplicates))){
-			// Add original to duplicate list as well
 			tempDuplicates.push(tei);
-			// Remove original from teis
-			//teis.splice(i, 1);
-			// Add array of duplcliates to duplicates
 			duplicates.push(tempDuplicates);
 		}
 	});
