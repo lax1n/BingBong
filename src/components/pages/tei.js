@@ -57,6 +57,8 @@ class Tei extends Component {
                         onClick={this.findResults.bind(this, {
                             orgUnit: 'DiszpKrYNg8',
                             program: 'ur1Edk5Oe2n',
+                            startDate: '',
+                            endDate: '',
                         })}
                     > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
                     </button>
