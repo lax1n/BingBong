@@ -13,34 +13,28 @@ export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program){
 	});
 }
 export function findTEIDuplicatesByOrganization(orgUnit){
-	getAllTEIsByOrganization(orgUnit).then((response) => {
+	return getAllTEIsByOrganization(orgUnit).then((response) => {
 		const teis = parseQueryResultsOrgOnly(response);
 		const duplicates = findDuplicatePeople(teis);
 		return duplicates;
 	});
-	return "test"
 }
 
 export function parseQueryResultsOrgOnly(response){
 	let i, j;
 	let teis = [];
 	let attributesLength;
-	console.log("response:")
-	console.log(response)
 	let responseCount = response.length;
 	for (i = 0; i < responseCount; i++) {
 		teis[i] = {};
 		attributesLength  = response[i].attributes.length
-		//console.log("geret");
-		//console.log(response[i].attributes);
-		//console.log(attributesLength);
 		for (j = 0; j < attributesLength; j++) {
 			//console.log(response[i].attributes[j].displayName);
 			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
 		}
 		//console.log(teis);
 	}
-	console.log(teis)
+	//console.log(teis)
 	return teis;
 }
 
