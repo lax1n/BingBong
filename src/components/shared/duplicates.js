@@ -32,7 +32,7 @@ class Duplicates extends Component {
         ];
         return(
             <div>
-                <Modal show={this.state.showDetails} onHide={this.closeDetails}>
+                <Modal bsSize='large' show={this.state.showDetails} onHide={this.closeDetails}>
                     <Modal.Header>
                         <Modal.Title>Duplicates found for</Modal.Title>
                     </Modal.Header>
