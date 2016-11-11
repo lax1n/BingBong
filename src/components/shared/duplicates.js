@@ -82,6 +82,10 @@ class Duplicates extends Component {
         });
     }
 
+    helloWorld(param){
+        console.log(param);
+    }
+
 	render(){
         const duplicates = this.props.duplicates;
 
@@ -118,7 +122,8 @@ class Duplicates extends Component {
                     <tbody>
                         {duplicates.map((duplicateRow, i) => {
                             return (
-                                <tr key={i}>
+                                <tr key={i}
+                                    onClick={() => this.helloWorld("huehahuehauhe")}>
                                     <td><Checkbox /></td>
                                     {tableAttributes.map((attribute, j) => {
                                         return (
