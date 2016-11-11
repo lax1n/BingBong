@@ -28,6 +28,7 @@ class Duplicates extends Component {
             'Mother maiden name',
             'Gender',
             'Occupation',
+            'Blood type',
         ];
         return(
             <div>
