@@ -102,7 +102,8 @@ class Duplicates extends Component {
         }
 		return(
             <Well>
-                <Table striped condensed>
+                <Table striped condensed
+                    className='hover-info'>
                     <thead className='center'>
                         <tr>
                             <th>Reconcile</th>

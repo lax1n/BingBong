@@ -1,3 +1,7 @@
 thead.center > tr > th, tbody.center > tr > td {
 	text-align: center;
 }
+
+table.hover-info > tbody > tr:hover {
+	background-color: #65d0de;
+}
