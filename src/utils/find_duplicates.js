@@ -56,7 +56,7 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 	//console.log(test_params);
 	var editDistance = -1;
 	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
-		if(!((obj1[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === ""))){ //Ignoring if one of them are empty
+		if(!((obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === undefined) || (obj2[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
 			if((obj1[loose_test_params[i]] === obj2[loose_test_params[i]]) === false){ //Checking if they are equal
 				editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
 				if(editDistance > maxEditDistance){
