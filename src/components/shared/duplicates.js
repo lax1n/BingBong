@@ -16,6 +16,7 @@ class Duplicates extends Component {
 
         this.showDuplicates = this.showDuplicates.bind(this);
         this.closeDetails = this.closeDetails.bind(this);
+        this.toggleReconcile = this.toggleReconcile.bind(this);
     }
 
     showDuplicates(duplicates){
@@ -82,6 +83,11 @@ class Duplicates extends Component {
         });
     }
 
+    toggleReconcile(e, duplicate){
+        console.log("Checkbox clicked");
+        e.stopPropagation();
+    }
+
 	render(){
         const duplicates = this.props.duplicates;
 
@@ -120,7 +126,7 @@ class Duplicates extends Component {
                             return (
                                 <tr key={i}
                                     onClick={() => this.viewDuplicates(duplicateRow)}>
-                                    <td><Checkbox /></td>
+                                    <td><Checkbox onClick={(e) => this.toggleReconcile(e, duplicateRow)} /></td>
                                     {tableAttributes.map((attribute, j) => {
                                         return (
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
