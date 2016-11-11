@@ -36,9 +36,11 @@ export function isDuplicate(obj1, obj2, test_params){
 	*/
 	//console.log(test_params);
 	for (var i = 0; i<test_params.length; i++){
-		if((obj1[test_params[i]] === obj2[test_params[i]]) === false){
-			return false;
-		}// && ((obj1[test_params[i]] === "") || (obj1[test_params[i]] === "")))
+		if(!((obj1[test_params[i]] === "") || (obj1[test_params[i]] === ""))){
+			if((obj1[test_params[i]] === obj2[test_params[i]]) === false){
+				return false;
+			}
+		}
 	}
 	return true
 	/*return (
@@ -60,7 +62,7 @@ export function contains(needle, indexes) {
 
 export function findDuplicatePeople(teis){
 	let duplicates = [];
-	var test_params = ["First name", "Last name", "Date of birth"];
+	var test_params = ["First name", "Last name", "Date of birth", "Blood type"];
 	let duplicate_indexes = []
 	teis.forEach((tei, i) => {
 		let tempDuplicates = []
