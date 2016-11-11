@@ -5,6 +5,8 @@ import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tab_bar.js';
 
+import {findTEIDuplicatesByOrganization} from "../utils/find_duplicates"
+
 
 class App extends Component {
 	render() {
@@ -17,6 +19,7 @@ class App extends Component {
   		            <img src={logo} className="App-logo" alt="logo" />
   		          </div>
 		            <TabBar />
+					<p>{findTEIDuplicatesByOrganization("DiszpKrYNg8")}</p>
   	            </div>
   		      </div>
   		  </div>
