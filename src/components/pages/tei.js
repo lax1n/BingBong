@@ -24,7 +24,7 @@ class Tei extends Component {
     findResults(params){
         // Handle what to do depending on which params were recevied
         console.log(params);
-        if(params.program === ''){
+        if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
@@ -61,6 +61,15 @@ class Tei extends Component {
                             endDate: '',
                         })}
                     > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
+                    </button>
+					<button
+                        className='btn btn-default'
+                        onClick={this.findResults.bind(this, {
+                            orgUnit: 'DiszpKrYNg8',
+                            startDate: '',
+                            endDate: '',
+                        })}
+                    > Developer shortcut to see results for Ngelehun CHC
                     </button>
                 </div>
                 {results}
