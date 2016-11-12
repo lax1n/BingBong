@@ -124,6 +124,7 @@ class Duplicates extends Component {
                                     <th key={i}>{attribute}</th>
                                 );
                             })}
+                            <th>No. of duplicates</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,6 +138,7 @@ class Duplicates extends Component {
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
                                         );
                                     })}
+                                    <td>{duplicateRow.length}</td>
                                 </tr>
                             );
                         })}
