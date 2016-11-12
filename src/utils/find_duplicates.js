@@ -27,7 +27,8 @@ export function parseQueryResultsOrgOnly(response){
 	let responseCount = response.length;
 	for (i = 0; i < responseCount; i++) {
 		teis[i] = {};
-		attributesLength  = response[i].attributes.length
+		attributesLength = response[i].attributes.length;
+		teis[i]['Instance'] = response[i]['trackedEntityInstance'];
 		for (j = 0; j < attributesLength; j++) {
 			//console.log(response[i].attributes[j].displayName);
 			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
