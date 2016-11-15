@@ -8,6 +8,7 @@ import {
 import Select from './select';
 import Duplicates from '../shared/duplicates';
 import Instructions from '../shared/instructions';
+import Recents from '../shared/recents.js';
 
 class Tei extends Component {
     constructor(props){
@@ -72,6 +73,7 @@ class Tei extends Component {
                     > Developer shortcut to see results for Ngelehun CHC
                     </button>
                 </div>
+                <Recents />
                 {results}
 			</div>
 		);
