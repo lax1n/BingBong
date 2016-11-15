@@ -59,7 +59,6 @@ class ShowDuplicates extends Component{
                         <Button onClick={closeDetails}>Close</Button>
                         <Button bsStyle="primary">Mark for Reconciliation</Button>
                     </Modal.Footer>
-
                 </Modal>
             </div>
         );

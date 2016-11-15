@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Select from './select';
 import Instructions from '../shared/instructions';
-import Recents from '../shared/recents.js';
+import SelectPrevious from '../shared/select_previous.js';
 
 class Singleton extends Component {
 
@@ -14,7 +14,7 @@ class Singleton extends Component {
 	                <Instructions />
 	                <Select />
 	            </div>
-			<Recents />
+	           	<SelectPrevious />
 			</div>
 		);
 	}

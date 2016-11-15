@@ -3,7 +3,7 @@ import {isEmpty} from 'lodash';
 import DatePicker from 'react-bootstrap-date-picker';
 //import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, Col, Well} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, Row, Col, Well} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -33,6 +33,7 @@ class Select extends Component {
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
+        this.saveRecent = this.saveRecent.bind(this);
     }
 
     componentDidMount(){
@@ -100,6 +101,35 @@ class Select extends Component {
         );
     }
 
+    saveFavourite(){
+        if(this.state.orgUnitSelected){
+            const params = {
+                orgUnit: this.state.orgUnit,
+                program: this.state.program,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
+                orgUnitName: this.state.orgUnitName,
+                programName: this.state.programName,
+            }
+            this.props.saveFavourite(params);
+        }
+    }
+
+    saveRecent(){
+        console.log('does it get here');
+        if(this.state.orgUnitSelected){
+            const params = {
+                orgUnit: this.state.orgUnit,
+                program: this.state.program,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
+                orgUnitName: this.state.orgUnitName,
+                programName: this.state.programName,
+            }
+            this.props.saveRecent(params);
+        }
+    }
+
     findResults(){
         const params = {
             orgUnit: this.state.orgUnit,
@@ -107,6 +137,8 @@ class Select extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate,
         }
+        console.log('yo');
+        this.saveRecent();
         this.props.findResults(params);
     }
 
@@ -131,8 +163,8 @@ class Select extends Component {
 
         return (
             <div>
-                <div className='row'>
-                    <div className='row' >
+                <Row>
+                    <Row>
                         <Col sm={3} id='organizationSelect' >
                             <div className='form-group text-center'>
                                 <div className='row'>
@@ -174,7 +206,7 @@ class Select extends Component {
                                 </div>
                             </div>
                         </Col>
-                    </div>
+                    </Row>
                     <div className='row'>
                         <Col sm={3} className='resBtn'>
                             <Button
@@ -185,13 +217,11 @@ class Select extends Component {
                         <Col sm={3} className='favBtn pull-right'>
                             <Button
                                 bsStyle='info'
+                                onClick={this.saveFavourite.bind(this)}
                                 >Add to Favourites</Button>
                         </Col>
                     </div>
-                </div>
-            <Well>
-            Well Well Well what have we here
-            </Well>
+                </Row>
             </div>
         );
     }
