@@ -8,6 +8,7 @@ import {
 import Select from './select';
 import Duplicates from '../shared/duplicates';
 import Instructions from '../shared/instructions';
+import SelectPrevious from '../shared/select_previous.js';
 
 class Tei extends Component {
     constructor(props){
@@ -16,15 +17,28 @@ class Tei extends Component {
         this.state = {
             resultsFound: false,
             results: [],
+            favourites: [],
+            recents: [],
         }
 
         this.findResults = this.findResults.bind(this);
+        this.saveFavourite = this.saveFavourite.bind(this);
+        this.saveRecent = this.saveRecent.bind(this);
+    }
+
+    saveFavourite(params){
+        console.log('name: '+ params);
+        this.state.favourites.push(params);
+    }
+
+    saveRecent(params){
+        this.state.recents.push(params);
     }
 
     findResults(params){
         // Handle what to do depending on which params were recevied
-        console.log(params);
-        if(params.program === ''){
+        console.log('params: '+ params.orgUnit);
+        if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
@@ -49,7 +63,7 @@ class Tei extends Component {
                 <h3 className='text-center'>Find Duplicates in tracked entity instances</h3>
                 <div className='well'>
                     <Instructions />
-                    <Select findResults={this.findResults} />
+                    <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
                 </div>
                 <div className='row'>
                     <button
@@ -62,7 +76,17 @@ class Tei extends Component {
                         })}
                     > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
                     </button>
+					<button
+                        className='btn btn-default'
+                        onClick={this.findResults.bind(this, {
+                            orgUnit: 'DiszpKrYNg8',
+                            startDate: '',
+                            endDate: '',
+                        })}
+                    > Developer shortcut to see results for Ngelehun CHC
+                    </button>
                 </div>
+                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
                 {results}
 			</div>
 		);

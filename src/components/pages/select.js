@@ -3,7 +3,7 @@ import {isEmpty} from 'lodash';
 import DatePicker from 'react-bootstrap-date-picker';
 //import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, Col} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, Row, Col, Well} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -33,6 +33,7 @@ class Select extends Component {
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
+        this.saveRecent = this.saveRecent.bind(this);
     }
 
     componentDidMount(){
@@ -100,6 +101,35 @@ class Select extends Component {
         );
     }
 
+    saveFavourite(){
+        if(this.state.orgUnitSelected){
+            const params = {
+                orgUnit: this.state.orgUnit,
+                program: this.state.program,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
+                orgUnitName: this.state.orgUnitName,
+                programName: this.state.programName,
+            }
+            this.props.saveFavourite(params);
+        }
+    }
+
+    saveRecent(){
+        console.log('does it get here');
+        if(this.state.orgUnitSelected){
+            const params = {
+                orgUnit: this.state.orgUnit,
+                program: this.state.program,
+                startDate: this.state.startDate,
+                endDate: this.state.endDate,
+                orgUnitName: this.state.orgUnitName,
+                programName: this.state.programName,
+            }
+            this.props.saveRecent(params);
+        }
+    }
+
     findResults(){
         const params = {
             orgUnit: this.state.orgUnit,
@@ -107,6 +137,8 @@ class Select extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate,
         }
+        console.log('yo');
+        this.saveRecent();
         this.props.findResults(params);
     }
 
@@ -130,63 +162,66 @@ class Select extends Component {
         }
 
         return (
-            <div className='row'>
-                <div className='row'>
-                    <Col sm={3} id='organizationSelect' >
-                        <div className='form-group text-center'>
-                            <div className='row'>
-                                <label>Organization(Clinic)</label>
+            <div>
+                <Row>
+                    <Row>
+                        <Col sm={3} id='organizationSelect' >
+                            <div className='form-group text-center'>
+                                <div className='row'>
+                                    <label>Organization(Clinic)</label>
+                                </div>
+                                <div className='row'>
+                                    {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
+                                </div>
                             </div>
-                            <div className='row'>
-                                {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
+                        </Col>
+                        <Col sm={3} id='programSelect'>
+                            <div className='form-group text-center'>
+                                <div className='row'>
+                                    <label>Program (Optional)</label>
+                                </div>
+                                <div className='row'>
+                                    {this.renderSelect('Select Program', 'program', this.state.programs)}
+                                </div>
                             </div>
-                        </div>
-                    </Col>
-                    <Col sm={3} id='programSelect'>
-                        <div className='form-group text-center'>
-                            <div className='row'>
-                                <label>Program (Optional)</label>
+                        </Col>
+                        <Col sm={6} id='dateSelect'>
+                            <div className='form-group text-center'>
+                                <div className='row'>
+                                    <label>Time frame (Optional)</label>
+                                </div>
+                                <div className='row'>
+                                    <Col sm={6} id='startDateSelect'>
+                                        <DatePicker
+                                            placeholder='Start date'
+                                            value={this.state.startDate}
+                                            onChange={this.changeStartDate} />
+                                    </Col>
+                                    <Col sm={6} id='endDateSelect'>
+                                        <DatePicker
+                                            placeholder='End date'
+                                            value={this.state.endDate}
+                                            onChange={this.changeEndDate} />
+                                    </Col>
+                                </div>
                             </div>
-                            <div className='row'>
-                                {this.renderSelect('Select Program', 'program', this.state.programs)}
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm={6} id='dateSelect'>
-                        <div className='form-group text-center'>
-                            <div className='row'>
-                                <label>Time frame (Optional)</label>
-                            </div>
-                            <div className='row'>
-                                <Col sm={6} id='startDateSelect'>
-                                    <DatePicker
-                                        placeholder='Start date'
-                                        value={this.state.startDate}
-                                        onChange={this.changeStartDate} />
-                                </Col>
-                                <Col sm={6} id='endDateSelect'>
-                                    <DatePicker
-                                        placeholder='End date'
-                                        value={this.state.endDate}
-                                        onChange={this.changeEndDate} />
-                                </Col>
-                            </div>
-                        </div>
-                    </Col>
-                </div>
-                <div className='row'>
-                    <Col sm={3} className='resBtn'>
-                        <Button
-                            bsStyle='primary'
-                            onClick={this.findResults.bind(this)}
-                            >Find Results</Button>
-                    </Col>
-                    <Col sm={3} className='favBtn pull-right'>
-                        <Button
-                            bsStyle='info'
-                            >Add to Favourites</Button>
-                    </Col>
-                </div>
+                        </Col>
+                    </Row>
+                    <div className='row'>
+                        <Col sm={3} className='resBtn'>
+                            <Button
+                                bsStyle='primary'
+                                onClick={this.findResults.bind(this)}
+                                >Find Results</Button>
+                        </Col>
+                        <Col sm={3} className='favBtn pull-right'>
+                            <Button
+                                bsStyle='info'
+                                onClick={this.saveFavourite.bind(this)}
+                                >Add to Favourites</Button>
+                        </Col>
+                    </div>
+                </Row>
             </div>
         );
     }

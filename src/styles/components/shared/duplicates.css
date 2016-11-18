@@ -3,6 +3,6 @@ thead.center > tr > th, tbody.center > tr > td {
 }
 
 table.hover-info > tbody > tr:hover {
-	background-color: #65d0de;
+	background-color: #97e3ed;
 	cursor: pointer;
 }

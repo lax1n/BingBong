@@ -27,7 +27,8 @@ export function parseQueryResultsOrgOnly(response){
 	let responseCount = response.length;
 	for (i = 0; i < responseCount; i++) {
 		teis[i] = {};
-		attributesLength  = response[i].attributes.length
+		attributesLength = response[i].attributes.length;
+		teis[i]['Instance'] = response[i]['trackedEntityInstance'];
 		for (j = 0; j < attributesLength; j++) {
 			//console.log(response[i].attributes[j].displayName);
 			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
@@ -56,7 +57,8 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 	//console.log(test_params);
 	var editDistance = -1;
 	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
-		if(!((obj1[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === ""))){ //Ignoring if one of them are empty
+
+		if(!((obj1[loose_test_params[i]] === "") || (obj2[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === undefined) || (obj2[loose_test_params[i]] === undefined))){ //Ignoring if one of them are empty
 			if((obj1[loose_test_params[i]] === obj2[loose_test_params[i]]) === false){ //Checking if they are equal
 				editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
 				if(editDistance > maxEditDistance){
@@ -66,7 +68,7 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		}
 	}
 	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
-		if(!((obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === undefined) || (obj2[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
+		if(!((obj1[strict_test_params[i]] === "") || (obj2[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === undefined) || (obj2[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
 			if((obj1[strict_test_params[i]] === obj2[strict_test_params[i]]) === false){ //Checking if they are equal
 				return false;
 			}
