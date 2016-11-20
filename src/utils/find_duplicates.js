@@ -1,4 +1,5 @@
 import {getEditDistance} from '../libs/levenshtein';
+import {contains} from './contains';
 //import {getNorrisJoke} from '../actions/norris_actions';
 
 import {isEmpty} from 'lodash';
@@ -28,21 +29,15 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 	return true;
 }
 
-export function contains(needle, indexes) {
-	for(var i = 0; i<indexes.length; i++){
-		if(needle == indexes[i]){
-			return true;
-		}
-	}
-	return false;
-}
-
 export function findDuplicatePeople(teis, loose_test_params, strict_test_params){
 	let duplicates = [];
 	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
 	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
 	let maxEditDistance = 2;
+	if(isEmpty(teis)){
+		return [[]];
+	}
 	teis.forEach((tei, i) => {
 		let tempDuplicates = []
 		teis.forEach((tempTei, j) => {
