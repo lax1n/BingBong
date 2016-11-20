@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Well, Button, Row, Col, Table} from 'react-bootstrap';
+import {Well, Button, Row, Col} from 'react-bootstrap';
 import ShowPrevious from './show_previous.js';
 
 
@@ -8,8 +8,8 @@ class SelectPrevious extends Component{
 		super(props);
 
 		this.state = {
-			recentSelected: false,
-			favSelected: false,
+			recentSelected: "Show",
+			favSelected: "Show",
 		}
 
 		this.showRecents=this.showRecents.bind(this);
@@ -17,21 +17,28 @@ class SelectPrevious extends Component{
 	}
 
 	showRecents(){
-		this.setState({recentSelected: true,});
+		if(this.state.recentSelected == "Hide"){
+			this.setState({recentSelected: "Show", });
+		} else{
+			this.setState({recentSelected: "Hide", });
+		}
 	}
 
 	showFavs(){
-		this.setState({favSelected: true,});
+		if(this.state.favSelected == "Hide"){
+			this.setState({favSelected: "Show", });
+		} else {
+			this.setState({favSelected: "Hide", });
+		}
 	}
 
 	render(){
 		let prev ='';
 		let fav = '';
-		if(this.state.recentSelected){
-			
+		if(this.state.recentSelected == "Hide"){
 			prev = <ShowPrevious sm={6} queries={this.props.recents} findResults={this.props.findResults} />;
 		}
-		if(this.state.favSelected){
+		if(this.state.favSelected == "Hide"){
 			fav = <ShowPrevious sm={6} queries={this.props.favourites} findResults={this.props.findResults} />;
 		}
 		return(
@@ -44,7 +51,7 @@ class SelectPrevious extends Component{
                         bsStyle='primary'
                         onClick={this.showRecents}
                         >
-                            Show Recent Queries
+                          {this.state.recentSelected} Recent Queries
                         </Button>
                         {prev}
                         </Col>
@@ -53,7 +60,7 @@ class SelectPrevious extends Component{
                         bsStyle='info'
                         onClick={this.showFavs}
                         >
-                            Show Favourite Queries
+                          {this.state.favSelected} Favourite Queries
                         </Button>
                         {fav}
                         </Col>
