@@ -117,7 +117,6 @@ class Select extends Component {
     }
 
     saveRecent(){
-        console.log('does it get here');
         if(this.state.orgUnitSelected){
             const params = {
                 orgUnit: this.state.orgUnit,
@@ -138,7 +137,6 @@ class Select extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate,
         }
-        console.log('yo');
         this.saveRecent();
         this.props.findResults(params);
     }
