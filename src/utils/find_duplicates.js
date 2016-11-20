@@ -1,57 +1,8 @@
-import {getAllTEIsByOrganizationAndProgram, getAllTEIsByOrganization} from '../actions/tei_actions';
 import {getEditDistance} from '../libs/levenshtein';
 //import {getNorrisJoke} from '../actions/norris_actions';
 
 import {isEmpty} from 'lodash';
 
-
-export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program){
-	return getAllTEIsByOrganizationAndProgram(orgUnit, program).then((response) => {
-		const teis = parseQueryResults(response);
-		const duplicates = findDuplicatePeople(teis);
-		return duplicates;
-	});
-}
-export function findTEIDuplicatesByOrganization(orgUnit){
-	return getAllTEIsByOrganization(orgUnit).then((response) => {
-		const teis = parseQueryResultsOrgOnly(response);
-		const duplicates = findDuplicatePeople(teis);
-		return duplicates;
-	});
-}
-
-export function parseQueryResultsOrgOnly(response){
-	let i, j;
-	let teis = [];
-	let attributesLength;
-	let responseCount = response.length;
-	for (i = 0; i < responseCount; i++) {
-		teis[i] = {};
-		attributesLength = response[i].attributes.length;
-		teis[i]['Instance'] = response[i]['trackedEntityInstance'];
-		for (j = 0; j < attributesLength; j++) {
-			//console.log(response[i].attributes[j].displayName);
-			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
-		}
-		//console.log(teis);
-	}
-	//console.log(teis)
-	return teis;
-}
-
-export function parseQueryResults(response){
-	let i, j;
-	let teis = [];
-	let headerCount = response.headers.length;
-	let instanceCount = response.rows.length;
-	for (i = 0; i < instanceCount; i++) {
-		teis[i] = {};
-		for (j = 0; j < headerCount; j++) {
-			teis[i][response.headers[j].column] = response.rows[i][j];
-		}
-	}
-	return teis;
-}
 // This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
 export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance){
 	//console.log(test_params);
@@ -75,12 +26,6 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		}
 	}
 	return true;
-	/*return (
-		//(obj1["Instance"] !== obj2["Instance"]) &&
-		(obj1["First name"] === obj2["First name"]) &&
-		(obj1["Last name"] === obj2["Last name"]) &&
-		(obj1["Date of birth"] === obj2["Date of birth"])
-	)*/
 }
 
 export function contains(needle, indexes) {
@@ -92,10 +37,10 @@ export function contains(needle, indexes) {
 	return false;
 }
 
-export function findDuplicatePeople(teis){
+export function findDuplicatePeople(teis, loose_test_params, strict_test_params){
 	let duplicates = [];
-	var loose_test_params = ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
-	var strict_test_params = ["Blood type"];
+	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
+	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
 	let maxEditDistance = 2;
 	teis.forEach((tei, i) => {
