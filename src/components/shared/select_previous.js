@@ -28,6 +28,7 @@ class SelectPrevious extends Component{
 		let prev ='';
 		let fav = '';
 		if(this.state.recentSelected){
+			
 			prev = <ShowPrevious sm={6} queries={this.props.recents} findResults={this.props.findResults} />;
 		}
 		if(this.state.favSelected){
