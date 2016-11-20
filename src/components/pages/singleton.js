@@ -32,7 +32,6 @@ class Singleton extends Component {
         this.state.recents.push(params);
     }
 
-
     findResults(params){
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
@@ -48,6 +47,7 @@ class Singleton extends Component {
             });
         }
     }
+
 	render(){
 		return(
 			<div className='col-sm-12'>
@@ -77,7 +77,7 @@ class Singleton extends Component {
                     > Developer shortcut to see results for Ngelehun CHC
                     </button>
                 </div>
-	           	<SelectPrevious />
+	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
 			</div>
 		);
 	}
