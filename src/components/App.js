@@ -5,7 +5,6 @@ import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tab_bar.js';
 
-
 class App extends Component {
 	render() {
 		console.log("Render called in App.js")
