@@ -52,7 +52,7 @@ class Singleton extends Component {
 		return(
 			<div className='col-sm-12'>
 	            <h3 className='text-center'>Find Duplicates in singleton events</h3>
-	            <div className='well'>
+	            <div className='well'> 
 	                <Instructions />
 	                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
 	            </div>
