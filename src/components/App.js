@@ -5,8 +5,6 @@ import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tab_bar.js';
 
-//import {findTEIDuplicatesByOrganization} from "../utils/find_duplicates"
-
 
 class App extends Component {
 	render() {
