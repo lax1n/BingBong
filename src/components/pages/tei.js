@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     findTEIDuplicatesByOrganizationAndProgram,
     findTEIDuplicatesByOrganization,
-} from '../../utils/find_duplicates';
+} from '../../utils/tei_dup_finder';
 
 import Select from './select';
 import Duplicates from '../shared/duplicates';
