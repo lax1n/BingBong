@@ -6,13 +6,17 @@ export function parseSingletonQueryResults(response){
 	getDisplayNameConverter(response).then((displayNameConverter) => {
 		let attributesLength;
 		let responseCount = response.length;
+		let my_counter = 0;
 		console.log("Hello");
 		console.log(displayNameConverter);
 		for (i = 0; i < responseCount; i++) {
-			singletons[i] = {};
+			if(response[i].trackedEntityInstance){
+				continue;
+			}
+			singletons[my_counter] = {};
 			attributesLength = response[i].dataValues.length;
 			for (j = 0; j < attributesLength; j++) {
-				singletons[i][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
+				singletons[my_counter][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
 			}
 			///XXX Do not remove, we might uncomment the addition of the other keys
 			/*for(let key in response[i]){
@@ -20,6 +24,7 @@ export function parseSingletonQueryResults(response){
 					singletons[i][key] = response[i][key];
 				}
 			}*/
+			my_counter += 1;
 		}
 		console.log("Singletons")
 		console.log(singletons)
