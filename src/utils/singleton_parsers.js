@@ -18,12 +18,11 @@ export function parseSingletonQueryResults(response){
 			for (j = 0; j < attributesLength; j++) {
 				singletons[my_counter][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
 			}
-			///XXX Do not remove, we might uncomment the addition of the other keys
-			/*for(let key in response[i]){
+			for(let key in response[i]){
 				if (response[i].hasOwnProperty(key) && key !== "dataValues") {
-					singletons[i][key] = response[i][key];
+					singletons[my_counter][key] = response[i][key];
 				}
-			}*/
+			}
 			my_counter += 1;
 		}
 		console.log("Singletons")
