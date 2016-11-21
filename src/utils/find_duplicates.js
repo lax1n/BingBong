@@ -38,19 +38,24 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params)
 	if(isEmpty(teis)){
 		return [[]];
 	}
-	teis.forEach((tei, i) => {
+	//teis.forEach((tei, i) => {
+	let i, j;
+	for(i = 0; i<teis.length; i++){
+		let tei = teis[i];
 		let tempDuplicates = []
-		teis.forEach((tempTei, j) => {
+		//teis.forEach((tempTei, j) => {
+		for(j = 0; j<teis.length; j){
+			let tempTei = teis[j];
 			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
 			}
-		});
+		}//);
 		if (!(isEmpty(tempDuplicates))){
 			tempDuplicates.push(tei);
 			duplicates.push(tempDuplicates);
 		}
-	});
+	}//);
 	return duplicates;
 }
 

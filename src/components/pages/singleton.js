@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {
     findSingletonDuplicatesByOrganizationAndProgram,
     findSingletonDuplicatesByOrganization,
-} from '../../utils/singleton_deduplicator';
+} from '../../utils/singleton_dup_finder';
 
 import Select from './select';
 import Instructions from '../shared/instructions';
