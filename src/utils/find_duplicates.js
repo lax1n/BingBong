@@ -31,7 +31,7 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 
 export function findDuplicatePeople(teis, loose_test_params, strict_test_params){
 	let duplicates = [];
-	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Blood type", "Mothers maiden name"];
+	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Mothers maiden name"];
 	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
 	let maxEditDistance = 2;

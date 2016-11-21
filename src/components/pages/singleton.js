@@ -37,11 +37,14 @@ class Singleton extends Component {
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
             findSingletonDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
+				console.log("My duplicates:");
                 console.log(duplicates);
+
                 //this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
             findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
+				console.log("My duplicates:");
                 console.log(duplicates);
                 //this.setState({resultsFound: true, results: duplicates});
             });

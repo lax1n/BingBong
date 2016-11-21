@@ -5,7 +5,9 @@ import {parseSingletonQueryResults} from './singleton_parsers'
 export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program){
 	return getAllSingletonsByOrganizationAndProgram(orgUnit, program).then((response) => {
 		let singletons = parseSingletonQueryResults(response);
-		const duplicates = findDuplicatePeople(singletons, undefined,  ["Blood type"]);
+		let params = singletons[1];
+		singletons = singletons[0];
+		const duplicates = findDuplicatePeople(singletons, undefined,  params);
 		return duplicates;
 		//return response;
 	});
@@ -13,7 +15,9 @@ export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program
 export function findSingletonDuplicatesByOrganization(orgUnit){
 	return getAllSingletonsByOrganization(orgUnit).then((response) => {
 		let singletons = parseSingletonQueryResults(response);
-		const duplicates = findDuplicatePeople(singletons, undefined,  ["Blood type"]);
+		let params = singletons[1];
+		singletons = singletons[0];
+		const duplicates = findDuplicatePeople(singletons, undefined,  params);
 		return duplicates;
 	});
 }
