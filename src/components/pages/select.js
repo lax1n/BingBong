@@ -4,7 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 //import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, Row, Col, Well} from 'react-bootstrap'
+import {DropdownButton, MenuItem, Button, Row, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 

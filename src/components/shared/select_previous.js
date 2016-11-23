@@ -17,7 +17,7 @@ class SelectPrevious extends Component{
 	}
 
 	showRecents(){
-		if(this.state.recentSelected == "Hide"){
+		if(this.state.recentSelected === "Hide"){
 			this.setState({recentSelected: "Show", });
 		} else{
 			this.setState({recentSelected: "Hide", });
@@ -25,7 +25,7 @@ class SelectPrevious extends Component{
 	}
 
 	showFavs(){
-		if(this.state.favSelected == "Hide"){
+		if(this.state.favSelected === "Hide"){
 			this.setState({favSelected: "Show", });
 		} else {
 			this.setState({favSelected: "Hide", });
@@ -35,10 +35,10 @@ class SelectPrevious extends Component{
 	render(){
 		let prev ='';
 		let fav = '';
-		if(this.state.recentSelected == "Hide"){
+		if(this.state.recentSelected === "Hide"){
 			prev = <ShowPrevious sm={6} queries={this.props.recents} findResults={this.props.findResults} />;
 		}
-		if(this.state.favSelected == "Hide"){
+		if(this.state.favSelected === "Hide"){
 			fav = <ShowPrevious sm={6} queries={this.props.favourites} findResults={this.props.findResults} />;
 		}
 		return(
@@ -47,7 +47,7 @@ class SelectPrevious extends Component{
 			    <Well>
                     <Row>
                         <Col sm={6}>
-                        <Button  
+                        <Button
                         bsStyle='primary'
                         onClick={this.showRecents}
                         >
@@ -56,7 +56,7 @@ class SelectPrevious extends Component{
                         {prev}
                         </Col>
                         <Col sm={6}>
-                        <Button 
+                        <Button
                         bsStyle='info'
                         onClick={this.showFavs}
                         >
