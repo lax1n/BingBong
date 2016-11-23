@@ -8,6 +8,9 @@ import {isEmpty} from 'lodash';
 export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance){
 	//console.log(test_params);
 	var editDistance = -1;
+	if(isEmpty(obj1) || isEmpty(obj2)){
+		return false;
+	}
 	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
 
 		if(!((obj1[loose_test_params[i]] === "") || (obj2[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === undefined) || (obj2[loose_test_params[i]] === undefined))){ //Ignoring if one of them are empty
@@ -48,7 +51,6 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 		//teis.forEach((tempTei, j) => {
 		for(j = 0; j<teis.length; j++){
 			let tempTei = teis[j];
-			console.log("Looking i:" + i + " j: " + j);
 			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
