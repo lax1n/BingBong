@@ -5,6 +5,8 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
+import {saveRecentQuery} from '../../actions/query_actions';
+
 import Select from './select';
 import Duplicates from '../shared/duplicates';
 import Instructions from '../shared/instructions';
@@ -32,6 +34,7 @@ class Tei extends Component {
     }
 
     saveRecent(params){
+        saveRecentQuery();
         this.state.recents.push(params);
     }
 
