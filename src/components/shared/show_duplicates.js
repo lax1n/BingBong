@@ -3,10 +3,6 @@ import {Modal, Button, Checkbox, Table} from 'react-bootstrap';
 
 class ShowDuplicates extends Component{
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		const duplicates= this.props.duplicates;
 		const show_state = this.props.show_state;

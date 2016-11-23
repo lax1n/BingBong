@@ -4,10 +4,6 @@ import {Table} from 'react-bootstrap';
 
 class ShowPrevious extends Component{
 
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		const queries = this.props.queries;
 		const tableAttributes=[
@@ -25,7 +21,7 @@ class ShowPrevious extends Component{
 					<Table striped condensed
 							className='hover-info'>
 							<thead className='center'>
-								<tr> 
+								<tr>
 									<th>OrgUnit</th>
 									<th>Program</th>
 									<th>Start Date</th>
