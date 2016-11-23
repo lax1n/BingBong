@@ -3,7 +3,7 @@ import '../../styles/components/shared/duplicates.css';
 import ShowDuplicates from './show_duplicates.js';
 
 import {isEmpty} from 'lodash';
-import {Well, Table, Button, Modal, Checkbox} from 'react-bootstrap';
+import {Well, Table, Checkbox} from 'react-bootstrap';
 
 class Duplicates extends Component {
     constructor(props){
