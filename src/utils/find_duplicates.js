@@ -5,31 +5,64 @@ import {contains} from './contains';
 import {isEmpty} from 'lodash';
 
 // This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
-export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance){
+export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance, max_undefined_count){
 	//console.log(test_params);
+	max_undefined_count = max_undefined_count || 0;
 	var editDistance = -1;
+	let undefined_count = 0; //This counts the amount of instances where one of the objects is undefined while the other one isn't
 	if(isEmpty(obj1) || isEmpty(obj2)){
 		return false;
 	}
 	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
 
-		if(!((obj1[loose_test_params[i]] === "") || (obj2[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === undefined) || (obj2[loose_test_params[i]] === undefined))){ //Ignoring if one of them are empty
-			if((obj1[loose_test_params[i]] === obj2[loose_test_params[i]]) === false){ //Checking if they are equal
-				editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
-				console.log("editDistance", editDistance);
-				if(editDistance > maxEditDistance){
+		if((obj1[strict_test_params[i]] !== "") && (obj1[strict_test_params[i]] !== undefined)){
+			undefined_count += 1;
+			if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+				undefined_count -= 1;
+				if(obj1[loose_test_params[i]] !== obj2[loose_test_params[i]]){ //Checking if they are equal
+					editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
+					console.log("editDistance", editDistance);
+					if(editDistance > maxEditDistance){
+						return false;
+					}
+				}
+			}
+		}
+		else if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+			undefined_count += 1;
+		}
+	}
+	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
+		/*if(strict_test_params[i] === "MCH OPV dose"){
+			//console.log(obj1[strict_test_params[i]] + "===" + obj2[strict_test_params[i]]);
+		}*/
+		if((obj1[strict_test_params[i]] !== "") && (obj1[strict_test_params[i]] !== undefined)){
+			undefined_count += 1;
+			if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+				undefined_count -= 1;
+				if(obj1[strict_test_params[i]] !== obj2[strict_test_params[i]]){ //Checking if they are equal
+					/*if(strict_test_params[i] === "MCH OPV dose"){
+						console.log("false");
+					}*/
 					return false;
 				}
 			}
 		}
-	}
-	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
-		if(!((obj1[strict_test_params[i]] === "") || (obj2[strict_test_params[i]] === "") || (obj1[strict_test_params[i]] === undefined) || (obj2[strict_test_params[i]] === undefined))){ //Ignoring if one of them are empty
-			if((obj1[strict_test_params[i]] === obj2[strict_test_params[i]]) === false){ //Checking if they are equal
-				return false;
-			}
+		else if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+			undefined_count += 1;
 		}
 	}
+	if(undefined_count > max_undefined_count){
+		return false;
+	}
+
+	/*for (let i = 0; i<strict_test_params.length; i++){
+		console.log("H:"+strict_test_params[i]);
+		console.log(obj1[strict_test_params[i]] + "===" + obj2[strict_test_params[i]]);
+	}
+	console.log(" ------------- ");*/
+
+
 	return true;
 }
 
@@ -65,5 +98,5 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 }
 
 export function getTip(){
-	return "Remember to wash your hands"
+	return "Remember to wash your hands";
 }
