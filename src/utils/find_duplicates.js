@@ -14,36 +14,28 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		return false;
 	}
 	for (let i = 0; i<loose_test_params.length; i++){ //Looping over all the relevant parameters
-
-		if((obj1[strict_test_params[i]] !== "") && (obj1[strict_test_params[i]] !== undefined)){
+		if((obj1[loose_test_params[i]] !== "") && (obj1[loose_test_params[i]] !== undefined)){
 			undefined_count += 1;
-			if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+			if((obj2[loose_test_params[i]] !== "")  && (obj2[loose_test_params[i]] !== undefined)){
 				undefined_count -= 1;
 				if(obj1[loose_test_params[i]] !== obj2[loose_test_params[i]]){ //Checking if they are equal
 					editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
-					console.log("editDistance", editDistance);
 					if(editDistance > maxEditDistance){
 						return false;
 					}
 				}
 			}
 		}
-		else if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+		else if((obj2[loose_test_params[i]] !== "")  && (obj2[loose_test_params[i]] !== undefined)){
 			undefined_count += 1;
 		}
 	}
 	for (let i = 0; i<strict_test_params.length; i++){ //Looping over all the relevant parameters
-		/*if(strict_test_params[i] === "MCH OPV dose"){
-			//console.log(obj1[strict_test_params[i]] + "===" + obj2[strict_test_params[i]]);
-		}*/
 		if((obj1[strict_test_params[i]] !== "") && (obj1[strict_test_params[i]] !== undefined)){
 			undefined_count += 1;
 			if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
 				undefined_count -= 1;
 				if(obj1[strict_test_params[i]] !== obj2[strict_test_params[i]]){ //Checking if they are equal
-					/*if(strict_test_params[i] === "MCH OPV dose"){
-						console.log("false");
-					}*/
 					return false;
 				}
 			}
@@ -56,22 +48,17 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		return false;
 	}
 
-	/*for (let i = 0; i<strict_test_params.length; i++){
-		console.log("H:"+strict_test_params[i]);
-		console.log(obj1[strict_test_params[i]] + "===" + obj2[strict_test_params[i]]);
-	}
-	console.log(" ------------- ");*/
-
 
 	return true;
 }
 
-export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance){
+export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance, maxUndefinedCount){
 	let duplicates = [];
 	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Mothers maiden name"];
 	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
 	maxEditDistance = maxEditDistance || 2;
+	maxUndefinedCount = maxUndefinedCount || 100;
 	if(isEmpty(teis)){
 		console.log("passed empty teis");
 		return [[]];
@@ -84,7 +71,7 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 		//teis.forEach((tempTei, j) => {
 		for(j = 0; j<teis.length; j++){
 			let tempTei = teis[j];
-			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance)){
+			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance, maxUndefinedCount)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
 			}
