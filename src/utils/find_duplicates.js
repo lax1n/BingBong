@@ -13,6 +13,7 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		if(!((obj1[loose_test_params[i]] === "") || (obj2[loose_test_params[i]] === "") || (obj1[loose_test_params[i]] === undefined) || (obj2[loose_test_params[i]] === undefined))){ //Ignoring if one of them are empty
 			if((obj1[loose_test_params[i]] === obj2[loose_test_params[i]]) === false){ //Checking if they are equal
 				editDistance = getEditDistance(obj1[loose_test_params[i]], obj2[loose_test_params[i]]); //Calculating the editDistance
+				console.log("editDistance", editDistance);
 				if(editDistance > maxEditDistance){
 					return false;
 				}
@@ -29,13 +30,14 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 	return true;
 }
 
-export function findDuplicatePeople(teis, loose_test_params, strict_test_params){
+export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance){
 	let duplicates = [];
 	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Mothers maiden name"];
 	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
-	let maxEditDistance = 2;
+	maxEditDistance = maxEditDistance || 2;
 	if(isEmpty(teis)){
+		console.log("passed empty teis");
 		return [[]];
 	}
 	//teis.forEach((tei, i) => {
@@ -44,8 +46,9 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params)
 		let tei = teis[i];
 		let tempDuplicates = []
 		//teis.forEach((tempTei, j) => {
-		for(j = 0; j<teis.length; j){
+		for(j = 0; j<teis.length; j++){
 			let tempTei = teis[j];
+			console.log("Looking i:" + i + " j: " + j);
 			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
