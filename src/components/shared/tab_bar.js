@@ -13,7 +13,7 @@ class TabBar extends Component {
         super(props);
 
         this.state = {
-            tabKey: 2,
+            tabKey: 3,
         }
 
         this.handleSelect = this.handleSelect.bind(this);

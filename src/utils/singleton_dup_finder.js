@@ -4,20 +4,20 @@ import {parseSingletonQueryResults} from './singleton_parsers'
 
 export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program){
 	return getAllSingletonsByOrganizationAndProgram(orgUnit, program).then((response) => {
-		let singletons = parseSingletonQueryResults(response);
-		let params = singletons[1];
-		singletons = singletons[0];
-		const duplicates = findDuplicatePeople(singletons, undefined,  params);
-		return duplicates;
-		//return response;
+		return parseSingletonQueryResults(response).then(function (some){
+			let params = some[1];
+			let singletons = some[0];
+			return findDuplicatePeople(singletons, undefined,  params);
+		});
 	});
 }
 export function findSingletonDuplicatesByOrganization(orgUnit){
 	return getAllSingletonsByOrganization(orgUnit).then((response) => {
-		let singletons = parseSingletonQueryResults(response);
-		let params = singletons[1];
-		singletons = singletons[0];
-		const duplicates = findDuplicatePeople(singletons, undefined,  params);
-		return duplicates;
+		return parseSingletonQueryResults(response).then(function (some){
+			let params = some[1];
+			let singletons = some[0];
+			return findDuplicatePeople(singletons, undefined,  params);
+			//return duplicates;
+		});
 	});
 }

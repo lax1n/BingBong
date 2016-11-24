@@ -14,7 +14,7 @@ export function parseSingletonQueryResults(response){
 
 		for(let key in displayNameConverter){
 			if (displayNameConverter.hasOwnProperty(key)) {
-				params[my_counter++] = key;
+				params[my_counter++] = displayNameConverter[key];
 			}
 		}
 		my_counter = 0;

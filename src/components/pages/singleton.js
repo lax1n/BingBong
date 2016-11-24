@@ -18,6 +18,8 @@ class Singleton extends Component {
 		this.state = {
 			favourites: [],
 			recents: [],
+			resultsFound: false,
+			results: [],
 		}
 
 		this.findResults = this.findResults.bind(this);
@@ -42,13 +44,13 @@ class Singleton extends Component {
 				console.log("My duplicates:");
                 console.log(duplicates);
 
-                //this.setState({resultsFound: true, results: duplicates});
+                this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
             findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
 				console.log("My duplicates:");
                 console.log(duplicates);
-                //this.setState({resultsFound: true, results: duplicates});
+                this.setState({resultsFound: true, results: duplicates});
             });
         }
     }
