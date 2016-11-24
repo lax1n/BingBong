@@ -84,6 +84,7 @@ class Select extends Component {
         }
         return (
             <Typeahead
+                className='typeahead-border-radius-0'
                 bsStyle='default'
                 placeholder={currentTitle}
                 options={data}
@@ -181,52 +182,51 @@ class Select extends Component {
         }
 
         return (
-            <div>
                 <Row>
-                    <Row>
+                    <Col sm={12}>
                         <Col sm={3} id='organizationSelect' >
                             <div className='form-group text-center'>
-                                <div className='row'>
+                                <Col sm={12} className='p-0'>
                                     <label>Organization(Clinic)</label>
-                                </div>
-                                <div className='row'>
+                                </Col>
+                                <Col sm={12} className='p-0'>
                                     {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
-                                </div>
+                                </Col>
                             </div>
                         </Col>
                         <Col sm={3} id='programSelect'>
                             <div className='form-group text-center'>
-                                <div className='row'>
+                                <Col sm={12} className='p-0'>
                                     <label>Program (Optional)</label>
-                                </div>
-                                <div className='row'>
+                                </Col>
+                                <Col sm={12} className='p-0'>
                                     {this.renderSelect('Select Program', 'program', this.state.programs)}
-                                </div>
+                                </Col>
                             </div>
                         </Col>
                         <Col sm={6} id='dateSelect'>
                             <div className='form-group text-center'>
-                                <div className='row'>
+                                <Col sm={12} className='p-0'>
                                     <label>Time frame (Optional)</label>
-                                </div>
-                                <div className='row'>
-                                    <Col sm={6} id='startDateSelect'>
+                                </Col>
+                                <Col sm={12} className='p-0'>
+                                    <Col sm={6} id='startDateSelect' className='p-l-0'>
                                         <DatePicker
                                             placeholder='Start date'
                                             value={this.state.startDate}
                                             onChange={this.changeStartDate} />
                                     </Col>
-                                    <Col sm={6} id='endDateSelect'>
+                                    <Col sm={6} id='endDateSelect' className='p-r-0'>
                                         <DatePicker
                                             placeholder='End date'
                                             value={this.state.endDate}
                                             onChange={this.changeEndDate} />
                                     </Col>
-                                </div>
+                                </Col>
                             </div>
                         </Col>
-                    </Row>
-                    <div className='row'>
+                    </Col>
+                    <Col sm={12} className='p-t-md'>
                         <Col sm={3} className='resBtn'>
                             <Button
                                 bsStyle='primary'
@@ -239,9 +239,8 @@ class Select extends Component {
                                 onClick={this.saveFavourite.bind(this)}
                                 >Add to Favourites</Button>
                         </Col>
-                    </div>
+                    </Col>
                 </Row>
-            </div>
         );
     }
 }
