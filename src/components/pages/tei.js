@@ -6,6 +6,7 @@ import {
 } from '../../utils/tei_dup_finder';
 
 import Select from './select';
+import QueryArea from '../shared/query_area';
 import Duplicates from '../shared/duplicates';
 import Instructions from '../shared/instructions';
 import SelectPrevious from '../shared/select_previous.js';
@@ -60,12 +61,13 @@ class Tei extends Component {
         }
 		return(
 			<div className='col-sm-12'>
+                <QueryArea title={'Tracked Entity Instances'} />
                 <h3 className='text-center'>Find Duplicates in tracked entity instances</h3>
                 <div className='well'>
                     <Instructions />
                     <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
                 </div>
-                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />                    
+                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
                 <div className='row'>
                     <button
                         className='btn btn-default'

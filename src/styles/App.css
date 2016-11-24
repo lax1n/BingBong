@@ -53,6 +53,18 @@
     padding-right: 0 !important;
 }
 
+.p-r-sm {
+    padding-right: 5px;
+}
+
+.p-r-md {
+    padding-right: 10px;
+}
+
+.p-r-l {
+    padding-right: 15px;
+}
+
 .p-l-0 {
     padding-left: 0 !important;
 }
@@ -72,6 +84,18 @@
 
 .m-r-0 {
     margin-right: 0 !important;
+}
+
+.m-r-sm {
+    margin-right: 5px;
+}
+
+.m-r-md {
+    margin-right: 10px;
+}
+
+.m-r-l {
+    margin-right: 15px;
 }
 
 .m-l-0 {

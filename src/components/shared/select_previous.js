@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Well, Button, Row, Col} from 'react-bootstrap';
+import {Button, ButtonGroup, Row, Col} from 'react-bootstrap';
 import ShowPrevious from './show_previous.js';
 
 
@@ -8,66 +8,63 @@ class SelectPrevious extends Component{
 		super(props);
 
 		this.state = {
-			recentSelected: "Show",
-			favSelected: "Show",
+			recentSelected: false,
+			favSelected: false,
 		}
 
 		this.showRecents=this.showRecents.bind(this);
 		this.showFavs=this.showFavs.bind(this);
 	}
 
+	toggle(type){
+		if(type === 'recent'){
+			this.setState({recentSelected: !this.state.recentSelected});
+		}else if(type === 'fav'){
+			this.setState({favSelected: !this.state.favSelected});
+		}
+	}
+
 	showRecents(){
-		if(this.state.recentSelected === "Hide"){
-			this.setState({recentSelected: "Show", });
+		if(this.state.recentSelected){
+			this.setState({recentSelected: false});
 		} else{
-			this.setState({recentSelected: "Hide", });
+			this.setState({recentSelected: true});
 		}
 	}
 
 	showFavs(){
-		if(this.state.favSelected === "Hide"){
-			this.setState({favSelected: "Show", });
+		if(this.state.favSelected){
+			this.setState({favSelected: false});
 		} else {
-			this.setState({favSelected: "Hide", });
+			this.setState({favSelected: true});
 		}
 	}
 
 	render(){
 		let prev ='';
 		let fav = '';
-		if(this.state.recentSelected === "Hide"){
+		if(this.state.recentSelected){
 			prev = <ShowPrevious sm={6} queries={this.props.recents} findResults={this.props.findResults} />;
 		}
-		if(this.state.favSelected === "Hide"){
+		if(this.state.favSelected){
 			fav = <ShowPrevious sm={6} queries={this.props.favourites} findResults={this.props.findResults} />;
 		}
 		return(
 
-			<div>
-			    <Well>
-                    <Row>
-                        <Col sm={6}>
-                        <Button
-                        bsStyle='primary'
-                        onClick={this.showRecents}
-                        >
-                          {this.state.recentSelected} Recent Queries
-                        </Button>
-                        {prev}
-                        </Col>
-                        <Col sm={6}>
-                        <Button
-                        bsStyle='info'
-                        onClick={this.showFavs}
-                        >
-                          {this.state.favSelected} Favourite Queries
-                        </Button>
-                        {fav}
-                        </Col>
-                    </Row>
-
-                </Well>
-			</div>
+			<ButtonGroup>
+                <Button
+	                bsStyle='primary'
+	                onClick={this.showRecents}
+                > {this.state.recentSelected} Recent Queries
+                </Button>
+                <Button
+	                bsStyle='info'
+	                onClick={this.showFavs}
+                > {this.state.favSelected} Favourite Queries
+                </Button>
+                {prev}
+                {fav}
+			</ButtonGroup>
 		);
 	}
 }

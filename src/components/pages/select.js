@@ -4,7 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 import Typeahead from 'react-bootstrap-typeahead';
 
-import {Button, Row, Col} from 'react-bootstrap'
+import {Glyphicon, Button, ButtonGroup, Row, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -18,7 +18,7 @@ class Select extends Component {
 
         this.state = {
             orgUnit: null,
-            orgUnitSelected: false,
+            orgUnitSelected: true,
             orgUnits: [],
             program: null,
             programSelected: false,
@@ -201,11 +201,20 @@ class Select extends Component {
                         </Col>
                     </Col>
                     <Col sm={12} className='p-t-md'>
-                        <Col sm={3} className='resBtn'>
-                            <Button
-                                bsStyle='primary'
-                                onClick={this.findResults.bind(this)}
-                                >Find Results</Button>
+                        <Col sm={4} className='resBtn'>
+                            <ButtonGroup className='pull-left'>
+                                <Button
+                                    className='m-r-sm'
+                                    bsStyle='primary'
+                                    onClick={this.findResults.bind(this)}
+                                    >Find Results</Button>
+                                <Button
+                                    bsStyle='default'
+                                    onClick={this.findResults.bind(this)}
+                                    >
+                                        <Glyphicon glyph='plus-sign' /> Advanced
+                                </Button>
+                            </ButtonGroup>
                         </Col>
                         <Col sm={3} className='favBtn pull-right'>
                             <Button
