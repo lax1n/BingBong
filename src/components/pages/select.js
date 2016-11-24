@@ -90,8 +90,8 @@ class Select extends Component {
                 options={data}
                 labelKey={'displayName'}
                 onChange={(event) => {
-                    console.log(event);
-                    this.handleChangeSelect(identifier, event[0].id, event[0].displayName);
+                    if(!(isEmpty(event)))
+                        this.handleChangeSelect(identifier, event[0].id, event[0].displayName);
                 }}
             />
         );
