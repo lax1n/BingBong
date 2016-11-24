@@ -4,7 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 import Typeahead from 'react-bootstrap-typeahead';
 
-import {DropdownButton, MenuItem, Button, Row, Col} from 'react-bootstrap'
+import {Button, Row, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -94,32 +94,6 @@ class Select extends Component {
                         this.handleChangeSelect(identifier, event[0].id, event[0].displayName);
                 }}
             />
-        );
-    }
-    renderSelectOld(title, identifier, data){
-        let currentTitle = '';
-        if(eval(`this.state.${identifier}Selected`)){
-            currentTitle = eval(`this.state.${identifier}Name`);
-        }else{
-            currentTitle = title;
-        }
-        return (
-            <DropdownButton
-                bsStyle="default"
-                title={currentTitle}
-                value={eval(`this.state.${identifier}`)}
-                id={`${identifier}-dropdown`}
-                className='scrollable-menu'
-                onSelect={(event) => {
-                    this.handleChangeSelect(identifier, event.id, event.displayName);
-                }}
-            >
-                {data.map((element, i) => {
-                    return (
-                        <MenuItem eventKey={element} key={i}>{element.displayName}</MenuItem>
-                    );
-                })}
-            </DropdownButton>
         );
     }
 
