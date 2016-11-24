@@ -17,7 +17,6 @@ export function findSingletonDuplicatesByOrganization(orgUnit){
 			let params = some[1];
 			let singletons = some[0];
 			return findDuplicatePeople(singletons, [],  params);
-			//return duplicates;
 		});
 	});
 }
