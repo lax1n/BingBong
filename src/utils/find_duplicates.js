@@ -4,9 +4,7 @@ import {contains} from './contains';
 
 import {isEmpty} from 'lodash';
 
-// This function does not take empty values into account, e.g last name "" will be evaluated as a duplicate if both are empty.
 export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance, max_undefined_count){
-	//console.log(test_params);
 	max_undefined_count = max_undefined_count || 0;
 	var editDistance = -1;
 	let undefined_count = 0; //This counts the amount of instances where one of the objects is undefined while the other one isn't
@@ -47,7 +45,6 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 	if(undefined_count > max_undefined_count){
 		return false;
 	}
-
 
 	return true;
 }
