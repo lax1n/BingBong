@@ -65,6 +65,7 @@ class Tei extends Component {
                     <Instructions />
                     <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
                 </div>
+                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />                    
                 <div className='row'>
                     <button
                         className='btn btn-default'
@@ -86,7 +87,6 @@ class Tei extends Component {
                     > Developer shortcut to see results for Ngelehun CHC
                     </button>
                 </div>
-                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
                 {results}
 			</div>
 		);

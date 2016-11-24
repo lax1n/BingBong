@@ -64,42 +64,36 @@ class Singleton extends Component {
 			);
 		}
 		return(
-			<div>
-				<Row sm={12}>
+			<Col sm={12}>
 	            <h3 className='text-center'>Find Duplicates in singleton events</h3>
 	            <Well>
 	                <Instructions />
 	                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
 	            </Well>
-	            <Row>
-	                <Col sm={6}>
-	                    <Button
-	                        bsStyle='default'
-	                        onClick={this.findResults.bind(this, {
-	                            orgUnit: 'DiszpKrYNg8',
-	                            program: 'q04UBOqq3rp',
-	                            startDate: '',
-	                            endDate: '',
-	                        })}
-	                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
-	                    </Button>
-	                </Col>
-	                <Col sm={6}>
-						<Button
-	                        bsStyle='default'
-	                        onClick={this.findResults.bind(this, {
-	                            orgUnit: 'DiszpKrYNg8',
-	                            startDate: '',
-	                            endDate: '',
-	                        })}
-	                    > Developer shortcut to see results for Ngelehun CHC
-	                    </Button>
-	                </Col>
-	            </Row>
-				</Row>
 	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
+                <Row>
+                    <Button
+                        bsStyle='default'
+                        onClick={this.findResults.bind(this, {
+                            orgUnit: 'DiszpKrYNg8',
+                            program: 'q04UBOqq3rp',
+                            startDate: '',
+                            endDate: '',
+                        })}
+                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
+                    </Button>
+					<Button
+                        bsStyle='default'
+                        onClick={this.findResults.bind(this, {
+                            orgUnit: 'DiszpKrYNg8',
+                            startDate: '',
+                            endDate: '',
+                        })}
+                    > Developer shortcut to see results for Ngelehun CHC
+                    </Button>
+                </Row>
 				{results}
-			</div>
+			</Col>
 		);
 	}
 
