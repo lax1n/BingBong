@@ -202,16 +202,18 @@ class Select extends Component {
                     </Col>
                     <Col sm={12} className='p-t-md'>
                         <Col sm={4} className='resBtn'>
-                            <ButtonGroup className='pull-left'>
+                            <ButtonGroup className='pull-left border-radius-4'>
                                 <Button
                                     className='m-r-sm'
                                     bsStyle='primary'
                                     onClick={this.findResults.bind(this)}
-                                    >Find Results</Button>
+                                >
+                                    Find Results
+                                </Button>
                                 <Button
                                     bsStyle='default'
                                     onClick={this.findResults.bind(this)}
-                                    >
+                                >
                                         <Glyphicon glyph='plus-sign' /> Advanced
                                 </Button>
                             </ButtonGroup>
