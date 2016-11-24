@@ -45,8 +45,10 @@ class Duplicates extends Component {
             'Last name',
             'Date of birth',
         ];
-
-        if(isEmpty(duplicates)){
+        console.log("ugm: "+duplicates);
+        console.log(duplicates);
+        if(isEmpty(duplicates)){ //earlier :if(isEmpty(duplicates)){ 
+            console.log("so dyes it gjet here or nyet");
             return (
                 <div className='row'>
                     <div className='col-sm-12'>
@@ -78,6 +80,7 @@ class Duplicates extends Component {
                                     onClick={() => this.viewDuplicates(duplicateRow)}>
                                     <td><Checkbox onClick={(e) => this.toggleReconcile(e, duplicateRow)} /></td>
                                     {tableAttributes.map((attribute, j) => {
+                                        console.log(duplicateRow[0][0]);
                                         return (
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
                                         );

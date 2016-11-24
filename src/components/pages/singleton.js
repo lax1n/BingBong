@@ -5,6 +5,8 @@ import {
     findSingletonDuplicatesByOrganization,
 } from '../../utils/singleton_dup_finder';
 
+import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
+
 import Select from './select';
 import Instructions from '../shared/instructions';
 import SelectPrevious from '../shared/select_previous.js';
@@ -53,33 +55,39 @@ class Singleton extends Component {
 
 	render(){
 		return(
-			<div className='col-sm-12'>
+			<div>
+				<Row sm={12}>
 	            <h3 className='text-center'>Find Duplicates in singleton events</h3>
-	            <div className='well'>
+	            <Well>
 	                <Instructions />
 	                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-	            </div>
-                <div className='row'>
-                    <button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            program: 'q04UBOqq3rp',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
-                    </button>
-					<button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC
-                    </button>
-                </div>
+	            </Well>
+	            <Row>
+	                <Col sm={6}>
+	                    <Button
+	                        bsStyle='default'
+	                        onClick={this.findResults.bind(this, {
+	                            orgUnit: 'DiszpKrYNg8',
+	                            program: 'q04UBOqq3rp',
+	                            startDate: '',
+	                            endDate: '',
+	                        })}
+	                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
+	                    </Button>
+	                </Col>
+	                <Col sm={6}>
+						<Button
+	                        bsStyle='default'
+	                        onClick={this.findResults.bind(this, {
+	                            orgUnit: 'DiszpKrYNg8',
+	                            startDate: '',
+	                            endDate: '',
+	                        })}
+	                    > Developer shortcut to see results for Ngelehun CHC
+	                    </Button>
+	                </Col>
+	            </Row>
+				</Row>
 	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
 			</div>
 		);
