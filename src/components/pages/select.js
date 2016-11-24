@@ -76,13 +76,21 @@ class Select extends Component {
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
+        let currentTitle = '';
+        if(eval(`this.state.${identifier}Selected`)){
+            currentTitle = eval(`this.state.${identifier}Name`);
+        }else{
+            currentTitle = title;
+        }
         return (
             <Typeahead
                 bsStyle='default'
+                placeholder={currentTitle}
                 options={data}
                 labelKey={'displayName'}
                 onChange={(event) => {
-                    this.handleChangeSelect(identifier, event.id, event.displayName);
+                    console.log(event);
+                    this.handleChangeSelect(identifier, event[0].id, event[0].displayName);
                 }}
             />
         );
@@ -165,7 +173,7 @@ class Select extends Component {
         if(this.state.orgUnitSelected === false){
             return (
                 <div className='row text-center'>
-                    <div className='col-sm-12'>
+                    <div className='col-sm-4 col-sm-offset-4'>
                         {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
                     </div>
                 </div>
