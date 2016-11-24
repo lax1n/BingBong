@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {isEmpty} from 'lodash';
 import DatePicker from 'react-bootstrap-date-picker';
 
-//import Typeahead from 'react-bootstrap-typeahead';
+import Typeahead from 'react-bootstrap-typeahead';
 
 import {DropdownButton, MenuItem, Button, Row, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
@@ -76,6 +76,18 @@ class Select extends Component {
 
     // Only supports data containing ids & displayName (e.g orgUnits & programs)
     renderSelect(title, identifier, data){
+        return (
+            <Typeahead
+                bsStyle='default'
+                options={data}
+                labelKey={'displayName'}
+                onChange={(event) => {
+                    this.handleChangeSelect(identifier, event.id, event.displayName);
+                }}
+            />
+        );
+    }
+    renderSelectOld(title, identifier, data){
         let currentTitle = '';
         if(eval(`this.state.${identifier}Selected`)){
             currentTitle = eval(`this.state.${identifier}Name`);
