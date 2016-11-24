@@ -60,8 +60,8 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 	maxEditDistance = maxEditDistance || 2;
 	maxUndefinedCount = maxUndefinedCount || 100;
 	if(isEmpty(teis)){
-		console.log("passed empty teis");
-		return [[]];
+		console.log("No teis passed");
+		return undefined;//[[{}]];
 	}
 	//teis.forEach((tei, i) => {
 	let i, j;
@@ -81,6 +81,10 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 			duplicates.push(tempDuplicates);
 		}
 	}//);
+	if(isEmpty(duplicates)){
+		console.log("No duplicates found");
+		return undefined;//[[{}]];
+	}
 	return duplicates;
 }
 
