@@ -22,6 +22,7 @@ class Tei extends Component {
 			myFilters: {
 				looseTestParams: ["First name", "Last name", "Date of birth", "Mothers maiden name"],
 				strictTestParams: ["Blood type", "Gender"],
+				timeTestParams: [],
 				maxEditDistance: 2,
 				maxUndefinedCount: 0,
 			}

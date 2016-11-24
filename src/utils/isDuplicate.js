@@ -1,7 +1,7 @@
 import {isEmpty} from 'lodash';
 import {getEditDistance} from '../libs/levenshtein';
 import Moment from 'moment';
-export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance, max_undefined_count){
+export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance, max_undefined_count, time_test_params){
 	max_undefined_count = max_undefined_count || 0;
 	var editDistance;
 	if(isEmpty(obj1) || isEmpty(obj2)){
@@ -11,6 +11,9 @@ export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, m
 		return false;
 	}
 	if(myLooseCheck(obj1, obj2, loose_test_params, maxEditDistance, max_undefined_count) === false){
+		return false;
+	}
+	if(myTimeCheck(obj1, obj2, time_test_params, max_undefined_count) === false){
 		return false;
 	}
 
@@ -56,6 +59,27 @@ function myStrictCheck(obj1, obj2, strict_test_params, max_undefined_count){
 			}
 		}
 		else if((obj2[strict_test_params[i]] !== "")  && (obj2[strict_test_params[i]] !== undefined)){
+			undefined_count += 1;
+		}
+	}
+	if(undefined_count > max_undefined_count){
+		return false;
+	}
+	return true;
+}
+function myTimeCheck(obj1, obj2, timeTestParams, max_undefined_count){
+	let undefined_count = 0;
+	for (let i = 0; i<timeTestParams.length; i++){ //Looping over all the relevant parameters
+		if((obj1[timeTestParams[i]] !== "") && (obj1[timeTestParams[i]] !== undefined)){
+			undefined_count += 1;
+			if((obj2[timeTestParams[i]] !== "")  && (obj2[timeTestParams[i]] !== undefined)){
+				undefined_count -= 1;
+				if(Moment(obj1[timeTestParams[i]]).isSame(Moment(obj2[timeTestParams[i]]), "day") === false){
+					return false;
+				}
+			}
+		}
+		else if((obj2[timeTestParams[i]] !== "")  && (obj2[timeTestParams[i]] !== undefined)){
 			undefined_count += 1;
 		}
 	}

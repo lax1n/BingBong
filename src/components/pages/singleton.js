@@ -21,6 +21,11 @@ class Singleton extends Component {
 			recents: [],
 			resultsFound: false,
 			results: [],
+			myFilters: {
+				timeTestParams: ["eventDate"],
+				maxEditDistance: 2,
+				maxUndefinedCount: 0,
+			},
 		}
 
 		this.findResults = this.findResults.bind(this);
@@ -41,14 +46,14 @@ class Singleton extends Component {
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
-            findSingletonDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
+            findSingletonDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
 				console.log("My duplicates:");
                 console.log(duplicates);
 
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
-            findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
+            findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, this.state.myFilters).then((duplicates) => {
 				console.log("My duplicates:");
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
