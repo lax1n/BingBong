@@ -45,10 +45,7 @@ class Duplicates extends Component {
             'Last name',
             'Date of birth',
         ];
-        console.log("ugm: "+duplicates);
-        console.log(duplicates);
-        if(isEmpty(duplicates)){ //earlier :if(isEmpty(duplicates)){ 
-            console.log("so dyes it gjet here or nyet");
+        if(isEmpty(duplicates)){
             return (
                 <div className='row'>
                     <div className='col-sm-12'>
