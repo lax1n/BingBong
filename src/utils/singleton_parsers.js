@@ -33,6 +33,7 @@ export function parseSingletonQueryResults(response){
 					singletons[my_counter][key] = response[i][key];
 				}
 			}
+			//singletons[my_counter]['event'] = response[i]['event']
 			my_counter += 1;
 		}
 		console.log("Singletons")

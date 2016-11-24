@@ -4,13 +4,9 @@ import {isDuplicate} from './isDuplicate'
 
 import {isEmpty} from 'lodash';
 
-export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance, maxUndefinedCount){
+export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance, maxUndefinedCount, time_test_params){
 	let duplicates = [];
-	loose_test_params = loose_test_params || ["First name", "Last name", "Date of birth", "Mothers maiden name"];
-	strict_test_params = strict_test_params || ["Blood type"];
 	let duplicate_indexes = []
-	maxEditDistance = maxEditDistance || 2;
-	maxUndefinedCount = maxUndefinedCount || 0;
 	if(isEmpty(teis)){
 		console.log("No teis passed");
 		return undefined;//[[{}]];
@@ -23,7 +19,7 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 		//teis.forEach((tempTei, j) => {
 		for(j = 0; j<teis.length; j++){
 			let tempTei = teis[j];
-			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance, maxUndefinedCount)){
+			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance, maxUndefinedCount, time_test_params)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
 			}
@@ -39,7 +35,6 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 	}
 	return duplicates;
 }
-
 export function getTip(){
 	return "Remember to wash your hands";
 }

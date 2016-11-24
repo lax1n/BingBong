@@ -20,6 +20,13 @@ class Tei extends Component {
             results: [],
             favourites: [],
             recents: [],
+			myFilters: {
+				looseTestParams: ["First name", "Last name", "Date of birth", "Mothers maiden name"],
+				strictTestParams: ["Blood type", "Gender"],
+				timeTestParams: [],
+				maxEditDistance: 2,
+				maxUndefinedCount: 0,
+			}
         }
 
         this.findResults = this.findResults.bind(this);
@@ -40,12 +47,12 @@ class Tei extends Component {
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
-            findTEIDuplicatesByOrganization(params.orgUnit).then((duplicates) => {
+            findTEIDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
-            findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program).then((duplicates) => {
+            findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, this.state.myFilters).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
