@@ -10,6 +10,7 @@ import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
 import Select from './select';
 import Instructions from '../shared/instructions';
 import SelectPrevious from '../shared/select_previous.js';
+import Duplicates from '../shared/duplicates';
 
 class Singleton extends Component {
 	constructor(props){
@@ -56,6 +57,12 @@ class Singleton extends Component {
     }
 
 	render(){
+		let results = '';
+		if(this.state.resultsFound){
+			results=(
+				<Duplicates duplicates={this.state.results} />
+			);
+		}
 		return(
 			<div>
 				<Row sm={12}>
@@ -91,6 +98,7 @@ class Singleton extends Component {
 	            </Row>
 				</Row>
 	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
+				{results}
 			</div>
 		);
 	}
