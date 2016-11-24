@@ -2,3 +2,7 @@
   overflow: scroll;
   max-height: 300px;
 }
+
+.typeahead-border-radius-0 > div > input {
+    border-radius: 0;
+}
