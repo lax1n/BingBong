@@ -70,6 +70,7 @@ class QueryArea extends Component {
                         </Row>
                         <Row>
                             <Col sm={12}>
+                                <Advanced />
                                 <Buttons />
                             </Col>
                         </Row>
