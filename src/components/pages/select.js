@@ -156,49 +156,49 @@ class Select extends Component {
         }
 
         return (
-                <Col sm={12}>
-                    <Col sm={3} className='p-l-0' id='organizationSelect' >
-                        <div className='form-group text-center'>
-                            <Col sm={12} className='p-0'>
-                                <label className='pull-left'>Organization(Clinic)</label>
-                            </Col>
-                            <Col sm={12} className='p-0'>
-                                {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
-                            </Col>
-                        </div>
-                    </Col>
-                    <Col sm={3} id='programSelect'>
-                        <div className='form-group text-center'>
-                            <Col sm={12} className='p-0'>
-                                <label className='pull-left'>Program (Optional)</label>
-                            </Col>
-                            <Col sm={12} className='p-0'>
-                                {this.renderSelect('Select Program', 'program', this.state.programs)}
-                            </Col>
-                        </div>
-                    </Col>
-                    <Col sm={6} className='p-r-0' id='dateSelect'>
-                        <div className='form-group text-center'>
-                            <Col sm={12} className='p-0'>
-                                <label className='pull-left'>Time frame (Optional)</label>
-                            </Col>
-                            <Col sm={12} className='p-0'>
-                                <Col sm={6} id='startDateSelect' className='p-l-0'>
-                                    <DatePicker
-                                        placeholder='Start date'
-                                        value={this.state.startDate}
-                                        onChange={this.changeStartDate} />
-                                </Col>
-                                <Col sm={6} id='endDateSelect' className='p-r-0'>
-                                    <DatePicker
-                                        placeholder='End date'
-                                        value={this.state.endDate}
-                                        onChange={this.changeEndDate} />
-                                </Col>
-                            </Col>
-                        </div>
-                    </Col>
+            <Col sm={12}>
+                <Col sm={3} className='p-l-0' id='organizationSelect' >
+                    <div className='form-group text-center'>
+                        <Col sm={12} className='p-0'>
+                            <label className='pull-left'>Organization(Clinic)</label>
+                        </Col>
+                        <Col sm={12} className='p-0'>
+                            {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
+                        </Col>
+                    </div>
                 </Col>
+                <Col sm={3} id='programSelect'>
+                    <div className='form-group text-center'>
+                        <Col sm={12} className='p-0'>
+                            <label className='pull-left'>Program (Optional)</label>
+                        </Col>
+                        <Col sm={12} className='p-0'>
+                            {this.renderSelect('Select Program', 'program', this.state.programs)}
+                        </Col>
+                    </div>
+                </Col>
+                <Col sm={6} className='p-r-0' id='dateSelect'>
+                    <div className='form-group text-center'>
+                        <Col sm={12} className='p-0'>
+                            <label className='pull-left'>Time frame (Optional)</label>
+                        </Col>
+                        <Col sm={12} className='p-0'>
+                            <Col sm={6} id='startDateSelect' className='p-l-0'>
+                                <DatePicker
+                                    placeholder='Start date'
+                                    value={this.state.startDate}
+                                    onChange={this.changeStartDate} />
+                            </Col>
+                            <Col sm={6} id='endDateSelect' className='p-r-0'>
+                                <DatePicker
+                                    placeholder='End date'
+                                    value={this.state.endDate}
+                                    onChange={this.changeEndDate} />
+                            </Col>
+                        </Col>
+                    </div>
+                </Col>
+            </Col>
         );
     }
 }
