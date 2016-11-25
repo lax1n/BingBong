@@ -4,7 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 import Typeahead from 'react-bootstrap-typeahead';
 
-import {Glyphicon, Button, ButtonGroup, Row, Col} from 'react-bootstrap'
+import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem, Row, Col} from 'react-bootstrap'
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -201,16 +201,24 @@ class Select extends Component {
                         </Col>
                     </Col>
                     <Col sm={12} className='p-t-md'>
-                        <Col sm={4} className='resBtn'>
+                        <Col sm={12} className='resBtn'>
                             <ButtonGroup className='pull-left border-radius-4'>
-                                <Button
-                                    className='m-r-sm'
-                                    bsStyle='primary'
+                                <SplitButton
+                                    className='split-right-radius-4'
+                                    title='Find results'
+                                    id='find-results-split-button'
+                                    bsStyle='info'
                                     onClick={this.findResults.bind(this)}
                                 >
-                                    Find Results
-                                </Button>
+                                    <MenuItem
+                                        eventKey='1'
+                                        onClick={this.saveFavourite.bind(this)}
+                                    >
+                                        Find and add query to favorites
+                                    </MenuItem>
+                                </SplitButton>
                                 <Button
+                                    className='m-l-md'
                                     bsStyle='default'
                                     onClick={this.findResults.bind(this)}
                                 >
@@ -218,11 +226,7 @@ class Select extends Component {
                                 </Button>
                             </ButtonGroup>
                         </Col>
-                        <Col sm={3} className='favBtn pull-right'>
-                            <Button
-                                bsStyle='info'
-                                onClick={this.saveFavourite.bind(this)}
-                                >Add to Favourites</Button>
+                        <Col sm={12} className='favBtn p-t-sm'>
                         </Col>
                     </Col>
                 </Row>
