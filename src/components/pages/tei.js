@@ -6,7 +6,7 @@ import {
 } from '../../utils/tei_dup_finder';
 
 import Select from './select';
-import QueryArea from '../shared/query_area';
+import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 import Instructions from '../shared/instructions';
 import SelectPrevious from '../shared/select_previous.js';

@@ -4,7 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker';
 
 import Typeahead from 'react-bootstrap-typeahead';
 
-import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem, Row, Col} from 'react-bootstrap'
+import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem, Row, Col} from 'react-bootstrap';
 import '../../libs/bootstrap.min.css';
 import '../../styles/select.css';
 
@@ -156,80 +156,49 @@ class Select extends Component {
         }
 
         return (
-                <Row>
-                    <Col sm={12}>
-                        <Col sm={3} id='organizationSelect' >
-                            <div className='form-group text-center'>
-                                <Col sm={12} className='p-0'>
-                                    <label>Organization(Clinic)</label>
-                                </Col>
-                                <Col sm={12} className='p-0'>
-                                    {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
-                                </Col>
-                            </div>
-                        </Col>
-                        <Col sm={3} id='programSelect'>
-                            <div className='form-group text-center'>
-                                <Col sm={12} className='p-0'>
-                                    <label>Program (Optional)</label>
-                                </Col>
-                                <Col sm={12} className='p-0'>
-                                    {this.renderSelect('Select Program', 'program', this.state.programs)}
-                                </Col>
-                            </div>
-                        </Col>
-                        <Col sm={6} id='dateSelect'>
-                            <div className='form-group text-center'>
-                                <Col sm={12} className='p-0'>
-                                    <label>Time frame (Optional)</label>
-                                </Col>
-                                <Col sm={12} className='p-0'>
-                                    <Col sm={6} id='startDateSelect' className='p-l-0'>
-                                        <DatePicker
-                                            placeholder='Start date'
-                                            value={this.state.startDate}
-                                            onChange={this.changeStartDate} />
-                                    </Col>
-                                    <Col sm={6} id='endDateSelect' className='p-r-0'>
-                                        <DatePicker
-                                            placeholder='End date'
-                                            value={this.state.endDate}
-                                            onChange={this.changeEndDate} />
-                                    </Col>
-                                </Col>
-                            </div>
-                        </Col>
+                <Col sm={12}>
+                    <Col sm={3} className='p-l-0' id='organizationSelect' >
+                        <div className='form-group text-center'>
+                            <Col sm={12} className='p-0'>
+                                <label className='pull-left'>Organization(Clinic)</label>
+                            </Col>
+                            <Col sm={12} className='p-0'>
+                                {this.renderSelect('Select Organization/Clinic', 'orgUnit', this.state.orgUnits)}
+                            </Col>
+                        </div>
                     </Col>
-                    <Col sm={12} className='p-t-md'>
-                        <Col sm={12} className='resBtn'>
-                            <ButtonGroup className='pull-left border-radius-4'>
-                                <SplitButton
-                                    className='split-right-radius-4'
-                                    title='Find results'
-                                    id='find-results-split-button'
-                                    bsStyle='info'
-                                    onClick={this.findResults.bind(this)}
-                                >
-                                    <MenuItem
-                                        eventKey='1'
-                                        onClick={this.saveFavourite.bind(this)}
-                                    >
-                                        Find and add query to favorites
-                                    </MenuItem>
-                                </SplitButton>
-                                <Button
-                                    className='m-l-md'
-                                    bsStyle='default'
-                                    onClick={this.findResults.bind(this)}
-                                >
-                                        <Glyphicon glyph='plus-sign' /> Advanced
-                                </Button>
-                            </ButtonGroup>
-                        </Col>
-                        <Col sm={12} className='favBtn p-t-sm'>
-                        </Col>
+                    <Col sm={3} id='programSelect'>
+                        <div className='form-group text-center'>
+                            <Col sm={12} className='p-0'>
+                                <label className='pull-left'>Program (Optional)</label>
+                            </Col>
+                            <Col sm={12} className='p-0'>
+                                {this.renderSelect('Select Program', 'program', this.state.programs)}
+                            </Col>
+                        </div>
                     </Col>
-                </Row>
+                    <Col sm={6} className='p-r-0' id='dateSelect'>
+                        <div className='form-group text-center'>
+                            <Col sm={12} className='p-0'>
+                                <label className='pull-left'>Time frame (Optional)</label>
+                            </Col>
+                            <Col sm={12} className='p-0'>
+                                <Col sm={6} id='startDateSelect' className='p-l-0'>
+                                    <DatePicker
+                                        placeholder='Start date'
+                                        value={this.state.startDate}
+                                        onChange={this.changeStartDate} />
+                                </Col>
+                                <Col sm={6} id='endDateSelect' className='p-r-0'>
+                                    <DatePicker
+                                        placeholder='End date'
+                                        value={this.state.endDate}
+                                        onChange={this.changeEndDate} />
+                                </Col>
+                            </Col>
+                        </div>
+                    </Col>
+                </Col>
         );
     }
 }

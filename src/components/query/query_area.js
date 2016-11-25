@@ -8,9 +8,13 @@ import {
 import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
 
 import Select from '../pages/select';
-import Instructions from './instructions';
-import SelectPrevious from './select_previous.js';
-import Duplicates from './duplicates';
+import Instructions from '../shared/instructions';
+import SelectPrevious from '../shared/select_previous.js';
+import Duplicates from '../shared/duplicates';
+
+import Buttons from './buttons';
+import Advanced from './advanced';
+
 
 class QueryArea extends Component {
     constructor(props){
@@ -49,20 +53,24 @@ class QueryArea extends Component {
 		return(
 			<Row>
                 <Col sm={12}>
-    	            <h3 className='text-center'>Find Duplicates in {this.props.title}</h3>
+    	            <h3 className='text-center m-b-md'>Find Duplicates in {this.props.title}</h3>
                     <Well>
-                        <Row>
+                        <Row className='m-b-l'>
                             <Col sm={12}>
                                 <Instructions />
                             </Col>
-                            <Col sm={12}>
-                                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-                            </Col>
+                        </Row>
+                        <Row>
+                            <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
+                        </Row>
+                        <Row>
                             <Col sm={12}>
                                 <hr />
                             </Col>
+                        </Row>
+                        <Row>
                             <Col sm={12}>
-                	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
+                                <Buttons />
                             </Col>
                         </Row>
                     </Well>

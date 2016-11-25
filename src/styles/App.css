@@ -87,8 +87,32 @@ button.split-right-radius-4:first-of-type + button {
     margin-top: 0 !important;
 }
 
+.m-t-sm {
+    margin-top: 5px !important;
+}
+
+.m-t-md {
+    margin-top: 10px !important;
+}
+
+.m-t-l {
+    margin-top: 15px !important;
+}
+
 .m-b-0 {
     margin-bottom: 0 !important;
+}
+
+.m-b-sm {
+    margin-bottom: 5px !important;
+}
+
+.m-b-md {
+    margin-bottom: 10px !important;
+}
+
+.m-b-l {
+    margin-bottom: 15px !important;
 }
 
 .m-r-0 {
