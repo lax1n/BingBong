@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Table, Button, ButtonGroup, Row, Col, Collapse, Panel} from 'react-bootstrap';
-
+import {isEmpty} from 'lodash';
 
 class PreviousQueries extends Component{
 	constructor(props){
@@ -10,6 +10,21 @@ class PreviousQueries extends Component{
 	}
 
 	renderQueries(queries){
+		if(isEmpty(queries)){
+			return (
+				<Panel>
+					<Row>
+						<Col sm={12}>
+							<span>¯\_(ツ)_/¯</span>
+						</Col>
+						<Col sm={12}>
+							<span>No queries here yet.</span>
+						</Col>
+					</Row>
+				</Panel>
+			);
+		}
+
 		const tableAttributes=[
 				'orgUnit',
 				'program',
