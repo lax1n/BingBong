@@ -14,6 +14,7 @@ import Duplicates from '../shared/duplicates';
 
 import Buttons from './buttons';
 import Advanced from './advanced';
+import PreviousQueries from './previous_queries';
 
 
 let queryParams = {};
@@ -35,6 +36,8 @@ class QueryArea extends Component {
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
+        this.toggleRecent = this.toggleRecent.bind(this);
+        this.toggleFavourites = this.toggleFavourites.bind(this);
         this.updateQueryParams = this.updateQueryParams.bind(this);
         this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
         this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
@@ -43,6 +46,14 @@ class QueryArea extends Component {
 
     toggleAdvanced(){
         this.setState({advanced: !this.state.advanced});
+    }
+
+    toggleRecent(){
+        this.setState({recent: !this.state.recent});
+    }
+
+    toggleFavourites(){
+        this.setState({favourites: !this.state.favourites});
     }
 
     updateQueryParams(params){
@@ -115,9 +126,14 @@ class QueryArea extends Component {
                                     toggleAdvanced={this.toggleAdvanced}
                                     advancedActive={this.state.advanced}
                                     recentActive={this.state.recent}
+                                    toggleRecent={this.toggleRecent}
                                     favouritesActive={this.state.favouries}
+                                    toggleFavourites={this.toggleFavourites}
                                 />
                             </Col>
+                        </Row>
+                        <Row>
+                            <PreviousQueries recentActive={this.state.recent} favouritesActive={this.state.favourites} />
                         </Row>
                     </Well>
                     {this.renderDeveloperShortcuts}

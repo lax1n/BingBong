@@ -15,7 +15,7 @@ class Buttons extends Component {
         let favouriteState = 'plus-sign';
         if(this.props.favouriteActive)
             favouriteState = 'minus-sign';
-        
+
         return (
             <ButtonGroup className='pull-left border-radius-4'>
                 <SplitButton
@@ -41,11 +41,13 @@ class Buttons extends Component {
                 </Button>
                 <Button className='m-l-md'
                     bsStyle='default'
+                    onClick={this.props.toggleRecent}
                 >
                     <Glyphicon glyph={recentState} /> Recent Queries
                 </Button>
                 <Button className='m-l-md'
                     bsStyle='default'
+                    onClick={this.props.toggleFavourites}
                 >
                     <Glyphicon glyph={favouriteState} /> Favourite Queries
                 </Button>

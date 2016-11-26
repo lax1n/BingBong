@@ -24,6 +24,10 @@
   100% { transform: scale(0.5, 0.5); }
 }
 
+.text-left {
+	text-align: left;
+}
+
 /* === CUSTOM RULES TO OVERWRITE BOOTSTRAP RULES === */
 .border-radius-4 > button {
     border-radius: 4px !important;
