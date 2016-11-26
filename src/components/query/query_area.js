@@ -127,13 +127,16 @@ class QueryArea extends Component {
                                     advancedActive={this.state.advanced}
                                     recentActive={this.state.recent}
                                     toggleRecent={this.toggleRecent}
-                                    favouritesActive={this.state.favouries}
+                                    favouritesActive={this.state.favourites}
                                     toggleFavourites={this.toggleFavourites}
                                 />
                             </Col>
                         </Row>
                         <Row>
-                            <PreviousQueries recentActive={this.state.recent} favouritesActive={this.state.favourites} />
+                            <PreviousQueries
+                                recentActive={this.state.recent}
+                                favouritesActive={this.state.favourites}
+                            />
                         </Row>
                     </Well>
                     {this.renderDeveloperShortcuts}

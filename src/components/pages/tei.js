@@ -76,8 +76,8 @@ class Tei extends Component {
                 <QueryArea
                     title={'Tracked Entity Instances'}
                     findResults={this.findResults}
+                    type={'teis'}
                 />
-                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
                 <div className='row'>
                     <button
                         className='btn btn-default'

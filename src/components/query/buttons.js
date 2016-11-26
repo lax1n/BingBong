@@ -13,7 +13,7 @@ class Buttons extends Component {
             recentState = 'minus-sign';
 
         let favouriteState = 'plus-sign';
-        if(this.props.favouriteActive)
+        if(this.props.favouritesActive)
             favouriteState = 'minus-sign';
 
         return (
