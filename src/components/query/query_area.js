@@ -30,6 +30,8 @@ class QueryArea extends Component {
 
         this.state = {
             advanced: false,
+            recent: false,
+            favourites: false,
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
@@ -113,7 +115,13 @@ class QueryArea extends Component {
                         <Row>
                             <Col sm={12}>
                                 {advanced}
-                                <Buttons findResults={this.findResults} toggleAdvanced={this.toggleAdvanced} />
+                                <Buttons
+                                    findResults={this.findResults}
+                                    toggleAdvanced={this.toggleAdvanced}
+                                    advancedActive={this.state.advanced}
+                                    recentActive={this.state.recent}
+                                    favouritesActive={this.state.favouries}
+                                />
                             </Col>
                         </Row>
                     </Well>

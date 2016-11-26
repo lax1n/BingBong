@@ -4,6 +4,18 @@ import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem} from 'react-boots
 class Buttons extends Component {
 
     render(){
+        let advancedState = 'plus-sign';
+        if(this.props.advancedActive)
+            advancedState = 'minus-sign';
+
+        let recentState = 'plus-sign';
+        if(this.props.recentActive)
+            recentState = 'minus-sign';
+
+        let favouriteState = 'plus-sign';
+        if(this.props.favouriteActive)
+            favouriteState = 'minus-sign';
+        
         return (
             <ButtonGroup className='pull-left border-radius-4'>
                 <SplitButton
@@ -25,17 +37,17 @@ class Buttons extends Component {
                     bsStyle='info'
                     onClick={this.props.toggleAdvanced}
                 >
-                    <Glyphicon glyph='plus-sign' /> Advanced
+                    <Glyphicon glyph={advancedState} /> Advanced
                 </Button>
                 <Button className='m-l-md'
                     bsStyle='default'
                 >
-                    Recent Queries
+                    <Glyphicon glyph={recentState} /> Recent Queries
                 </Button>
                 <Button className='m-l-md'
                     bsStyle='default'
                 >
-                    Favourite Queries
+                    <Glyphicon glyph={favouriteState} /> Favourite Queries
                 </Button>
             </ButtonGroup>
         );

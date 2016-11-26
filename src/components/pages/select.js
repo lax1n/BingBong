@@ -18,7 +18,7 @@ class Select extends Component {
 
         this.state = {
             orgUnit: null,
-            orgUnitSelected: true,
+            orgUnitSelected: false,
             orgUnits: [],
             program: null,
             programSelected: false,
@@ -112,7 +112,6 @@ class Select extends Component {
             startDate: this.state.startDate,
             endDate: this.state.endDate,
         }
-        this.saveRecent();
         this.props.findResults(params);
     }
 
