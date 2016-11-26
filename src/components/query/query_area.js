@@ -108,13 +108,8 @@ class QueryArea extends Component {
                             />
                         </Row>
                         <Row>
-                            <Col sm={12}>
-                                <hr />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={12}>
-                                {advanced}
+                            <Col sm={12} className='p-t-md'>
+                                <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} advancedActive={this.state.advanced} />
                                 <Buttons
                                     findResults={this.findResults}
                                     toggleAdvanced={this.toggleAdvanced}

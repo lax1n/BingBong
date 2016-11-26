@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem, Row, Col, Checkbox, Well} from 'react-bootstrap';
+import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem, Row, Col, Checkbox, Panel} from 'react-bootstrap';
 
 import '../../styles/components/query/advanced.css';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -53,7 +53,7 @@ class Advanced extends Component {
             {value: 3, label: '3'},
         ];
         return (
-            <Well>
+            <Panel collapsible expanded={this.props.advancedActive}>
                 <Row className='text-left'>
                     <Col sm={12}>
 
@@ -93,7 +93,7 @@ class Advanced extends Component {
                         <Checkbox>Check for typos</Checkbox>
                     </Col>
                 </Row>
-            </Well>
+            </Panel>
         );
     }
 }
