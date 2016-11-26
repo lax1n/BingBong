@@ -31,40 +31,58 @@ class QueryArea extends Component {
 
         this.state = {
             advanced: false,
-            recent: false,
+            recents: false,
             favourites: false,
+            error: '',
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
-        this.toggleRecent = this.toggleRecent.bind(this);
+        this.toggleRecents = this.toggleRecents.bind(this);
         this.toggleFavourites = this.toggleFavourites.bind(this);
         this.updateQueryParams = this.updateQueryParams.bind(this);
         this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
         this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
         this.findResults = this.findResults.bind(this);
+        this.showError = this.showError.bind(this);
     }
 
     toggleAdvanced(){
         this.setState({advanced: !this.state.advanced});
     }
 
-    toggleRecent(){
-        this.setState({recent: !this.state.recent});
+    toggleRecents(){
+        this.setState({recents: !this.state.recents});
     }
 
     toggleFavourites(){
         this.setState({favourites: !this.state.favourites});
     }
 
+    // Do not update state here, it'll cause an infinite loop :(
     updateQueryParams(params){
         queryParams = params;
     }
 
+    // Do not update state here, it'll cause an infinite loop :(
     updateAdvancedParams(params){
         advancedParams = params;
     }
 
+    showError(message){
+        // Perhaps make the select field red too?
+
+        this.setState({error: message});
+    }
+
     findResults(favourite){
+        // Check if valid
+        if(queryParams.orgUnit === null || queryParams.orgUnit === ''){
+            this.showError('Organization(Clinic) has not been selected!');
+            return;
+        }else{
+            this.setState({error: ''});
+        }
+
         // Prepare params for query
         let params = queryParams;
         params.advanced = advancedParams;
@@ -103,6 +121,15 @@ class QueryArea extends Component {
             advanced = <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} />;
         }
 
+        let error = '';
+        if(this.state.error !== ''){
+            error = (
+                <div className='text-left has-error'>
+                    <span className='help-block'>{this.state.error}</span>
+                </div>
+            );
+        }
+
 		return(
 			<Row>
                 <Col sm={12}>
@@ -121,12 +148,13 @@ class QueryArea extends Component {
                         <Row>
                             <Col sm={12} className='p-t-md'>
                                 <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} advancedActive={this.state.advanced} />
+                                {error}
                                 <Buttons
                                     findResults={this.findResults}
                                     toggleAdvanced={this.toggleAdvanced}
                                     advancedActive={this.state.advanced}
-                                    recentActive={this.state.recent}
-                                    toggleRecent={this.toggleRecent}
+                                    recentsActive={this.state.recents}
+                                    toggleRecents={this.toggleRecents}
                                     favouritesActive={this.state.favourites}
                                     toggleFavourites={this.toggleFavourites}
                                 />
@@ -134,7 +162,8 @@ class QueryArea extends Component {
                         </Row>
                         <Row>
                             <PreviousQueries
-                                recentActive={this.state.recent}
+                                {...this.props}
+                                recentsActive={this.state.recents}
                                 favouritesActive={this.state.favourites}
                             />
                         </Row>

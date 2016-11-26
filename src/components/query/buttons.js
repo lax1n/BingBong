@@ -9,7 +9,7 @@ class Buttons extends Component {
             advancedState = 'minus-sign';
 
         let recentState = 'plus-sign';
-        if(this.props.recentActive)
+        if(this.props.recentsActive)
             recentState = 'minus-sign';
 
         let favouriteState = 'plus-sign';
@@ -41,7 +41,7 @@ class Buttons extends Component {
                 </Button>
                 <Button className='m-l-md'
                     bsStyle='default'
-                    onClick={this.props.toggleRecent}
+                    onClick={this.props.toggleRecents}
                 >
                     <Glyphicon glyph={recentState} /> Recent Queries
                 </Button>

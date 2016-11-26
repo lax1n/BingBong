@@ -77,6 +77,8 @@ class Tei extends Component {
                     title={'Tracked Entity Instances'}
                     findResults={this.findResults}
                     type={'teis'}
+                    recents={this.state.recents}
+                    favourites={this.state.favourites}
                 />
                 <div className='row'>
                     <button

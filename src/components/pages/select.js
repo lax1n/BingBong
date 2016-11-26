@@ -105,16 +105,6 @@ class Select extends Component {
         );
     }
 
-    findResults(){
-        const params = {
-            orgUnit: this.state.orgUnit,
-            program: this.state.program,
-            startDate: this.state.startDate,
-            endDate: this.state.endDate,
-        }
-        this.props.findResults(params);
-    }
-
     render() {
         if(isEmpty(this.state.orgUnits)){
             return (
