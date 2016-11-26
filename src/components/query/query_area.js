@@ -16,6 +16,12 @@ import Buttons from './buttons';
 import Advanced from './advanced';
 
 
+let advancedParams = {
+    typos: true,
+    maxTypos: 1,
+    looseParams: ["First name", "Last name", "Mother maiden name"],
+};
+
 class QueryArea extends Component {
     constructor(props){
         super(props);
@@ -25,11 +31,16 @@ class QueryArea extends Component {
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
+        this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
         this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
     }
 
     toggleAdvanced(){
         this.setState({advanced: !this.state.advanced});
+    }
+
+    updateAdvancedParams(params){
+        advancedParams = params;
     }
 
     renderDeveloperShortcuts(){
@@ -61,7 +72,7 @@ class QueryArea extends Component {
 	render(){
         let advanced = '';
         if(this.state.advanced){
-            advanced = <Advanced />;
+            advanced = <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} />;
         }
 
 		return(

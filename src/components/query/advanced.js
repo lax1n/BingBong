@@ -10,14 +10,14 @@ class Advanced extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            typos: true,
-            maxTypos: 1,
-            looseParams: ["First name", "Last name", "Mother maiden name"],
-        }
+        this.state = this.props.advancedParams;
 
         this.updateLooseParams = this.updateLooseParams.bind(this);
         this.updateMaxTypos = this.updateMaxTypos.bind(this);
+    }
+
+    componentDidUpdate(){
+        this.props.updateAdvancedParams(this.state);
     }
 
     updateLooseParams(obj){
@@ -25,7 +25,6 @@ class Advanced extends Component {
         obj.forEach((element) => {
             looseParams.push(element.value)
         });
-        console.log(looseParams);
         this.setState({looseParams: looseParams});
     }
 
@@ -63,7 +62,7 @@ class Advanced extends Component {
                         <Col sm={12} className='p-0'>
                             <label>Typos</label>
                         </Col>
-                        <Checkbox checked={this.state.typos} onClick={(e) => this.toggleTypos()}>Check for typos</Checkbox>
+                        <Checkbox defaultChecked={this.state.typos} onClick={(e) => this.toggleTypos()}>Check for typos</Checkbox>
                         <Select
                             className='m-b-sm'
                             name='max-typos'
