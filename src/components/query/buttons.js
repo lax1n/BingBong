@@ -11,11 +11,11 @@ class Buttons extends Component {
                     title='Find results'
                     id='find-results-split-button'
                     bsStyle='primary'
-                    onClick={this.props.findResults}
+                    onClick={this.props.findResults.bind(this, false)}
                 >
                     <MenuItem
                         eventKey='1'
-                        onClick={this.props.saveFavourite}
+                        onClick={this.props.findResults.bind(this, true)}
                     >
                         Find and add query to favorites
                     </MenuItem>

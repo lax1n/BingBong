@@ -16,6 +16,8 @@ import Buttons from './buttons';
 import Advanced from './advanced';
 
 
+let queryParams = {};
+
 let advancedParams = {
     typos: true,
     maxTypos: 1,
@@ -31,16 +33,29 @@ class QueryArea extends Component {
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
+        this.updateQueryParams = this.updateQueryParams.bind(this);
         this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
         this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
+        this.findResults = this.findResults.bind(this);
     }
 
     toggleAdvanced(){
         this.setState({advanced: !this.state.advanced});
     }
 
+    updateQueryParams(params){
+        queryParams = params;
+    }
+
     updateAdvancedParams(params){
         advancedParams = params;
+    }
+
+    findResults(favourite){
+        // Prepare params for query
+        let params = queryParams;
+        params.advanced = advancedParams;
+        this.props.findResults(params, favourite);
     }
 
     renderDeveloperShortcuts(){
@@ -86,7 +101,9 @@ class QueryArea extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
+                            <Select
+                                updateQueryParams={this.updateQueryParams}
+                            />
                         </Row>
                         <Row>
                             <Col sm={12}>
@@ -96,7 +113,7 @@ class QueryArea extends Component {
                         <Row>
                             <Col sm={12}>
                                 {advanced}
-                                <Buttons toggleAdvanced={this.toggleAdvanced} />
+                                <Buttons findResults={this.findResults} toggleAdvanced={this.toggleAdvanced} />
                             </Col>
                         </Row>
                     </Well>

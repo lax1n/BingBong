@@ -34,7 +34,6 @@ class Select extends Component {
         this.handleChangeSelect = this.handleChangeSelect.bind(this);
         this.changeStartDate = this.changeStartDate.bind(this);
         this.changeEndDate = this.changeEndDate.bind(this);
-        this.saveRecent = this.saveRecent.bind(this);
     }
 
     componentDidMount(){
@@ -44,6 +43,16 @@ class Select extends Component {
         }).catch((e) => {
             console.log('Error while loading organization units', e.message);
         });
+    }
+
+    componentDidUpdate(){
+        const params = {
+            orgUnit: this.state.orgUnit,
+            program: this.state.program,
+            startDate: this.state.startDate,
+            endDate: this.state.endDate,
+        }
+        this.props.updateQueryParams(params);
     }
 
     loadPrograms(orgUnit){
@@ -95,34 +104,6 @@ class Select extends Component {
                 }}
             />
         );
-    }
-
-    saveFavourite(){
-        if(this.state.orgUnitSelected){
-            const params = {
-                orgUnit: this.state.orgUnit,
-                program: this.state.program,
-                startDate: this.state.startDate,
-                endDate: this.state.endDate,
-                orgUnitName: this.state.orgUnitName,
-                programName: this.state.programName,
-            }
-            this.props.saveFavourite(params);
-        }
-    }
-
-    saveRecent(){
-        if(this.state.orgUnitSelected){
-            const params = {
-                orgUnit: this.state.orgUnit,
-                program: this.state.program,
-                startDate: this.state.startDate,
-                endDate: this.state.endDate,
-                orgUnitName: this.state.orgUnitName,
-                programName: this.state.programName,
-            }
-            this.props.saveRecent(params);
-        }
     }
 
     findResults(){

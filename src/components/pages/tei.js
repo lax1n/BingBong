@@ -43,7 +43,12 @@ class Tei extends Component {
         this.state.recents.push(params);
     }
 
-    findResults(params){
+    findResults(params, favourite){
+        if(favourite){
+            this.saveFavourite(params);
+        }
+        this.saveRecent(params);
+
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
@@ -68,12 +73,10 @@ class Tei extends Component {
         }
 		return(
 			<div className='col-sm-12'>
-                <QueryArea title={'Tracked Entity Instances'} />
-                <h3 className='text-center'>Find Duplicates in tracked entity instances</h3>
-                <div className='well'>
-                    <Instructions />
-                    <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-                </div>
+                <QueryArea
+                    title={'Tracked Entity Instances'}
+                    findResults={this.findResults}
+                />
                 <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
                 <div className='row'>
                     <button
