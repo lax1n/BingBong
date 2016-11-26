@@ -93,7 +93,6 @@ class Select extends Component {
         }
         return (
             <Typeahead
-                className='typeahead-border-radius-0'
                 bsStyle='default'
                 placeholder={currentTitle}
                 options={data}
@@ -163,7 +162,7 @@ class Select extends Component {
                         <Col sm={12} className='p-0'>
                             <label className='pull-left'>Time frame (Optional)</label>
                         </Col>
-                        <Col sm={12} className='p-0'>
+                        <Col sm={12} className='p-0 date-picker-radius-4'>
                             <Col sm={6} id='startDateSelect' className='p-l-0'>
                                 <DatePicker
                                     placeholder='Start date'
