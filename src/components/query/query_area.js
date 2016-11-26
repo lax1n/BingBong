@@ -20,7 +20,16 @@ class QueryArea extends Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            advanced: false,
+        }
+
+        this.toggleAdvanced = this.toggleAdvanced.bind(this);
         this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
+    }
+
+    toggleAdvanced(){
+        this.setState({advanced: !this.state.advanced});
     }
 
     renderDeveloperShortcuts(){
@@ -50,6 +59,11 @@ class QueryArea extends Component {
     }
 
 	render(){
+        let advanced = '';
+        if(this.state.advanced){
+            advanced = <Advanced />;
+        }
+
 		return(
 			<Row>
                 <Col sm={12}>
@@ -70,8 +84,8 @@ class QueryArea extends Component {
                         </Row>
                         <Row>
                             <Col sm={12}>
-                                <Advanced />
-                                <Buttons />
+                                {advanced}
+                                <Buttons toggleAdvanced={this.toggleAdvanced} />
                             </Col>
                         </Row>
                     </Well>

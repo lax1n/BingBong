@@ -23,7 +23,7 @@ class Buttons extends Component {
                 <Button
                     className='m-l-md'
                     bsStyle='info'
-                    onClick={this.props.findResults}
+                    onClick={this.props.toggleAdvanced}
                 >
                     <Glyphicon glyph='plus-sign' /> Advanced
                 </Button>
