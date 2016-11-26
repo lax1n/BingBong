@@ -11,10 +11,13 @@ class Advanced extends Component {
         super(props);
 
         this.state = {
+            typos: true,
+            maxTypos: 1,
             looseParams: ["First name", "Last name", "Mother maiden name"],
         }
 
         this.updateLooseParams = this.updateLooseParams.bind(this);
+        this.updateMaxTypos = this.updateMaxTypos.bind(this);
     }
 
     updateLooseParams(obj){
@@ -24,6 +27,14 @@ class Advanced extends Component {
         });
         console.log(looseParams);
         this.setState({looseParams: looseParams});
+    }
+
+    updateMaxTypos(obj){
+        this.setState({maxTypos: obj.value});
+    }
+
+    toggleTypos(){
+        this.setState({typos: !this.state.typos});
     }
 
     render(){
@@ -36,6 +47,12 @@ class Advanced extends Component {
             {value: 'Residence location', label: 'Residence location'},
             {value: 'Occupation', label: 'Occupation'},
         ];
+
+        const typoValues= [
+            {value: 1, label: '1'},
+            {value: 2, label: '2'},
+            {value: 3, label: '3'},
+        ];
         return (
             <Well>
                 <Row className='text-left'>
@@ -43,13 +60,26 @@ class Advanced extends Component {
 
                     </Col>
                     <Col sm={4}>
-                        <Checkbox>Check for typos</Checkbox>
-                        <Checkbox>Check for typos</Checkbox>
+                        <Col sm={12} className='p-0'>
+                            <label>Typos</label>
+                        </Col>
+                        <Checkbox checked={this.state.typos} onClick={(e) => this.toggleTypos()}>Check for typos</Checkbox>
+                        <Select
+                            className='m-b-sm'
+                            name='max-typos'
+                            value={this.state.maxTypos}
+                            searchable={false}
+                            clearable={false}
+                            options={typoValues}
+                            disabled={!this.state.typos}
+                            onChange={this.updateMaxTypos}
+                        />
                         <Select
                             name='loose-params'
                             value={this.state.looseParams}
                             options={attributes}
                             multi={true}
+                            disabled={!this.state.typos}
                             onChange={this.updateLooseParams}
                         />
                     </Col>
