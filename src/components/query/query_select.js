@@ -48,7 +48,9 @@ class QuerySelect extends Component {
     componentDidUpdate(){
         const params = {
             orgUnit: this.state.orgUnit,
+            orgUnitName: this.state.orgUnitName,
             program: this.state.program,
+            programName: this.state.programName,
             startDate: this.state.startDate,
             endDate: this.state.endDate,
         }

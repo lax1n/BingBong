@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Row, Col, Collapse, Panel} from 'react-bootstrap';
+import {Table, Row, Col, Collapse, Panel, Button} from 'react-bootstrap';
 import {isEmpty} from 'lodash';
 
 class PreviousQueries extends Component{
@@ -7,6 +7,12 @@ class PreviousQueries extends Component{
 		super(props);
 
 		this.renderQueries = this.renderQueries.bind(this);
+		this.search = this.search.bind(this);
+	}
+
+	search(e, params){
+		e.stopPropagation();
+		this.props.findResults(params);
 	}
 
 	renderQueries(queries){
@@ -26,30 +32,40 @@ class PreviousQueries extends Component{
 		}
 
 		const tableAttributes=[
-				'orgUnit',
-				'program',
+				'orgUnitName',
+				'programName',
 				'startDate',
 				'endDate',
 		];
+
 		return (
 			<Panel>
 				<Table striped condensed className='hover-info'>
 					<thead className='center'>
 						<tr>
-							<th>OrgUnit</th>
+							<th>Organization(Clinic)</th>
 							<th>Program</th>
 							<th>Start Date</th>
 							<th>End Date</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						{queries.map((entryRow, i) => {
 							return(
-							<tr key={i} onClick={() => this.props.findResults(entryRow)} >
+							<tr key={i}>
 								{tableAttributes.map((attribute,j) => {
 									return(
 										<td key={j}>{entryRow[attribute]}</td>);
 								})}
+								<td>
+									<Button
+										onClick={(e) => {this.search(e, entryRow)}}
+										bsStyle='info'
+									>
+										Search
+									</Button>
+								</td>
 							</tr>);})
 						}
 					</tbody>

@@ -5,7 +5,7 @@ import {
     findSingletonDuplicatesByOrganization,
 } from '../../utils/singleton_dup_finder';
 
-import {Well, Row, Col, Button} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
@@ -32,7 +32,6 @@ class Singleton extends Component {
 	}
 
     saveFavourite(params){
-        console.log('name: '+ params);
         this.state.favourites.push(params);
     }
 
@@ -40,7 +39,12 @@ class Singleton extends Component {
         this.state.recents.push(params);
     }
 
-    findResults(params){
+    findResults(params, favourite){
+        if(favourite){
+            this.saveFavourite(params);
+        }
+        this.saveRecent(params);
+
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){

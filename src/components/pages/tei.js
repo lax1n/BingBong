@@ -5,7 +5,7 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
-import {Well, Row, Col, Button} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
@@ -34,7 +34,6 @@ class Tei extends Component {
     }
 
     saveFavourite(params){
-        console.log('name: '+ params);
         this.state.favourites.push(params);
     }
 
@@ -49,7 +48,6 @@ class Tei extends Component {
         this.saveRecent(params);
 
         // Handle what to do depending on which params were recevied
-        console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
                 console.log(duplicates);
