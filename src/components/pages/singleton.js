@@ -7,9 +7,7 @@ import {
 
 import {Well, Row, Col, Button} from 'react-bootstrap';
 
-import Select from './select';
-import Instructions from '../shared/instructions';
-import SelectPrevious from '../shared/select_previous.js';
+import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
 class Singleton extends Component {
@@ -70,12 +68,13 @@ class Singleton extends Component {
 		}
 		return(
 			<Col sm={12}>
-	            <h3 className='text-center'>Find Duplicates in singleton events</h3>
-	            <Well>
-	                <Instructions />
-	                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-	            </Well>
-	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
+                <QueryArea
+                    title={'Singletons'}
+                    findResults={this.findResults}
+                    type={'singletons'}
+                    recents={this.state.recents}
+                    favourites={this.state.favourites}
+                />
                 <Row>
                     <Button
                         bsStyle='default'

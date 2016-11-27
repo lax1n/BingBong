@@ -16,6 +16,20 @@ class Buttons extends Component {
         if(this.props.favouritesActive)
             favouriteState = 'minus-sign';
 
+        // Advanced only available for TEIs so far
+        let advancedBtn = '';
+        if(this.props.type === 'teis'){
+            advancedBtn = (
+                <Button
+                    className='m-l-md'
+                    bsStyle='info'
+                    onClick={this.props.toggleAdvanced}
+                >
+                    <Glyphicon glyph={advancedState} /> Advanced
+                </Button>
+            );
+        }
+
         return (
             <ButtonGroup className='pull-left border-radius-4'>
                 <SplitButton
@@ -32,13 +46,7 @@ class Buttons extends Component {
                         Find and add query to favorites
                     </MenuItem>
                 </SplitButton>
-                <Button
-                    className='m-l-md'
-                    bsStyle='info'
-                    onClick={this.props.toggleAdvanced}
-                >
-                    <Glyphicon glyph={advancedState} /> Advanced
-                </Button>
+                {advancedBtn}
                 <Button className='m-l-md'
                     bsStyle='default'
                     onClick={this.props.toggleRecents}

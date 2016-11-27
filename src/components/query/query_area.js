@@ -120,6 +120,18 @@ class QueryArea extends Component {
             );
         }
 
+        // Advanced only available for TEIs so far
+        let advanced = <hr />;
+        if(this.props.type === 'teis'){
+            advanced = (
+                <Advanced
+                    advancedParams={advancedParams}
+                    updateAdvancedParams={this.updateAdvancedParams}
+                    advancedActive={this.state.advanced}
+                />
+            );
+        }
+
 		return(
 			<Row>
                 <Col sm={12}>
@@ -137,13 +149,14 @@ class QueryArea extends Component {
                         </Row>
                         <Row>
                             <Col sm={12} className='p-t-md'>
-                                <Advanced
-                                    advancedParams={advancedParams}
-                                    updateAdvancedParams={this.updateAdvancedParams}
-                                    advancedActive={this.state.advanced}
-                                />
+                                {advanced}
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col sm={12}>
                                 {error}
                                 <Buttons
+                                    {...this.props}
                                     findResults={this.findResults}
                                     toggleAdvanced={this.toggleAdvanced}
                                     advancedActive={this.state.advanced}
