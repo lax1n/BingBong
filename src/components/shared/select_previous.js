@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, ButtonGroup, Row, Col} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
 import ShowPrevious from './show_previous.js';
 
 

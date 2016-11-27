@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {Glyphicon, Button, ButtonGroup,
-    SplitButton, MenuItem, Row, Col,
-    Checkbox, Panel, OverlayTrigger, Popover} from 'react-bootstrap';
-
-import '../../styles/components/query/advanced.css';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import {Row, Panel} from 'react-bootstrap';
 
 import Typos from './advanced/typos'
 
@@ -34,16 +27,6 @@ class Advanced extends Component {
                         typoParams={this.props.advancedParams.typos}
                         updateAdvancedParams={this.updateAdvancedParams}
                     />
-                    <Col sm={4}>
-                        <Checkbox>Check for typos</Checkbox>
-                        <Checkbox>Check for typos</Checkbox>
-                        <Checkbox>Check for typos</Checkbox>
-                    </Col>
-                    <Col sm={4}>
-                        <Checkbox>Check for typos</Checkbox>
-                        <Checkbox>Check for typos</Checkbox>
-                        <Checkbox>Check for typos</Checkbox>
-                    </Col>
                 </Row>
             </Panel>
         );

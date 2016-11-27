@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 
-import {
-    findSingletonDuplicatesByOrganizationAndProgram,
-    findSingletonDuplicatesByOrganization,
-} from '../../utils/singleton_dup_finder';
+import {Well, Row, Col, Button} from 'react-bootstrap';
 
-import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
-
-import Select from '../pages/select';
+import QuerySelect from './query_select';
 import Instructions from '../shared/instructions';
-import SelectPrevious from '../shared/select_previous.js';
-import Duplicates from '../shared/duplicates';
 
 import Buttons from './buttons';
 import Advanced from './advanced';
@@ -138,7 +131,7 @@ class QueryArea extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Select
+                            <QuerySelect
                                 updateQueryParams={this.updateQueryParams}
                             />
                         </Row>

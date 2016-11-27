@@ -5,7 +5,7 @@ import {
     findSingletonDuplicatesByOrganization,
 } from '../../utils/singleton_dup_finder';
 
-import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
+import {Well, Row, Col, Button} from 'react-bootstrap';
 
 import Select from './select';
 import Instructions from '../shared/instructions';

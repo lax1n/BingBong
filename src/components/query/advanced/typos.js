@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {Glyphicon, Button, ButtonGroup,
-    SplitButton, MenuItem, Row, Col,
-    Checkbox, Panel, OverlayTrigger, Popover} from 'react-bootstrap';
+import {Glyphicon, Col, Checkbox, OverlayTrigger, Popover} from 'react-bootstrap';
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';

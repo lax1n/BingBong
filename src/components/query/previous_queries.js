@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Table, Button, ButtonGroup, Row, Col, Collapse, Panel} from 'react-bootstrap';
+import {Table, Row, Col, Collapse, Panel} from 'react-bootstrap';
 import {isEmpty} from 'lodash';
 
 class PreviousQueries extends Component{

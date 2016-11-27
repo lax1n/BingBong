@@ -12,7 +12,7 @@ import '../../styles/select.css';
 import {getAllOrganizations} from '../../actions/org_actions';
 import {getAllProgramsByOrganization} from '../../actions/program_actions';
 
-class Select extends Component {
+class QuerySelect extends Component {
     constructor (props){
         super(props);
 
@@ -172,4 +172,4 @@ class Select extends Component {
     }
 }
 
-export default Select;
+export default QuerySelect;
