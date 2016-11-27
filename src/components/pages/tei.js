@@ -5,10 +5,10 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
-import Select from './select';
+import {Col} from 'react-bootstrap';
+
+import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
-import Instructions from '../shared/instructions';
-import SelectPrevious from '../shared/select_previous.js';
 
 class Tei extends Component {
     constructor(props){
@@ -34,7 +34,6 @@ class Tei extends Component {
     }
 
     saveFavourite(params){
-        console.log('name: '+ params);
         this.state.favourites.push(params);
     }
 
@@ -42,9 +41,13 @@ class Tei extends Component {
         this.state.recents.push(params);
     }
 
-    findResults(params){
+    findResults(params, favourite){
+        if(favourite){
+            this.saveFavourite(params);
+        }
+        this.saveRecent(params);
+
         // Handle what to do depending on which params were recevied
-        console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
                 console.log(duplicates);
@@ -66,36 +69,16 @@ class Tei extends Component {
             );
         }
 		return(
-			<div className='col-sm-12'>
-                <h3 className='text-center'>Find Duplicates in tracked entity instances</h3>
-                <div className='well'>
-                    <Instructions />
-                    <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-                </div>
-                <SelectPrevious favourites={this.state.favourites} recents={this.state.recents} findResults={this.findResults} />
-                <div className='row'>
-                    <button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            program: 'ur1Edk5Oe2n',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
-                    </button>
-					<button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC
-                    </button>
-                </div>
-                {results}
-			</div>
+			<Col sm={12}>
+                <QueryArea
+                    title={'Tracked Entity Instances'}
+                    findResults={this.findResults}
+                    type={'teis'}
+                    recents={this.state.recents}
+                    favourites={this.state.favourites}
+                />
+				{results}
+			</Col>
 		);
 	}
 

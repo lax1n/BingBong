@@ -5,11 +5,9 @@ import {
     findSingletonDuplicatesByOrganization,
 } from '../../utils/singleton_dup_finder';
 
-import {Well, Row, Col, Button, ButtonGroup,} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 
-import Select from './select';
-import Instructions from '../shared/instructions';
-import SelectPrevious from '../shared/select_previous.js';
+import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
 class Singleton extends Component {
@@ -34,7 +32,6 @@ class Singleton extends Component {
 	}
 
     saveFavourite(params){
-        console.log('name: '+ params);
         this.state.favourites.push(params);
     }
 
@@ -42,7 +39,12 @@ class Singleton extends Component {
         this.state.recents.push(params);
     }
 
-    findResults(params){
+    findResults(params, favourite){
+        if(favourite){
+            this.saveFavourite(params);
+        }
+        this.saveRecent(params);
+
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
@@ -70,33 +72,13 @@ class Singleton extends Component {
 		}
 		return(
 			<Col sm={12}>
-	            <h3 className='text-center'>Find Duplicates in singleton events</h3>
-	            <Well>
-	                <Instructions />
-	                <Select findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent} />
-	            </Well>
-	           	<SelectPrevious findResults={this.findResults} saveFavourite={this.saveFavourite} saveRecent={this.saveRecent}/>
-                <Row>
-                    <Button
-                        bsStyle='default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            program: 'q04UBOqq3rp',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
-                    </Button>
-					<Button
-                        bsStyle='default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC
-                    </Button>
-                </Row>
+                <QueryArea
+                    title={'Singletons'}
+                    findResults={this.findResults}
+                    type={'singletons'}
+                    recents={this.state.recents}
+                    favourites={this.state.favourites}
+                />
 				{results}
 			</Col>
 		);

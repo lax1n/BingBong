@@ -24,6 +24,23 @@
   100% { transform: scale(0.5, 0.5); }
 }
 
+.text-left {
+	text-align: left;
+}
+
+.clickable:hover {
+	cursor: pointer;
+}
+
+/* === CUSTOM RULES TO OVERWRITE BOOTSTRAP RULES === */
+.border-radius-4 > button {
+    border-radius: 4px !important;
+}
+
+button.split-right-radius-4:first-of-type + button {
+    border-radius: 0 4px 4px 0 !important;
+}
+
 /* === PADDING RULES === */
 .p-0 {
     padding: 0 !important;
@@ -34,27 +51,63 @@
 }
 
 .p-t-sm {
-    padding-top: 5px;
+    padding-top: 5px !important;
 }
 
 .p-t-md {
-    padding-top: 10px;
+    padding-top: 10px !important;
 }
 
 .p-t-l {
-    padding-top: 15px;
+    padding-top: 15px !important;
 }
 
 .p-b-0 {
     padding-bottom: 0 !important;
 }
 
+.p-b-sm {
+    padding-bottom: 5px !important;
+}
+
+.p-b-md {
+    padding-bottom: 10px !important;
+}
+
+.p-b-l {
+    padding-bottom: 15px !important;
+}
+
 .p-r-0 {
     padding-right: 0 !important;
 }
 
+.p-r-sm {
+    padding-right: 5px !important;
+}
+
+.p-r-md {
+    padding-right: 10px !important;
+}
+
+.p-r-l {
+    padding-right: 15px !important;
+}
+
 .p-l-0 {
     padding-left: 0 !important;
+}
+
+.p-l-sm {
+    padding-left: 5px !important;
+}
+
+.p-l-md {
+    padding-left: 10px !important;
+}
+
+.p-l-l {
+    padding-left: 15px !important;
 }
 
 /* === MARGIN RULES === */
@@ -66,14 +119,62 @@
     margin-top: 0 !important;
 }
 
+.m-t-sm {
+    margin-top: 5px !important;
+}
+
+.m-t-md {
+    margin-top: 10px !important;
+}
+
+.m-t-l {
+    margin-top: 15px !important;
+}
+
 .m-b-0 {
     margin-bottom: 0 !important;
+}
+
+.m-b-sm {
+    margin-bottom: 5px !important;
+}
+
+.m-b-md {
+    margin-bottom: 10px !important;
+}
+
+.m-b-l {
+    margin-bottom: 15px !important;
 }
 
 .m-r-0 {
     margin-right: 0 !important;
 }
 
+.m-r-sm {
+    margin-right: 5px !important;
+}
+
+.m-r-md {
+    margin-right: 10px !important;
+}
+
+.m-r-l {
+    margin-right: 15px !important;
+}
+
 .m-l-0 {
     margin-left: 0 !important;
+}
+
+.m-l-sm {
+    margin-left: 5px !important;
+}
+
+.m-l-md {
+    margin-left: 10px !important;
+}
+
+.m-l-l {
+    margin-left: 15px !important;
 }
