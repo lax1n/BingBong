@@ -20,9 +20,11 @@ import PreviousQueries from './previous_queries';
 let queryParams = {};
 
 let advancedParams = {
-    typos: true,
-    maxTypos: 1,
-    looseParams: ["First name", "Last name", "Mother maiden name"],
+    typos: {
+        typos: true,
+        maxEditDistance: 1,
+        looseParams: ["First name", "Last name", "Mother maiden name"],
+    }
 };
 
 class QueryArea extends Component {
@@ -116,11 +118,6 @@ class QueryArea extends Component {
     }
 
 	render(){
-        let advanced = '';
-        if(this.state.advanced){
-            advanced = <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} />;
-        }
-
         let error = '';
         if(this.state.error !== ''){
             error = (
@@ -147,7 +144,11 @@ class QueryArea extends Component {
                         </Row>
                         <Row>
                             <Col sm={12} className='p-t-md'>
-                                <Advanced advancedParams={advancedParams} updateAdvancedParams={this.updateAdvancedParams} advancedActive={this.state.advanced} />
+                                <Advanced
+                                    advancedParams={advancedParams}
+                                    updateAdvancedParams={this.updateAdvancedParams}
+                                    advancedActive={this.state.advanced}
+                                />
                                 {error}
                                 <Buttons
                                     findResults={this.findResults}

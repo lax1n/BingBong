@@ -28,6 +28,10 @@
 	text-align: left;
 }
 
+.clickable:hover {
+	cursor: pointer;
+}
+
 /* === CUSTOM RULES TO OVERWRITE BOOTSTRAP RULES === */
 .border-radius-4 > button {
     border-radius: 4px !important;
