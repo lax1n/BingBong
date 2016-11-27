@@ -31,7 +31,7 @@ class Buttons extends Component {
         }
 
         return (
-            <ButtonGroup className='pull-left border-radius-4'>
+            <ButtonGroup className='border-radius-4'>
                 <SplitButton
                     className='split-right-radius-4'
                     title='Find results'
