@@ -114,7 +114,7 @@ class QueryArea extends Component {
         let error = '';
         if(this.state.error !== ''){
             error = (
-                <div className='text-left has-error'>
+                <div className='text-left has-error text-center'>
                     <span className='help-block'>{this.state.error}</span>
                 </div>
             );
