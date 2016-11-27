@@ -5,6 +5,8 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
+import {Well, Row, Col, Button} from 'react-bootstrap';
+
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
@@ -69,7 +71,7 @@ class Tei extends Component {
             );
         }
 		return(
-			<div className='col-sm-12'>
+			<Col sm={12}>
                 <QueryArea
                     title={'Tracked Entity Instances'}
                     findResults={this.findResults}
@@ -77,29 +79,8 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
-                <div className='row'>
-                    <button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            program: 'ur1Edk5Oe2n',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC > TB program duplicates
-                    </button>
-					<button
-                        className='btn btn-default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC
-                    </button>
-                </div>
-                {results}
-			</div>
+				{results}
+			</Col>
 		);
 	}
 

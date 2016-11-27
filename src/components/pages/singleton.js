@@ -75,27 +75,6 @@ class Singleton extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
-                <Row>
-                    <Button
-                        bsStyle='default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            program: 'q04UBOqq3rp',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
-                    </Button>
-					<Button
-                        bsStyle='default'
-                        onClick={this.findResults.bind(this, {
-                            orgUnit: 'DiszpKrYNg8',
-                            startDate: '',
-                            endDate: '',
-                        })}
-                    > Developer shortcut to see results for Ngelehun CHC
-                    </Button>
-                </Row>
 				{results}
 			</Col>
 		);

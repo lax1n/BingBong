@@ -36,9 +36,9 @@ class QueryArea extends Component {
         this.toggleFavourites = this.toggleFavourites.bind(this);
         this.updateQueryParams = this.updateQueryParams.bind(this);
         this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
-        this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
         this.findResults = this.findResults.bind(this);
         this.showError = this.showError.bind(this);
+        this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
     }
 
     toggleAdvanced(){
@@ -89,21 +89,21 @@ class QueryArea extends Component {
             <Row>
                 <Button
                     bsStyle='default'
-                    onClick={this.findResults.bind(this, {
+                    onClick={this.props.findResults.bind(this, {
                         orgUnit: 'DiszpKrYNg8',
                         program: 'q04UBOqq3rp',
                         startDate: '',
                         endDate: '',
-                    })}
+                    }, false)}
                 > Developer shortcut to see results for Ngelehun CHC > Information Campaign program duplicates
                 </Button>
                 <Button
                     bsStyle='default'
-                    onClick={this.findResults.bind(this, {
+                    onClick={this.props.findResults.bind(this, {
                         orgUnit: 'DiszpKrYNg8',
                         startDate: '',
                         endDate: '',
-                    })}
+                    }, false)}
                 > Developer shortcut to see results for Ngelehun CHC
                 </Button>
             </Row>
@@ -148,7 +148,7 @@ class QueryArea extends Component {
                             />
                         </Row>
                         <Row>
-                            <Col sm={12} className='p-t-md'>
+                            <Col sm={12} className='p-t-l'>
                                 {advanced}
                             </Col>
                         </Row>
@@ -175,7 +175,7 @@ class QueryArea extends Component {
                             />
                         </Row>
                     </Well>
-                    {this.renderDeveloperShortcuts}
+                    {this.renderDeveloperShortcuts()}
                 </Col>
 			</Row>
 		);
