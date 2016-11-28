@@ -44,6 +44,8 @@ class Tei extends Component {
     }
 
     findResults(params, favourite){
+		console.log("params");
+		console.log(params);
 		if(params.myFilters === undefined){
 			console.log("No previous filter");
 			params.myFilters = this.state.myFilters;
@@ -61,8 +63,11 @@ class Tei extends Component {
 				params.myFilters.endDate = params.endDate;
 			}
 		}
-		console.log("params");
-		console.log(params);
+		else{
+			console.log("I already have a filter");
+		}
+		//console.log("params");
+		//console.log(params);
 
 		if(favourite){
             this.saveFavourite(params);
