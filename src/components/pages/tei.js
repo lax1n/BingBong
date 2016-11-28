@@ -46,7 +46,7 @@ class Tei extends Component {
             this.saveFavourite(params);
         }
         this.saveRecent(params);
-
+        console.log(params);
 		if(params.advanced){
 			console.log(params.advanced.typos.typos)//If typos is false, then loose params should be empty.
 			this.state.myFilters.looseTestParams = params.advanced.typos.looseParams;

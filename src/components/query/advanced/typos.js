@@ -8,7 +8,7 @@ class Typos extends Component {
     constructor(props){
         super(props);
 
-        this.updateLooseParams = this.updateLooseParams.bind(this);
+        this.updateLooseAttributes = this.updateLooseAttributes.bind(this);
         this.updateMaxEditDistance = this.updateMaxEditDistance.bind(this);
         this.updateTypoParams = this.updateTypoParams.bind(this);
     }
@@ -17,14 +17,14 @@ class Typos extends Component {
         this.props.updateAdvancedParams('typos', params);
     }
 
-    updateLooseParams(obj){
+    updateLooseAttributes(obj){
         let typoParams = this.props.typoParams;
-        let looseParams = [];
+        let looseAttributes = [];
         obj.forEach((element) => {
-            looseParams.push(element.value)
+            looseAttributes.push(element.value)
         });
 
-        typoParams.looseParams = looseParams;
+        typoParams.looseAttributes = looseAttributes;
         this.updateTypoParams(typoParams);
     }
 
@@ -56,9 +56,6 @@ class Typos extends Component {
             </Popover>
         );
 
-        console.log(this.props);
-        console.log(this.props.typoParams);
-
         return (
             <Col sm={6}>
                 <Col sm={12} className='p-0'>
@@ -83,11 +80,11 @@ class Typos extends Component {
                 <label>Check for typos in the following attributes</label>
                 <Select
                     name='loose-params'
-                    value={this.props.typoParams.looseParams}
+                    value={this.props.typoParams.looseAttributes}
                     options={this.props.attributesForSelect}
                     multi={true}
                     disabled={!this.props.typoParams.typos}
-                    onChange={this.updateLooseParams}
+                    onChange={this.updateLooseAttributes}
                 />
             </Col>
         );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {includes} from 'lodash';
 
 import {Well, Row, Col, Button} from 'react-bootstrap';
 
@@ -17,7 +18,7 @@ const defaultAdvancedParams = {
     typos: {
         typos: true,
         maxEditDistance: 1,
-        looseParams: ["First name", "Last name", "Mother maiden name"],
+        looseAttributes: ["First name", "Last name", "Mother maiden name"],
     },
     attributes: {
         allAttributes: ['First name', 'Last name', 'Date of birth', 'Mother maiden name',
@@ -91,6 +92,16 @@ class QueryArea extends Component {
         // Prepare params for query
         let params = queryParams;
         params.advanced = this.state.advancedParams;
+
+        // Prepare strict params (params not in loose params)
+        let selectedAttributes = params.advanced.attributes.attributes;
+        let strictAttributes = [];
+        selectedAttributes.forEach((attribute) => {
+            if(!(includes(params.advanced.typos.looseAttributes, attribute))){
+                strictAttributes.push(attribute);
+            }
+        });
+        params.advanced.strictAttributes = strictAttributes;
         this.props.findResults(params, favourite);
     }
 

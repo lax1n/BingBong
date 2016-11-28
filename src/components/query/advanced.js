@@ -42,7 +42,6 @@ class Advanced extends Component {
                         updateAdvancedParams={this.updateAdvancedParams}
                     />
                     <Typos
-                        cyka={this.props.cyka}
                         attributesForSelect={this.generateAttributesForSelect(this.props.advancedParams.attributes.attributes)}
                         typoParams={this.props.advancedParams.typos}
                         updateAdvancedParams={this.updateAdvancedParams}
