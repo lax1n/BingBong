@@ -3,7 +3,6 @@ import {getEditDistance} from '../libs/levenshtein';
 import Moment from 'moment';
 export function isDuplicate(obj1, obj2, myFilters){
 	myFilters.maxUndefinedCount = myFilters.maxUndefinedCount || 0;
-	var editDistance;
 	if(isEmpty(obj1) || isEmpty(obj2)){
 		return false;
 	}
