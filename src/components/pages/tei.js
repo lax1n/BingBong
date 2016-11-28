@@ -25,6 +25,8 @@ class Tei extends Component {
 				timeTestParams: [],
 				maxEditDistance: 2,
 				maxUndefinedCount: 0,
+				endDate: "",
+				startDate: "",
 			}
         }
 
@@ -46,14 +48,13 @@ class Tei extends Component {
             this.saveFavourite(params);
         }
         this.saveRecent(params);
-        console.log(params);
 		if(params.advanced){
-			console.log(params.advanced.typos.typos)//If typos is false, then loose params should be empty.
+            // Change this
 			this.state.myFilters.looseTestParams = params.advanced.typos.looseParams;
 			this.state.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
 
-			//console.log("This.state.myFilters");
-			//console.log(this.state.myFilters);
+			this.state.myFilters.startDate = params.startDate;
+			this.state.myFilters.endDate = params.endDate;
 		}
 
         // Handle what to do depending on which params were recevied

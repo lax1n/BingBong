@@ -45,6 +45,9 @@ class Singleton extends Component {
         }
         this.saveRecent(params);
 
+		this.state.myFilters.startDate = params.startDate;
+		this.state.myFilters.endDate = params.endDate;
+
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
@@ -61,6 +64,7 @@ class Singleton extends Component {
                 this.setState({resultsFound: true, results: duplicates});
             });
         }
+
     }
 
 	render(){

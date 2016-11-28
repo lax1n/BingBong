@@ -8,7 +8,9 @@ export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program
 		return parseSingletonQueryResults(response).then(function (some){
 			let params = some[1];
 			let singletons = some[0];
-			return findDuplicatePeople(singletons, [],  params, myFilters.maxEditDistance, myFilters.maxUndefinedCount, myFilters.timeTestParams);
+			myFilters.strictTestParams = params;
+			myFilters.looseTestParams = [];
+			return findDuplicatePeople(singletons, myFilters);
 		});
 	});
 }
@@ -18,7 +20,9 @@ export function findSingletonDuplicatesByOrganization(orgUnit, myFilters){
 		return parseSingletonQueryResults(response).then(function (some){
 			let params = some[1];
 			let singletons = some[0];
-			return findDuplicatePeople(singletons, [],  params, myFilters.maxEditDistance, myFilters.maxUndefinedCount, myFilters.timeTestParams);
+			myFilters.strictTestParams = params;
+			myFilters.looseTestParams = [];
+			return findDuplicatePeople(singletons, myFilters);
 		});
 	});
 }
