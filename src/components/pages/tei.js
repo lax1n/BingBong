@@ -48,10 +48,19 @@ class Tei extends Component {
             this.saveFavourite(params);
         }
         this.saveRecent(params);
+
+		console.log("params");
+		console.log(params);
 		if(params.advanced){
             // Change this
-			this.state.myFilters.looseTestParams = params.advanced.typos.looseParams;
+			if(params.advanced.typos.typos){
+				this.state.myFilters.looseTestParams = params.advanced.attributes.attributes;
+			}
+			else{
+				this.state.myFilters.looseTestParams = [];
+			}
 			this.state.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
+			this.state.myFilters.strictTestParams = params.advanced.strictAttributes;
 
 			this.state.myFilters.startDate = params.startDate;
 			this.state.myFilters.endDate = params.endDate;
