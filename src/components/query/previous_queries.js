@@ -12,7 +12,8 @@ class PreviousQueries extends Component{
 
 	search(e, params){
 		e.stopPropagation();
-		this.props.findResults(params);
+		console.log(params);
+		this.props.findResults(params, false);
 	}
 
 	renderQueries(queries){

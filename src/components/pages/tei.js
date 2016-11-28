@@ -44,19 +44,21 @@ class Tei extends Component {
     }
 
     findResults(params, favourite){
-		params.myFilters = this.state.myFilters;
-		if(params.advanced){
-			if(params.advanced.typos.typos){
-				params.myFilters.looseTestParams = params.advanced.attributes.attributes;
-			}
-			else{
-				params.myFilters.looseTestParams = [];
-			}
-			params.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
-			params.myFilters.strictTestParams = params.advanced.strictAttributes;
+		if(params.myFilters === undefined){
+			params.myFilters = this.state.myFilters;
+			if(params.advanced){
+				if(params.advanced.typos.typos){
+					params.myFilters.looseTestParams = params.advanced.attributes.attributes;
+				}
+				else{
+					params.myFilters.looseTestParams = [];
+				}
+				params.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
+				params.myFilters.strictTestParams = params.advanced.strictAttributes;
 
-			params.myFilters.startDate = params.startDate;
-			params.myFilters.endDate = params.endDate;
+				params.myFilters.startDate = params.startDate;
+				params.myFilters.endDate = params.endDate;
+			}
 		}
 
 		if(favourite){

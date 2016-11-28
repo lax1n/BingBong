@@ -14,7 +14,7 @@ class TabBar extends Component {
         super(props);
 
         this.state = {
-            tabKey: 2,
+            tabKey: 1,
         }
 
         this.handleSelect = this.handleSelect.bind(this);
@@ -51,7 +51,7 @@ class TabBar extends Component {
                             <img src={logo} className="App-logo Logo-flip" alt="logo" />
                         </Col>
                     </div>
-                </Row> 
+                </Row>
                 <Row>
                     <Col sm={12}>
                             <Tabs
@@ -67,7 +67,7 @@ class TabBar extends Component {
                 </Row>
                 <Row>
                     {show_page}
-                </Row>  
+                </Row>
             </div>
         );
     }
