@@ -1,19 +1,19 @@
 import {isEmpty} from 'lodash';
 import {getEditDistance} from '../libs/levenshtein';
 import Moment from 'moment';
-export function isDuplicate(obj1, obj2, loose_test_params, strict_test_params, maxEditDistance, max_undefined_count, time_test_params){
-	max_undefined_count = max_undefined_count || 0;
+export function isDuplicate(obj1, obj2, myFilters){
+	myFilters.maxUndefinedCount = myFilters.maxUndefinedCount || 0;
 	var editDistance;
 	if(isEmpty(obj1) || isEmpty(obj2)){
 		return false;
 	}
-	if(myStrictCheck(obj1, obj2, strict_test_params, max_undefined_count) === false){
+	if(myStrictCheck(obj1, obj2, myFilters.strictTestParams, myFilters.maxUndefinedCount) === false){
 		return false;
 	}
-	if(myLooseCheck(obj1, obj2, loose_test_params, maxEditDistance, max_undefined_count) === false){
+	if(myLooseCheck(obj1, obj2, myFilters.looseTestParams, myFilters.maxEditDistance, myFilters.maxUndefinedCount) === false){
 		return false;
 	}
-	if(myTimeCheck(obj1, obj2, time_test_params, max_undefined_count) === false){
+	if(myTimeCheck(obj1, obj2, myFilters.timeTestParams, myFilters.maxUndefinedCount) === false){
 		return false;
 	}
 

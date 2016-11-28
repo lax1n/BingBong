@@ -4,7 +4,7 @@ import {isDuplicate} from './isDuplicate'
 
 import {isEmpty} from 'lodash';
 
-export function findDuplicatePeople(teis, loose_test_params, strict_test_params, maxEditDistance, maxUndefinedCount, time_test_params){
+export function findDuplicatePeople(teis, myFilters){
 	let duplicates = [];
 	let duplicate_indexes = []
 	if(isEmpty(teis)){
@@ -15,11 +15,10 @@ export function findDuplicatePeople(teis, loose_test_params, strict_test_params,
 	let i, j;
 	for(i = 0; i<teis.length; i++){
 		let tei = teis[i];
-		let tempDuplicates = []
-		//teis.forEach((tempTei, j) => {
+		let tempDuplicates = [];
 		for(j = 0; j<teis.length; j++){
 			let tempTei = teis[j];
-			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, loose_test_params,strict_test_params, maxEditDistance, maxUndefinedCount, time_test_params)){
+			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, myFilters)){
 				tempDuplicates.push(teis[j]);
 				duplicate_indexes.push(j);
 			}
