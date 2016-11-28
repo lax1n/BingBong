@@ -69,32 +69,6 @@ class TabBar extends Component {
                 <Row>
                     {show_page}
                 </Row>  
-            {/*
-                <Row>
-                    <Col>
-                    <img src={logo} className="App-logo" alt="logo" />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col sm={12}>
-                        <Tabs
-                            justified
-                            id="select-deduplicator"
-                            activeKey={this.state.tabKey}
-                            onSelect={this.handleSelect}>
-                            <Tab eventKey={1} title="Tracked Entity Instances">
-                                <Tei />
-                            </Tab>
-                            <Tab eventKey={2} title="Singletons">
-                                <Singleton />
-                            </Tab>
-                            <Tab eventKey={3} title="About">
-                                <About />
-                            </Tab>
-                        </Tabs>
-                    </Col>
-                </Row>
-            */}
             </div>
         );
     }
