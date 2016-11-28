@@ -71,6 +71,13 @@ class QueryArea extends Component {
     }
 
     updateAdvancedParams(params){
+        // Make sure loose attributes is updated accordingly
+        const attributes = params.attributes.attributes;
+        let looseAttributes = params.typos.looseAttributes;
+        looseAttributes = looseAttributes.filter((attribute) => {
+            return (includes(attributes, attribute));
+        });
+        params.typos.looseAttributes = looseAttributes;
         this.setState({advancedParams: params});
     }
 
