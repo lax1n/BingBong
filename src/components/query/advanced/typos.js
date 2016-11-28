@@ -8,43 +8,39 @@ class Typos extends Component {
     constructor(props){
         super(props);
 
-        this.state = this.props.typoParams;
-
         this.updateLooseParams = this.updateLooseParams.bind(this);
         this.updateMaxEditDistance = this.updateMaxEditDistance.bind(this);
+        this.updateTypoParams = this.updateTypoParams.bind(this);
     }
 
-    componentDidUpdate(){
-        this.props.updateAdvancedParams('typos', this.state);
+    updateTypoParams(params){
+        this.props.updateAdvancedParams('typos', params);
     }
 
     updateLooseParams(obj){
+        let typoParams = this.props.typoParams;
         let looseParams = [];
         obj.forEach((element) => {
             looseParams.push(element.value)
         });
-        this.setState({looseParams: looseParams});
+
+        typoParams.looseParams = looseParams;
+        this.updateTypoParams(typoParams);
     }
 
     updateMaxEditDistance(obj){
-        this.setState({maxEditDistance: obj.value});
+        let typoParams = this.props.typoParams;
+        typoParams.maxEditDistance = obj.value;
+        this.updateTypoParams(typoParams);
     }
 
     toggleTypos(){
-        this.setState({typos: !this.state.typos});
+        let typoParams = this.props.typoParams;
+        typoParams.typos = !typoParams.typos;
+        this.updateTypoParams(typoParams);
     }
 
     render(){
-        const attributes = [
-            {value: 'First name', label: 'First name'},
-            {value: 'Last name', label: 'Last name'},
-            {value: 'Date of birth', label: 'Date of birth'},
-            {value: 'Mother maiden name', label: 'Mother maiden name'},
-            {value: 'Address', label: 'Address'},
-            {value: 'Residence location', label: 'Residence location'},
-            {value: 'Occupation', label: 'Occupation'},
-        ];
-
         const maxEditDistances= [
             {value: 1, label: '1'},
             {value: 2, label: '2'},
@@ -60,10 +56,13 @@ class Typos extends Component {
             </Popover>
         );
 
+        console.log(this.props);
+        console.log(this.props.typoParams);
+
         return (
-            <Col sm={4}>
+            <Col sm={6}>
                 <Col sm={12} className='p-0'>
-                    <label>Typos <Checkbox defaultChecked={this.state.typos} onClick={(e) => this.toggleTypos()}>Check for typos</Checkbox>
+                    <label>Typos <Checkbox defaultChecked={this.props.typoParams.typos} onClick={(e) => this.toggleTypos()}>Check for typos</Checkbox>
                     </label>
                 </Col>
                 <label>
@@ -74,20 +73,20 @@ class Typos extends Component {
                 <Select
                     className='m-b-sm'
                     name='max-typos'
-                    value={this.state.maxEditDistance}
+                    value={this.props.typoParams.maxEditDistance}
                     searchable={false}
                     clearable={false}
                     options={maxEditDistances}
-                    disabled={!this.state.typos}
+                    disabled={!this.props.typoParams.typos}
                     onChange={this.updateMaxEditDistance}
                 />
                 <label>Check for typos in the following attributes</label>
                 <Select
                     name='loose-params'
-                    value={this.state.looseParams}
-                    options={attributes}
+                    value={this.props.typoParams.looseParams}
+                    options={this.props.attributesForSelect}
                     multi={true}
-                    disabled={!this.state.typos}
+                    disabled={!this.props.typoParams.typos}
                     onChange={this.updateLooseParams}
                 />
             </Col>

@@ -10,14 +10,24 @@ import Advanced from './advanced';
 import PreviousQueries from './previous_queries';
 
 
-let queryParams = {};
+const defaultQueryParams = {};
+let queryParams = defaultQueryParams;
 
-let advancedParams = {
+const defaultAdvancedParams = {
     typos: {
         typos: true,
         maxEditDistance: 1,
         looseParams: ["First name", "Last name", "Mother maiden name"],
-    }
+    },
+    attributes: {
+        allAttributes: ['First name', 'Last name', 'Date of birth', 'Mother maiden name',
+                        'Address', 'Residence location', 'Occupation', 'Gender', 'Blood type',
+                        'TB identifier', 'City', 'State', 'Zip code', 'Email', 'Phone number', 'National identifier',
+                        'Company', 'TB number', 'Vehicle', 'Weight in kg', 'Height in cm', 'Latitude', 'Longitude'
+        ],
+        attributes: ["First name", "Last name", "Mother maiden name", "Date of birth", "Blood type", "Gender"],
+        maxUndefined: 2,
+    },
 };
 
 class QueryArea extends Component {
@@ -29,6 +39,7 @@ class QueryArea extends Component {
             recents: false,
             favourites: false,
             error: '',
+            advancedParams: defaultAdvancedParams,
         }
 
         this.toggleAdvanced = this.toggleAdvanced.bind(this);
@@ -53,14 +64,13 @@ class QueryArea extends Component {
         this.setState({favourites: !this.state.favourites});
     }
 
-    // Do not update state here, it'll cause an infinite loop :(
+    // Do not update state here, itll cause an infinite loop :(
     updateQueryParams(params){
         queryParams = params;
     }
 
-    // Do not update state here, it'll cause an infinite loop :(
     updateAdvancedParams(params){
-        advancedParams = params;
+        this.setState({advancedParams: params});
     }
 
     showError(message){
@@ -80,7 +90,7 @@ class QueryArea extends Component {
 
         // Prepare params for query
         let params = queryParams;
-        params.advanced = advancedParams;
+        params.advanced = this.state.advancedParams;
         this.props.findResults(params, favourite);
     }
 
@@ -125,7 +135,7 @@ class QueryArea extends Component {
         if(this.props.type === 'teis'){
             advanced = (
                 <Advanced
-                    advancedParams={advancedParams}
+                    advancedParams={this.state.advancedParams}
                     updateAdvancedParams={this.updateAdvancedParams}
                     advancedActive={this.state.advanced}
                 />
