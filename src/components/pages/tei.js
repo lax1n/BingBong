@@ -36,11 +36,15 @@ class Tei extends Component {
     }
 
     saveFavourite(params){
-        this.state.favourites.push(params);
+        let favourites = this.state.favourites;
+        favourites.push(params);
+        this.setState({favourites: favourites});
     }
 
     saveRecent(params){
-        this.state.recents.push(params);
+        let recents = this.state.recents;
+        recents.push(params);
+        this.setState({recents: recents});
     }
 
     findResults(params, favourite){
