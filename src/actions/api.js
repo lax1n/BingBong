@@ -19,7 +19,7 @@ export const postOptions = {
     },
 };
 
-export const PutOptions = {
+export const putOptions = {
     method: 'PUT',
     headers: {
         'Authorization': basicAuth,
