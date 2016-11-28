@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Glyphicon, Col, Checkbox, OverlayTrigger, Popover} from 'react-bootstrap';
+import {Glyphicon, Col, OverlayTrigger, Popover} from 'react-bootstrap';
 
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';

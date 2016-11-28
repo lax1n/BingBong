@@ -3,7 +3,6 @@ import '../styles/App.css';
 import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tab_bar.js';
-import {Row, Col,} from 'react-bootstrap';
 
 class App extends Component {
 	render() {

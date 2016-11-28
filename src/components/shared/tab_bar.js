@@ -4,7 +4,6 @@ import logo from '../../images/logo_new.png';
 import '../../styles/App.css';
 
 // Import pages to be shown in the different Tabs
-import Home from '../pages/home.js';
 import Tei from '../pages/tei';
 import Singleton from '../pages/singleton';
 import About from '../pages/about';
@@ -29,10 +28,10 @@ class TabBar extends Component {
     render() {
         let show_page="";
 
-        if(this.state.tabKey == 1){
+        if(this.state.tabKey === 1){
              show_page = <Tei />;
         }
-        else if(this.state.tabKey == 2){
+        else if(this.state.tabKey === 2){
             show_page = <Singleton />;
         }
         else{ show_page = <About />; }
@@ -49,7 +48,7 @@ class TabBar extends Component {
                             <h2 className='App-header-text'>Welcome to the DHIS2 deduplicator</h2>
                         </Col>
                         <Col sm={1}>
-                            <img src={logo} className="App-logo" alt="logo" />
+                            <img src={logo} className="App-logo Logo-flip" alt="logo" />
                         </Col>
                     </div>
                 </Row> 

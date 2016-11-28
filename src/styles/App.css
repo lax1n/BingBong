@@ -21,6 +21,15 @@
   padding-top: 16px;
 }
 
+.Logo-flip {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
 .App-intro {
   font-size: large;
 }
