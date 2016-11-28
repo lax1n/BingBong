@@ -47,6 +47,23 @@ class Tei extends Component {
         }
         this.saveRecent(params);
 
+		console.log("params");
+		console.log(params);
+		if(params.advanced){
+			console.log(params.advanced)
+			console.log(params.advanced.typos);
+			console.log(params.advanced.typos.looseParams);
+			console.log(params.advanced.typos.maxEditDistance);
+			console.log(params.advanced.typos.typos)//If typos is false, then loose params should be empty.
+			this.state.myFilters.looseTestParams = params.advanced.typos.looseParams;
+			this.state.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
+
+			console.log("This.state.myFilters");
+			console.log(this.state.myFilters);
+		}
+
+		//this.state.myFilters.looseTestParams
+
         // Handle what to do depending on which params were recevied
         if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
