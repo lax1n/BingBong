@@ -45,10 +45,11 @@ class Tei extends Component {
 
     findResults(params, favourite){
 		if(params.myFilters === undefined){
+			console.log("No previous filter");
 			params.myFilters = this.state.myFilters;
 			if(params.advanced){
 				if(params.advanced.typos.typos){
-					params.myFilters.looseTestParams = params.advanced.attributes.attributes;
+					params.myFilters.looseTestParams = params.advanced.typos.looseAttributes;
 				}
 				else{
 					params.myFilters.looseTestParams = [];
@@ -60,6 +61,8 @@ class Tei extends Component {
 				params.myFilters.endDate = params.endDate;
 			}
 		}
+		console.log("params");
+		console.log(params);
 
 		if(favourite){
             this.saveFavourite(params);
