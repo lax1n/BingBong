@@ -40,25 +40,28 @@ class Singleton extends Component {
     }
 
     findResults(params, favourite){
+		params.myFilters = this.state.myFilters;
+
+		params.myFilters.startDate = params.startDate;
+		params.myFilters.endDate = params.endDate;
+
         if(favourite){
             this.saveFavourite(params);
         }
         this.saveRecent(params);
 
-		this.state.myFilters.startDate = params.startDate;
-		this.state.myFilters.endDate = params.endDate;
 
         // Handle what to do depending on which params were recevied
         console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
-            findSingletonDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
+            findSingletonDuplicatesByOrganization(params.orgUnit, params.myFilters).then((duplicates) => {
 				console.log("My duplicates:");
                 console.log(duplicates);
 
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
-            findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, this.state.myFilters).then((duplicates) => {
+            findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, params.myFilters).then((duplicates) => {
 				console.log("My duplicates:");
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});

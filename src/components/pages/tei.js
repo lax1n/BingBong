@@ -44,36 +44,33 @@ class Tei extends Component {
     }
 
     findResults(params, favourite){
-        if(favourite){
+		params.myFilters = this.state.myFilters;
+		if(params.advanced){
+			if(params.advanced.typos.typos){
+				params.myFilters.looseTestParams = params.advanced.attributes.attributes;
+			}
+			else{
+				params.myFilters.looseTestParams = [];
+			}
+			params.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
+			params.myFilters.strictTestParams = params.advanced.strictAttributes;
+
+			params.myFilters.startDate = params.startDate;
+			params.myFilters.endDate = params.endDate;
+		}
+
+		if(favourite){
             this.saveFavourite(params);
         }
         this.saveRecent(params);
-
-		console.log("params");
-		console.log(params);
-		if(params.advanced){
-            // Change this
-			if(params.advanced.typos.typos){
-				this.state.myFilters.looseTestParams = params.advanced.attributes.attributes;
-			}
-			else{
-				this.state.myFilters.looseTestParams = [];
-			}
-			this.state.myFilters.maxEditDistance = params.advanced.typos.maxEditDistance;
-			this.state.myFilters.strictTestParams = params.advanced.strictAttributes;
-
-			this.state.myFilters.startDate = params.startDate;
-			this.state.myFilters.endDate = params.endDate;
-		}
-
         // Handle what to do depending on which params were recevied
         if(params.program === '' || params.program === undefined){
-            findTEIDuplicatesByOrganization(params.orgUnit, this.state.myFilters).then((duplicates) => {
+            findTEIDuplicatesByOrganization(params.orgUnit, params.myFilters).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
-            findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, this.state.myFilters).then((duplicates) => {
+            findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, params.myFilters).then((duplicates) => {
                 console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
