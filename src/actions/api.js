@@ -11,6 +11,31 @@ export const fetchOptionsGet = {
     },
 };
 
+export const postOptions = {
+    method: 'POST',
+    headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json',
+    },
+};
+
+export const PutOptions = {
+    method: 'PUT',
+    headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json',
+    },
+};
+
+export const deleteOptions = {
+    method: 'DELETE',
+    headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json',
+    },
+};
+
+
 export function onlySuccessResponses(response) {
     console.log(response);
     if (response.status >= 200 && response.status < 300) {
