@@ -36,6 +36,14 @@ class Tei extends Component {
         this.saveRecent = this.saveRecent.bind(this);
     }
 
+    componentDidMount(){
+        getThings("favs").then((favs) => {
+            getThings("recents").then((recents) => {
+                this.setState({recents: recents.things, favourites: favs.things});
+            });
+        });
+    }
+
     saveFavourite(params){
         let favourites = this.state.favourites;
         favourites.push(params);
@@ -92,15 +100,6 @@ class Tei extends Component {
                 this.setState({resultsFound: true, results: duplicates});
             });
         }
-    }
-
-    componentDidMount(){
-        getThings("favs").then((favs) => {
-            getThings("recents").then((recents) => {
-                this.setState({recents : recents.things,favourites: favs.things});
-            });
-
-        });
     }
 
 	render(){
