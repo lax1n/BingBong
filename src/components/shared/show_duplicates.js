@@ -7,7 +7,7 @@ class ShowDuplicates extends Component{
 		const duplicates= this.props.duplicates;
 		const show_state = this.props.show_state;
 		const closeDetails = this.props.closeDetails;
-        const tableAttributes = [
+        const tableAttributes = this.props.tableAttributes || [
             'Instance',
             'First name',
             'Last name',

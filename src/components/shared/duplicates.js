@@ -88,7 +88,7 @@ class Duplicates extends Component {
                         })}
                     </tbody>
                 </Table>
-                <ShowDuplicates duplicates={this.state.currentDetails} show_state={this.state.showDetails} closeDetails={this.closeDetails} />
+                <ShowDuplicates duplicates={this.state.currentDetails} show_state={this.state.showDetails} closeDetails={this.closeDetails} tableAttributes={this.props.detailTableAttributes}/>
             </Well>
 		);
 	}
