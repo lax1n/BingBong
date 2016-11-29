@@ -1,6 +1,6 @@
 import {serverUrl, basicAuth, fetchOptionsGet, onlySuccessResponses,} from './api';
 
-export function saveThings(key,things, myMethod){
+export function saveThings(key, things, myMethod){
     /*return getThings(key).then((items) => {
         console.log("forgot to add this: ",items);
         items.things.push(things);*/
@@ -11,9 +11,9 @@ export function saveThings(key,things, myMethod){
             'Authorization': basicAuth,
             'Content-Type': 'application/json',
             },
-    		 body: JSON.stringify({
-                things,
-     	    }),
+    		 body: JSON.stringify(
+                things
+     	    ),
     	}).then(onlySuccessResponses).then(response => response.json());
 }
 
