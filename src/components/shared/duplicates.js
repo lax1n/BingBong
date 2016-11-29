@@ -40,7 +40,7 @@ class Duplicates extends Component {
 	render(){
         const duplicates = this.props.duplicates;
 
-        const tableAttributes = [
+        const tableAttributes = this.props.tableAttributes || [
             'First name',
             'Last name',
             'Date of birth',
