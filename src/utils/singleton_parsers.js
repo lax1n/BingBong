@@ -26,12 +26,12 @@ export function parseSingletonQueryResults(response){
 			for (j = 0; j < attributesLength; j++) {
 				singletons[my_counter][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
 			}
+			singletons[my_counter].dateValues = response[i].dataValues; //Stored to be able to mark for reconciliation later
 			for(let key in response[i]){
 				if (response[i].hasOwnProperty(key) && key !== "dataValues") {
 					singletons[my_counter][key] = response[i][key];
 				}
 			}
-			//singletons[my_counter]['event'] = response[i]['event']
 			my_counter += 1;
 		}
 		return [singletons, params]

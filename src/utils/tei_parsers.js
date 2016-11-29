@@ -14,6 +14,7 @@ export function parseQueryResultsOrgOnly(response){
 		for (j = 0; j < attributesLength; j++) {
 			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
 		}
+		teis[i].attributes = response[i].attributes; //Stored for reconciliation
 	}
 	return teis;
 }
