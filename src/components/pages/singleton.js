@@ -68,15 +68,10 @@ class Singleton extends Component {
         // Handle what to do depending on which params were recevied
         if(params.program === '' || params.program === undefined){
             findSingletonDuplicatesByOrganization(params.orgUnit, params.myFilters).then((duplicates) => {
-				console.log("My duplicates:");
-                console.log(duplicates);
-
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
             findSingletonDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, params.myFilters).then((duplicates) => {
-				console.log("My duplicates:");
-                console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
         }
@@ -86,22 +81,10 @@ class Singleton extends Component {
 	render(){
 		let results = '';
 		if(this.state.resultsFound){
-			let myDuplicates; //The double map below adds another attribute to
-			if(this.state.results !== undefined){
-				myDuplicates = this.state.results.map(function (myDupGroup){
-					if(myDupGroup !== undefined){
-						return myDupGroup.map(function (myDup){
-							myDup.Everything = JSON.stringify(myDup, null, 5);
-							return myDup;
-						});
-					}
-				})
-			}
-			results=(
+			results = (
 				<Duplicates
                     type={'singletons'}
-					duplicates={myDuplicates}
-					detailTableAttributes={['Everything']}
+					duplicates={this.state.results}
 				/>
 			);
 		}

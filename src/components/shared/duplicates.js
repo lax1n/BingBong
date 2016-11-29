@@ -215,12 +215,6 @@ class Duplicates extends Component {
                         >
                             Save marked duplicates for reconciliation
                         </Button>
-						{/*<Button
-                            bsStyle='info'
-                            onClick={this.reconcileMarkedDuplicates.bind(this)}
-                        >
-                            Reconcile marked duplicates
-                        </Button>*/}
                     </Col>
                 </Row>
             </Well>

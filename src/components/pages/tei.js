@@ -88,12 +88,10 @@ class Tei extends Component {
         // Handle what to do depending on which params were recevied
         if(params.program === '' || params.program === undefined){
             findTEIDuplicatesByOrganization(params.orgUnit, params.myFilters).then((duplicates) => {
-                console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
         }else if(params.program !== '' && params.startDate === ''){
             findTEIDuplicatesByOrganizationAndProgram(params.orgUnit, params.program, params.myFilters).then((duplicates) => {
-                console.log(duplicates);
                 this.setState({resultsFound: true, results: duplicates});
             });
         }
