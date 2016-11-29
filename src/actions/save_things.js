@@ -1,9 +1,8 @@
 import {serverUrl, basicAuth, fetchOptionsGet, onlySuccessResponses,} from './api';
 
 export function saveThings(key,things){
-    /*return getThings(key).then((items) => {
-        console.log("forgot to add this: ",items);
-        items.things.push(things);*/
+    return getThings(key).then((items) => {
+        items.things.push(things);
 	    return fetch(`${serverUrl}dataStore/BingBong/${key}`, { method: 'PUT', 
     		headers: {
             'Authorization': basicAuth,
@@ -12,7 +11,7 @@ export function saveThings(key,things){
     		 body: JSON.stringify({
                 things,
      	    }),
-    	}).then(onlySuccessResponses).then(response => response.json());
+    	}).then(onlySuccessResponses).then(response => response.json())});
 }
 
 export function getThings(key){
