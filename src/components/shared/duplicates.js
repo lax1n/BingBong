@@ -74,8 +74,26 @@ class Duplicates extends Component {
             }
         });
 
+
         console.log('Save marked duplicates', markedDuplicates);
     }
+	reconcileMarkedDuplicates(){
+		let duplicates = this.props.duplicates;
+        let markedDuplicates = [];
+        duplicates.forEach((duplicateRow) => {
+            let keep = false;
+            let markedRow = duplicateRow.filter((duplicate) => {
+                return duplicate.reconcile;
+            });
+
+            // Must be more than 1 because to reconcile duplicates more than 1 must be found or it wouldnt be a duplicate
+            if(markedRow.length > 1){
+                markedDuplicates.push(markedRow);
+            }
+        });
+
+        console.log('reconcile marked duplicates', markedDuplicates);
+	}
 
 	render(){
         let duplicates = this.props.duplicates;
@@ -154,6 +172,12 @@ class Duplicates extends Component {
                             onClick={this.saveMarkedDuplicates.bind(this)}
                         >
                             Save marked duplicates for reconciliation
+                        </Button>
+						<Button
+                            bsStyle='info'
+                            onClick={this.reconcileMarkedDuplicates.bind(this)}
+                        >
+                            Reconcile marked duplicates
                         </Button>
                     </Col>
                 </Row>
