@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import {saveThings,} from '../actions/save_things.js'
 
 import '../styles/App.css';
 import '../libs/bootstrap.min.css';
 
-import {Button,} from 'react-bootstrap';
 import TabBar from './shared/tab_bar.js';
 
 class App extends Component {

@@ -5,7 +5,7 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
-import {Col, Button} from 'react-bootstrap';
+import {Col} from 'react-bootstrap';
 import {saveThings} from '../../actions/save_things.js';
 
 import QueryArea from '../query/query_area';

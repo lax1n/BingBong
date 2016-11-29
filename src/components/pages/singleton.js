@@ -6,7 +6,7 @@ import {
 } from '../../utils/singleton_dup_finder';
 
 import {Col} from 'react-bootstrap';
-
+import {saveThings} from '../../actions/save_things.js';
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
@@ -33,10 +33,12 @@ class Singleton extends Component {
 
     saveFavourite(params){
         this.state.favourites.push(params);
+        saveThings("favs",this.state.favourites);
     }
 
     saveRecent(params){
         this.state.recents.push(params);
+        saveThings("recents",this.state.recents);
     }
 
     findResults(params, favourite){

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Glyphicon, Button, ButtonGroup, SplitButton, MenuItem} from 'react-bootstrap';
-import {saveThings} from '../../actions/save_things.js';
 
 class Buttons extends Component {
 

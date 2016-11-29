@@ -41,13 +41,13 @@ class TabBar extends Component {
             <div>
                 <Row>
                     <div className='App-header'>
-                        <Col sm={4}>
-                            <img src={logo} className="App-logo pull-right" alt="logo" />
+                        <Col sm={1}>
+                            <img src={logo} className="App-logo" alt="logo" />
                         </Col>
-                        <Col sm={4}>
+                        <Col sm={10}>
                             <h2 className='App-header-text'>DHIS2 Deduplicator</h2>
                         </Col>
-                        <Col sm={4}>
+                        <Col sm={1}>
                             <img src={logo} className="App-logo Logo-flip" alt="logo" />
                         </Col>
                     </div>
