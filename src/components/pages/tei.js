@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import {Button} from 'react-bootstrap';
 
 import {
     findTEIDuplicatesByOrganizationAndProgram,
@@ -22,8 +21,8 @@ class Tei extends Component {
             favourites: [],
             recents: [],
 			myFilters: {
-				looseTestParams: ["First name", "Last name", "Date of birth", "Mothers maiden name"],
-				strictTestParams: ["Blood type", "Gender"],
+				looseTestParams: [],
+				strictTestParams: [],
 				timeTestParams: [],
 				maxEditDistance: 2,
 				maxUndefinedCount: 0,
