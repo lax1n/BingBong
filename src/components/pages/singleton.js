@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {isEqual} from 'lodash';
 
 import {
     findSingletonDuplicatesByOrganizationAndProgram,
@@ -34,6 +35,12 @@ class Singleton extends Component {
     componentDidMount(){
         getThings("Sfavs").then((favs) => {
             getThings("Srecents").then((recents) => {
+                if(isEqual(favs, {})){
+                    favs = [];
+                }
+                if(isEqual(recents, {})){
+                    recents = [];
+                }
                 this.setState({recents: recents, favourites: favs});
             });
         });

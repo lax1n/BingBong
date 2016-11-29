@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import {Button} from 'react-bootstrap';
+import {isEqual} from 'lodash';
 
 import {
     findTEIDuplicatesByOrganizationAndProgram,
@@ -40,6 +40,12 @@ class Tei extends Component {
     componentDidMount(){
         getThings("favs").then((favs) => {
             getThings("recents").then((recents) => {
+                if(isEqual(favs, {})){
+                    favs = [];
+                }
+                if(isEqual(recents, {})){
+                    recents = [];
+                }
                 this.setState({recents: recents, favourites: favs});
             });
         });
