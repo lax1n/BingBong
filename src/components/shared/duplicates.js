@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/components/shared/duplicates.css';
 import ShowDuplicates from './show_duplicates.js';
+import {pushMarkedToServer} from '../../utils/save_for_recon'
 
 import {isEmpty} from 'lodash';
 import {Row, Col, Well, Table, Checkbox, Button} from 'react-bootstrap';
@@ -74,8 +75,9 @@ class Duplicates extends Component {
             }
         });
 
-
         console.log('Save marked duplicates', markedDuplicates);
+		pushMarkedToServer(markedDuplicates);
+		console.log("BITHC");
     }
 	reconcileMarkedDuplicates(){
 		let duplicates = this.props.duplicates;
@@ -173,12 +175,12 @@ class Duplicates extends Component {
                         >
                             Save marked duplicates for reconciliation
                         </Button>
-						<Button
+						{/*<Button
                             bsStyle='info'
                             onClick={this.reconcileMarkedDuplicates.bind(this)}
                         >
                             Reconcile marked duplicates
-                        </Button>
+                        </Button>*/}
                     </Col>
                 </Row>
             </Well>
