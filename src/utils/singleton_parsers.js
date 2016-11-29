@@ -9,8 +9,6 @@ export function parseSingletonQueryResults(response){
 		let attributesLength;
 		let responseCount = response.length;
 		let my_counter = 0;
-		console.log("Hello");
-		console.log(displayNameConverter);
 
 		for(let key in displayNameConverter){
 			if (displayNameConverter.hasOwnProperty(key)) {
@@ -36,8 +34,6 @@ export function parseSingletonQueryResults(response){
 			//singletons[my_counter]['event'] = response[i]['event']
 			my_counter += 1;
 		}
-		console.log("Singletons")
-		console.log(singletons)
 		return [singletons, params]
 	});
 }

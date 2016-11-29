@@ -66,7 +66,6 @@ class Singleton extends Component {
 
 
         // Handle what to do depending on which params were recevied
-        console.log('params: '+ params.orgUnit);
         if(params.program === '' || params.program === undefined){
             findSingletonDuplicatesByOrganization(params.orgUnit, params.myFilters).then((duplicates) => {
 				console.log("My duplicates:");
@@ -83,7 +82,7 @@ class Singleton extends Component {
         }
 
     }
-
+	
 	render(){
 		let results = '';
 		if(this.state.resultsFound){
@@ -98,7 +97,6 @@ class Singleton extends Component {
 					}
 				})
 			}
-			//console.log("myDuplicates", myDuplicates);
 			results=(
 				<Duplicates
 					duplicates={myDuplicates}

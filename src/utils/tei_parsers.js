@@ -6,19 +6,15 @@ export function parseQueryResultsOrgOnly(response){
 	for (i = 0; i < responseCount; i++) {
 		teis[i] = {};
 		attributesLength = response[i].attributes.length;
-		//teis[i]['Instance'] = response[i]['trackedEntityInstance'];
 		for(let key in response[i]){
 			if (response[i].hasOwnProperty(key) && key !== "attributes") {
 				teis[i][key] = response[i][key];
 			}
 		}
 		for (j = 0; j < attributesLength; j++) {
-			//console.log(response[i].attributes[j].displayName);
 			teis[i][response[i].attributes[j].displayName] = response[i].attributes[j].value;
 		}
-		//console.log(teis);
 	}
-	//console.log(teis)
 	return teis;
 }
 

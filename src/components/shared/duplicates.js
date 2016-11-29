@@ -77,7 +77,6 @@ class Duplicates extends Component {
                                     onClick={() => this.viewDuplicates(duplicateRow)}>
                                     <td><Checkbox onClick={(e) => this.toggleReconcile(e, duplicateRow)} /></td>
                                     {tableAttributes.map((attribute, j) => {
-                                        console.log(duplicateRow[0][0]);
                                         return (
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
                                         );
