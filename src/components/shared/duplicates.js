@@ -125,7 +125,7 @@ class Duplicates extends Component {
         });
 
         console.log('Save marked duplicates', markedDuplicates);
-		updateMarked(markedDuplicates, "tei");
+		updateMarked(markedDuplicates, this.props.type);
 		console.log("Done pushing to server");
     }
 	render(){

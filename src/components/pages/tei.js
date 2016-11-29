@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import {Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 import {
     findTEIDuplicatesByOrganizationAndProgram,
@@ -60,10 +60,10 @@ class Tei extends Component {
     }
 	fixSomeStuff(){
 		//saveThings("tei_duplicates",[], 'DELETE');
-		///saveThings("singleton_duplicates",[], 'DELETE');
+		//saveThings("singletons_duplicates",[], 'DELETE');
 
 		//saveThings("tei_duplicates",[], 'POST');
-		//saveThings("singleton_duplicates",[], 'POST');
+		//saveThings("singletons_duplicates",[], 'POST');
 	}
 
     findResults(params, favourite){
@@ -123,12 +123,12 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
-				{/*<Button
+				<Button
 					bsStyle='primary'
 					onClick={this.fixSomeStuff.bind(this)}
 				>
 					TheFixer
-				</Button>*/}
+				</Button>
 				{results}
 			</Col>
 		);

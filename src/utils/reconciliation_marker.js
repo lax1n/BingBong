@@ -6,8 +6,8 @@ export function updateMarked(duplicates, type){//These duplicates have been conf
 	let key_dedup = type+"_ignore_list";
 	//saveThings(key_mark, duplicates, 'POST');
 	//saveThings("tei_ignore_list",undefined, 'POST');
-	//saveThings("singleton_ignore_list",undefined, 'POST');
-	//saveThings("singleton_duplicates",undefined, 'POST');
+	//saveThings("singletons_ignore_list",undefined, 'POST');
+	//saveThings("singletons_duplicates",undefined, 'POST');
 	return getThings(key_mark).then(function(prev){
 		console.log("prev",prev);
 
@@ -29,7 +29,7 @@ function findNewDups(duplicates, prev, type){
 		checker1 = "trackedEntityInstance";
 		checker2 =  "Instance";
 	}
-	if(type === "singleton"){
+	if(type === "singletons"){
 		checker1 = "event";
 		checker2 =  "event";
 	}
@@ -38,18 +38,9 @@ function findNewDups(duplicates, prev, type){
 		for(let j = 0; j < dupGroup.length; j++){
 			for(let k = 0; k < prevLength; k++){
 				for(let l= 0; l < prev[k].length; l++){
-					//console.log("j"+j+"k"+k+"l"+l);
-					//console.log("dupGroup", dupGroup, "prev[k]", prev[k]);
-					//console.log(dupGroup[j], "=== ", prev[k][l])
-					//console.log(dupGroup[j][checker1], dupGroup[j][checker2], "=== ", prev[k][l][checker1], prev[k][l][checker2])
 					if((dupGroup[j][checker1] || dupGroup[j][checker2]) === (prev[k][l][checker1] || prev[k][l][checker2])){
-						//console.log("OHOHOH");
-						//console.log("OHOHOH");
-						//console.log("OHOHOH");
+						console.log(dupGroup[j], prev[k][l]);
 						return false;
-					}
-					else{
-						//console.log("continuing")
 					}
 				}
 			}
