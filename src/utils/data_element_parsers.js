@@ -1,29 +1,18 @@
-
-
-
-
-export function translateDuplicates(duplicates){
-	
-}
-
-export function getReverseDisplayNameConverter(response){
-	let i, j;
-	let param_ids = [];
-	let attributesLength;
-	let responseCount = response.length;
-	for (i = 0; i < responseCount; i++) {
-		attributesLength = response[i].dataValues.length;
-		for (j = 0; j < attributesLength; j++) {
-			if(!(includes(param_ids, response[i].dataValues[j].dataElement))){
-				param_ids.push(response[i].dataValues[j].dataElement);
+export function transformDuplicates(duplicates, type){
+	let valuesToRemove;
+	if(type === "singleton"){
+		valuesToRemove = "dataValues";
+	}
+	if(type === "tei"){
+		valuesToRemove = "attributes";
+	}
+	for(var i= 0; i<duplicates.length; i++){
+		for(var j = 0; j<duplicates[i].length; j++){
+			for(let key in eval("duplicates[i][j]"+ valuesToRemove)){
+				if (duplicates[i][j].hasOwnProperty(key) && key !== "dataValues") {
+					delete duplicates[i][j][key];
+				}
 			}
 		}
 	}
-	return getDataElements(param_ids).then((displayNameObjects) => {
-		let my_converter = {};
-		for(i = 0; i<displayNameObjects.length; i++){
-			my_converter[displayNameObjects[i].name] = displayNameObjects[i].id;
-		}
-		return my_converter;
-	});
 }
