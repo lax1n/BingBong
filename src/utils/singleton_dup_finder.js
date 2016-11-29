@@ -10,6 +10,7 @@ export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program
 			let singletons = some[0];
 			myFilters.strictTestParams = params;
 			myFilters.looseTestParams = [];
+			console.log("finding duplicates...");
 			return findDuplicates(singletons, myFilters);
 		});
 	});
@@ -22,6 +23,7 @@ export function findSingletonDuplicatesByOrganization(orgUnit, myFilters){
 			let singletons = some[0];
 			myFilters.strictTestParams = params;
 			myFilters.looseTestParams = [];
+			console.log("finding duplicates...");
 			return findDuplicates(singletons, myFilters);
 		});
 	});

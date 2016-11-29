@@ -47,10 +47,10 @@ class Singleton extends Component {
     }
 
     saveRecent(params){
-        let recents = this.state.recents;
+        /*let recents = this.state.recents;
         recents.push(params);
         this.setState({recents: recents});
-        saveThings("recents",recents);
+        saveThings("recents",recents);*/
     }
 
     findResults(params, favourite){
@@ -82,11 +82,11 @@ class Singleton extends Component {
         }
 
     }
-	
+
 	render(){
 		let results = '';
 		if(this.state.resultsFound){
-			let myDuplicates;
+			let myDuplicates; //The double map below adds another attribute to
 			if(this.state.results !== undefined){
 				myDuplicates = this.state.results.map(function (myDupGroup){
 					if(myDupGroup !== undefined){
