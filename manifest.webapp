@@ -1,0 +1,23 @@
+{
+   "name" : "DHIS2 Deduplicator",
+   "description" : "An app for finding and reconciling duplicates using the DHIS2 api",
+   "version" : "0.1",
+   "developer" : {
+      "email" : "avalds@gmail.com",
+      "name" : "Åvald Åslaugson Sommervoll",
+      "email" : "",
+      "name" : "August Haug Hem",
+      "email" : "mahastya@ifi.uio.no",
+      "name" : "Mahasty Assi"
+   },
+   "launch_path" : "/public/index.html", 
+   "icons" : {
+      "48" : "/public/logo_new.png" 
+   },
+   "activities" : {
+      "dhis" : {
+         "href" : "*"
+         "namespace":"BingBong"
+      }
+   }
+}

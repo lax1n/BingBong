@@ -1,18 +1,22 @@
-import {serverUrl, basicAuth, onlySuccessResponses,} from './api';
+import {serverUrl, basicAuth, fetchOptionsGet, onlySuccessResponses,} from './api';
 
-export function saveThings(things){
-	console.log("nyoom");
-	return fetch(`${serverUrl}dataStore/BingBong/teis`, { method: 'PUT', 
+export function saveThings(key,things){
+	return fetch(`${serverUrl}dataStore/BingBong/${key}`, { method: 'PUT', 
 		headers: {
         'Authorization': basicAuth,
         'Content-Type': 'application/json',
     },
 		 body: JSON.stringify({
-    	//firstParam: 'Yum',
-    	//secondParam: things,
-    	newParam: 'whatever',
+            things,
  	}),
 	})
         .then(onlySuccessResponses)
         .then(response => response.json());
+}
+
+export function getThings(key){
+    return fetch(`${serverUrl}dataStore/BingBong/${key}`, fetchOptionsGet)
+        .then(onlySuccessResponses)
+        .then(response => response.json())
+        .then(( {things} ) => things);
 }

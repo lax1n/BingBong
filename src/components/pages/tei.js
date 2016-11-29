@@ -5,7 +5,8 @@ import {
     findTEIDuplicatesByOrganization,
 } from '../../utils/tei_dup_finder';
 
-import {Col} from 'react-bootstrap';
+import {Col, Button} from 'react-bootstrap';
+import {saveThings} from '../../actions/save_things.js';
 
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
@@ -39,12 +40,14 @@ class Tei extends Component {
         let favourites = this.state.favourites;
         favourites.push(params);
         this.setState({favourites: favourites});
+        saveThings("favs",favourites);
     }
 
     saveRecent(params){
         let recents = this.state.recents;
         recents.push(params);
         this.setState({recents: recents});
+        saveThings("recents",recents);
     }
 
     findResults(params, favourite){

@@ -13,8 +13,6 @@ class App extends Component {
 		return (
   		    <div className='container-fluid'>
               <TabBar />
-              <Button 
-              onClick={(e) => {saveThings("bloop")}}> Test </Button>
   		  </div>
 		);
 	}

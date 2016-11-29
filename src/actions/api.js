@@ -19,14 +19,6 @@ export const postOptions = {
     },
 };
 
-export const putOptions = {
-    method: 'PUT',
-    headers: {
-        'Authorization': basicAuth,
-        'Content-Type': 'application/json',
-    },
-};
-
 export const deleteOptions = {
     method: 'DELETE',
     headers: {
