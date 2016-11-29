@@ -99,8 +99,8 @@ class Singleton extends Component {
 			}
 			results=(
 				<Duplicates
+                    type={'singletons'}
 					duplicates={myDuplicates}
-					tableAttributes={['orgUnitName','event', 'storedBy']}
 					detailTableAttributes={['Everything']}
 				/>
 			);

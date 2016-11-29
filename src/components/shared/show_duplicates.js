@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Modal, Button, Checkbox, Table} from 'react-bootstrap';
+import {capitalize} from 'lodash';
 
 class ShowDuplicates extends Component{
 	constructor(props){
@@ -17,23 +18,15 @@ class ShowDuplicates extends Component{
 	}
 
 	render(){
-		const show_state = this.props.show_state;
+		const active = this.props.active;
 		const closeDetails = this.props.closeDetails;
-        const tableAttributes = this.props.tableAttributes || [
-            'Instance',
-            'First name',
-            'Last name',
-            'Date of birth',
-            'Mother maiden name',
-            'Gender',
-            'Occupation',
-            'Blood type',
-        ];
+
+		let tableAttributes = this.props.tableAttributes;
         return(
             <div>
-                <Modal bsSize='large' show={show_state} onHide={closeDetails}>
+                <Modal bsSize='large' show={active} onHide={closeDetails}>
                     <Modal.Header>
-                        <Modal.Title>Duplicates found for</Modal.Title>
+                        <Modal.Title>Duplicates found</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Table striped condensed>
@@ -42,7 +35,7 @@ class ShowDuplicates extends Component{
                                     <th>Reconcile</th>
                                     {tableAttributes.map((attribute, i) => {
                                         return (
-                                            <th key={i}>{attribute}</th>
+                                            <th key={i}>{capitalize(attribute)}</th>
                                         );
                                     })}
                                 </tr>

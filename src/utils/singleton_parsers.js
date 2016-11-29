@@ -23,7 +23,7 @@ export function parseSingletonQueryResults(response){
 			}
 			singletons[my_counter] = {};
 			attributesLength = response[i].dataValues.length;
-			singletons[my_counter].dateValues = response[i].dataValues; //Stored to be able to mark for reconciliation later
+			singletons[my_counter].dataValues = response[i].dataValues; //Stored to be able to mark for reconciliation later
 			for (j = 0; j < attributesLength; j++) {
 				singletons[my_counter][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
 				singletons[my_counter][displayNameConverter[response[i].dataValues[j].dataElement]] = response[i].dataValues[j].value;
