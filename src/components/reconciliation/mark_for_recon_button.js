@@ -10,7 +10,7 @@ class MarkForReconButton extends Component {
 	markForRecon(duplicates){//These duplicates have been confirmed by an admin.
 		console.log(duplicates);
 		//saveThings('markedForReconciliation', JSON.stringify(duplicates));
-		saveThings('markedForReconciliation', duplicates);
+		//saveThings('markedForReconciliation', duplicates);
 	}
     render(){
         return (
