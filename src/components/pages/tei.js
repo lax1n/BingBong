@@ -39,7 +39,7 @@ class Tei extends Component {
     componentDidMount(){
         getThings("favs").then((favs) => {
             getThings("recents").then((recents) => {
-                this.setState({recents: recents.things, favourites: favs.things});
+                this.setState({recents: recents, favourites: favs});
             });
         });
     }
@@ -114,6 +114,7 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
+				
 				{results}
 			</Col>
 		);

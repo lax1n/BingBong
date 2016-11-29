@@ -34,7 +34,7 @@ class Singleton extends Component {
     componentDidMount(){
         getThings("Sfavs").then((favs) => {
             getThings("Srecents").then((recents) => {
-                this.setState({recents: recents.things, favourites: favs.things});
+                this.setState({recents: recents, favourites: favs});
             });
         });
     }
