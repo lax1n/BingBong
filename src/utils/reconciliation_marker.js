@@ -40,18 +40,8 @@ function findNewDups(duplicates, prev, type){
 		for(let j = 0; j < dupGroup.length; j++){
 			for(let k = 0; k < prevLength; k++){
 				for(let l= 0; l < prev[k].length; l++){
-					//console.log("j"+j+"k"+k+"l"+l);
-					//console.log("dupGroup", dupGroup, "prev[k]", prev[k]);
-					//console.log(dupGroup[j], "=== ", prev[k][l])
-					//console.log(dupGroup[j][checker1], dupGroup[j][checker2], "=== ", prev[k][l][checker1], prev[k][l][checker2])
 					if((dupGroup[j][checker1] || dupGroup[j][checker2]) === (prev[k][l][checker1] || prev[k][l][checker2])){
-						//console.log("OHOHOH");
-						//console.log("OHOHOH");
-						//console.log("OHOHOH");
 						return false;
-					}
-					else{
-						//console.log("continuing")
 					}
 				}
 			}
