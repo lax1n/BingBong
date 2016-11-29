@@ -16,6 +16,8 @@ class Duplicates extends Component {
 
         this.closeDetails = this.closeDetails.bind(this);
         this.toggleReconcile = this.toggleReconcile.bind(this);
+        this.findReconciliationCount = this.findReconciliationCount.bind(this);
+        this.isMarkedForReconciliation = this.isMarkedForReconciliation.bind(this);
     }
 
     viewDuplicates(duplicates){
@@ -30,11 +32,31 @@ class Duplicates extends Component {
             currentDetails: [],
             showDetails: false,
         });
+        console.log('quaky');
     }
 
-    toggleReconcile(e, duplicate){
-        console.log("Checkbox clicked");
+    toggleReconcile(e, duplicateRow){
         e.stopPropagation();
+        const newValue = e.target.checked;
+        duplicateRow.forEach((duplicate) => {
+            duplicate.reconcile = newValue;
+        });
+
+        // Force update
+        this.setState({});
+    }
+
+    isMarkedForReconciliation(duplicateRow){
+        return this.findReconciliationCount(duplicateRow) > 0;
+    }
+
+    findReconciliationCount(duplicateRow){
+        let count = 0;
+        duplicateRow.forEach((duplicate) => {
+            if(duplicate.reconcile)
+                count++;
+        });
+        return count;
     }
 
 	render(){
@@ -62,6 +84,7 @@ class Duplicates extends Component {
                     <thead className='center'>
                         <tr>
                             <th>Reconcile</th>
+                            <th>Marked for reconciliation</th>
                             {tableAttributes.map((attribute, i) => {
                                 return (
                                     <th key={i}>{attribute}</th>
@@ -74,8 +97,17 @@ class Duplicates extends Component {
                         {duplicates.map((duplicateRow, i) => {
                             return (
                                 <tr key={i}
-                                    onClick={() => this.viewDuplicates(duplicateRow)}>
-                                    <td><Checkbox onClick={(e) => this.toggleReconcile(e, duplicateRow)} /></td>
+                                    onClick={() => this.viewDuplicates(duplicateRow)}
+                                >
+                                    <td>
+                                        <Checkbox
+                                            checked={this.isMarkedForReconciliation(duplicateRow)}
+                                            onClick={(e) => this.toggleReconcile(e, duplicateRow)}
+                                        />
+                                    </td>
+                                    <td>
+                                        {this.findReconciliationCount(duplicateRow) + '/' + duplicateRow.length}
+                                    </td>
                                     {tableAttributes.map((attribute, j) => {
                                         return (
                                             <td key={j}>{duplicateRow[0][attribute]}</td>
@@ -87,7 +119,12 @@ class Duplicates extends Component {
                         })}
                     </tbody>
                 </Table>
-                <ShowDuplicates duplicates={this.state.currentDetails} show_state={this.state.showDetails} closeDetails={this.closeDetails} tableAttributes={this.props.detailTableAttributes}/>
+                <ShowDuplicates
+                    duplicates={this.state.currentDetails}
+                    show_state={this.state.showDetails}
+                    closeDetails={this.closeDetails}
+                    tableAttributes={this.props.detailTableAttributes}
+                />
             </Well>
 		);
 	}

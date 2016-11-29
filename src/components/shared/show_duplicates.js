@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 import {Modal, Button, Checkbox, Table} from 'react-bootstrap';
 
 class ShowDuplicates extends Component{
+	constructor(props){
+		super(props);
+
+		this.toggleReconcile = this.toggleReconcile.bind(this);
+	}
+
+	toggleReconcile(e, duplicate){
+		if(duplicate.reconcile){
+			duplicate.reconcile = false;
+		}else{
+			duplicate.reconcile = true;
+		}
+		console.log(duplicate);
+	}
 
 	render(){
-		const duplicates= this.props.duplicates;
 		const show_state = this.props.show_state;
 		const closeDetails = this.props.closeDetails;
         const tableAttributes = this.props.tableAttributes || [
@@ -36,13 +49,17 @@ class ShowDuplicates extends Component{
                                 </tr>
                             </thead>
                             <tbody className='center'>
-                                {duplicates.map((duplicateRow, i) => {
+                                {this.props.duplicates.map((duplicate, i) => {
                                     return (
                                         <tr key={i}>
-                                            <td><Checkbox /></td>
+                                            <td>
+												<Checkbox
+													defaultChecked={duplicate.reconcile}
+													onClick={(e) => this.toggleReconcile(e, duplicate)} />
+											</td>
                                             {tableAttributes.map((attribute, j) => {
                                                 return (
-                                                    <td key={j}>{duplicateRow[attribute]}</td>
+                                                    <td key={j}>{duplicate[attribute]}</td>
                                                 );
                                             })}
                                         </tr>
