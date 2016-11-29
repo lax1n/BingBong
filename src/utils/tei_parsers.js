@@ -1,4 +1,4 @@
-export function parseQueryResultsOrgOnly(response){
+export function parseQueryResults(response){
 	let i, j;
 	let teis = [];
 	let attributesLength;
@@ -19,7 +19,7 @@ export function parseQueryResultsOrgOnly(response){
 	return teis;
 }
 
-export function parseQueryResults(response){
+export function parseQueryResultsFromQueryFormat(response){
 	let i, j;
 	let teis = [];
 	let headerCount = response.headers.length;

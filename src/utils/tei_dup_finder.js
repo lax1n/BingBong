@@ -1,20 +1,20 @@
 import {getAllTEIsByOrganizationAndProgram, getAllTEIsByOrganization} from '../actions/tei_actions';
 import {findDuplicates} from './find_duplicates';
-import {parseQueryResultsOrgOnly, parseQueryResults} from './tei_parsers'
+import {parseQueryResults} from './tei_parsers'
 
-export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program, myFilters){
-	myFilters = myFilters || [];
+export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program, filters){
+	filters = filters || [];
 	return getAllTEIsByOrganizationAndProgram(orgUnit, program).then((response) => {
 		const teis = parseQueryResults(response);
-		const duplicates = findDuplicates(teis, myFilters);
+		const duplicates = findDuplicates(teis, filters);
 		return duplicates;
 	});
 }
-export function findTEIDuplicatesByOrganization(orgUnit, myFilters){
-	myFilters = myFilters || [];
+export function findTEIDuplicatesByOrganization(orgUnit, filters){
+	filters = filters || [];
 	return getAllTEIsByOrganization(orgUnit).then((response) => {
-		const teis = parseQueryResultsOrgOnly(response);
-		const duplicates = findDuplicates(teis, myFilters);
+		const teis = parseQueryResults(response);
+		const duplicates = findDuplicates(teis, filters);
 		return duplicates;
 	});
 }
