@@ -32,7 +32,6 @@ class Duplicates extends Component {
             currentDetails: [],
             showDetails: false,
         });
-        console.log('quaky');
     }
 
     toggleReconcile(e, duplicateRow){
