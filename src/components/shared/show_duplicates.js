@@ -14,7 +14,6 @@ class ShowDuplicates extends Component{
 		}else{
 			duplicate.reconcile = true;
 		}
-		console.log(duplicate);
 	}
 
 	render(){
