@@ -59,9 +59,11 @@ class Tei extends Component {
         saveThings("recents",recents);
     }
 	fixSomeStuff(){
-		saveThings("tei_duplicates",[], 'DELETE');
+		//saveThings("tei_duplicates",[], 'DELETE');
+		///saveThings("singleton_duplicates",[], 'DELETE');
 
 		//saveThings("tei_duplicates",[], 'POST');
+		//saveThings("singleton_duplicates",[], 'POST');
 	}
 
     findResults(params, favourite){

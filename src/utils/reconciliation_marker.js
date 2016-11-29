@@ -9,8 +9,7 @@ export function updateMarked(duplicates, type){//These duplicates have been conf
 	//saveThings("singleton_ignore_list",undefined, 'POST');
 	//saveThings("singleton_duplicates",undefined, 'POST');
 	return getThings(key_mark).then(function(prev){
-		console.log("prev");
-		console.log(prev);
+		console.log("prev",prev);
 
 
 		//saveThings(key, duplicates, 'DELETE');
@@ -34,7 +33,6 @@ function findNewDups(duplicates, prev, type){
 		checker1 = "event";
 		checker2 =  "event";
 	}
-	console.log("prev", prev);
 	let prevLength= prev.length;
 	return duplicates.filter(function(dupGroup){
 		for(let j = 0; j < dupGroup.length; j++){
