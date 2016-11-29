@@ -9,7 +9,6 @@ import Instructions from '../shared/instructions';
 import Buttons from './buttons';
 import Advanced from './advanced';
 import PreviousQueries from './previous_queries';
-import MarkForReconButton from '../reconciliation/mark_for_recon_button'
 
 const defaultQueryParams = {};
 let queryParams = defaultQueryParams;
@@ -204,7 +203,6 @@ class QueryArea extends Component {
                         </Row>
                     </Well>
                     {this.renderDeveloperShortcuts()}
-					<MarkForReconButton />
                 </Col>
 			</Row>
 		);
