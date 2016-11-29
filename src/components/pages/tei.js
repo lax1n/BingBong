@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 
 import {
     findTEIDuplicatesByOrganizationAndProgram,
@@ -39,7 +40,7 @@ class Tei extends Component {
     componentDidMount(){
         getThings("favs").then((favs) => {
             getThings("recents").then((recents) => {
-                this.setState({recents: recents.things, favourites: favs.things});
+                this.setState({recents: recents, favourites: favs});
             });
         });
     }
@@ -57,6 +58,12 @@ class Tei extends Component {
         this.setState({recents: recents});
         saveThings("recents",recents);
     }
+	fixSomeStuff(){
+		saveThings("favs",[], 'DELETE');
+		saveThings("recents",[], 'DELETE');
+		saveThings("favs",[], 'POST');
+		saveThings("recents",[], 'POST');
+	}
 
     findResults(params, favourite){
 		if(params.myFilters === undefined){
@@ -117,6 +124,12 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
+				<Button
+					bsStyle='primary'
+					onClick={this.fixSomeStuff.bind(this)}
+				>
+					TheFixer
+				</Button>
 				{results}
 			</Col>
 		);

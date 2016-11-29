@@ -76,6 +76,8 @@ class PreviousQueries extends Component{
 	}
 
 	render(){
+		//console.log("recents",this.props.recents);
+		//console.log("favourites",this.props.favourites);
 		return(
 			<Col sm={12} className='p-t-md'>
 				<Collapse in={this.props.recentsActive}>
