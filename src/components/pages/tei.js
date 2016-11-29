@@ -109,7 +109,10 @@ class Tei extends Component {
         let results = '';
         if(this.state.resultsFound){
             results = (
-                <Duplicates duplicates={this.state.results} />
+                <Duplicates
+                    type={'teis'}
+                    duplicates={this.state.results}
+                />
             );
         }
 		return(

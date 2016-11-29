@@ -3,8 +3,31 @@ import '../../styles/components/shared/duplicates.css';
 import ShowDuplicates from './show_duplicates.js';
 import {updateMarked} from '../../utils/reconciliation_marker'
 
-import {isEmpty} from 'lodash';
+import {includes, isEmpty} from 'lodash';
 import {Row, Col, Well, Table, Checkbox, Button} from 'react-bootstrap';
+
+const teiTableAttributes = [
+    'First name',
+    'Last name',
+    'Date of birth',
+];
+
+const teiDetailTableAttributes = [
+	'Instance',
+	'First name',
+	'Last name',
+	'Date of birth',
+	'Mother maiden name',
+	'Gender',
+	'Occupation',
+	'Blood type',
+];
+
+const singletonTableAttributes = [
+    'Attributes'
+];
+
+let singletonDetailTableAttributes = [];
 
 class Duplicates extends Component {
     constructor(props){
@@ -19,9 +42,14 @@ class Duplicates extends Component {
         this.toggleReconcile = this.toggleReconcile.bind(this);
         this.findReconciliationCount = this.findReconciliationCount.bind(this);
         this.isMarkedForReconciliation = this.isMarkedForReconciliation.bind(this);
+        this.findAttributeNames = this.findAttributeNames.bind(this);
     }
 
     viewDuplicates(duplicates){
+        if(this.props.type === 'singletons'){
+            singletonDetailTableAttributes = this.findAttributeNames(duplicates, true);
+        }
+
         this.setState({
             currentDetails: duplicates,
             showDetails: true,
@@ -33,6 +61,28 @@ class Duplicates extends Component {
             currentDetails: [],
             showDetails: false,
         });
+    }
+
+    // Helper for singletons
+    findAttributeNames(singletons, includeEvent = false){
+        // Only need to target the first because duplicates must have the same attributes
+        const singleton = singletons[0];
+        const dataValues = singleton.dataValues;
+
+        let attributeNames = [];
+        if(includeEvent)
+            attributeNames.push('event');
+        let attributeValues = [];
+        dataValues.forEach((dataValue) => {
+            attributeValues.push(dataValue.value);
+        });
+        for(let attribute in singleton){
+            if(includes(attributeValues, singleton[attribute])){
+                attributeNames.push(attribute);
+            }
+        }
+
+        return attributeNames;
     }
 
     toggleReconcile(e, duplicateRow){
@@ -64,7 +114,6 @@ class Duplicates extends Component {
         let duplicates = this.props.duplicates;
         let markedDuplicates = [];
         duplicates.forEach((duplicateRow) => {
-            let keep = false;
             let markedRow = duplicateRow.filter((duplicate) => {
                 return duplicate.reconcile;
             });
@@ -99,12 +148,6 @@ class Duplicates extends Component {
 
 	render(){
         let duplicates = this.props.duplicates;
-
-        const tableAttributes = this.props.tableAttributes || [
-            'First name',
-            'Last name',
-            'Date of birth',
-        ];
         if(isEmpty(duplicates)){
             return (
                 <div className='row'>
@@ -113,6 +156,16 @@ class Duplicates extends Component {
                     </div>
                 </div>
             )
+        }
+
+        let tableAttributes = [];
+        let tableAttributesForShow = [];
+        if(this.props.type === 'teis'){
+            tableAttributes = teiTableAttributes;
+            tableAttributesForShow = teiDetailTableAttributes;
+        }else if(this.props.type === 'singletons'){
+            tableAttributes = singletonTableAttributes;
+            tableAttributesForShow = singletonDetailTableAttributes;
         }
 		return(
             <Well>
@@ -149,6 +202,11 @@ class Duplicates extends Component {
                                                 {this.findReconciliationCount(duplicateRow) + '/' + duplicateRow.length}
                                             </td>
                                             {tableAttributes.map((attribute, j) => {
+                                                if(this.props.type === 'singletons' && attribute === 'Attributes'){
+                                                    return (
+                                                        <td key={j}>{this.findAttributeNames(duplicateRow).join(', ')}</td>
+                                                    );
+                                                }
                                                 return (
                                                     <td key={j}>{duplicateRow[0][attribute]}</td>
                                                 );
@@ -160,10 +218,10 @@ class Duplicates extends Component {
                             </tbody>
                         </Table>
                         <ShowDuplicates
+                            tableAttributes={tableAttributesForShow}
                             duplicates={this.state.currentDetails}
-                            show_state={this.state.showDetails}
+                            active={this.state.showDetails}
                             closeDetails={this.closeDetails}
-                            tableAttributes={this.props.detailTableAttributes}
                         />
                     </Col>
                 </Row>
