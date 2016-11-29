@@ -180,7 +180,7 @@ class QueryArea extends Component {
                                 {advanced}
                             </Col>
                         </Row>
-                        <Row>
+                        <Row className='text-center'>
                             <Col sm={12}>
                                 {error}
                                 <Buttons
@@ -195,7 +195,7 @@ class QueryArea extends Component {
                                 />
                             </Col>
                         </Row>
-                        <Row>
+                        <Row className='text-center'>
                             <PreviousQueries
                                 {...this.props}
                                 recentsActive={this.state.recents}
