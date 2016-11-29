@@ -1,4 +1,5 @@
 import {saveThings, getThings} from "../actions/save_things.js"
+import {includes, isEmpty} from "lodash"
 
 export function updateMarked(duplicates, type){//These duplicates have been confirmed by an admin.
 	let key_mark = type+"_duplicates";
@@ -14,13 +15,37 @@ export function updateMarked(duplicates, type){//These duplicates have been conf
 
 		//saveThings(key, duplicates, 'DELETE');
 		//saveThings(key, duplicates, 'POST');
-		console.log(duplicates)
-		saveThings(key_mark, prev.concat(duplicates), 'PUT');
-		let newIgnoreValues = [];
-		for(var i = 0; i < duplicates.length; i++){
-			for(var j = 0; j< duplicates[i].length; j++){
-				//newIgnoreValues.push
+		console.log("duplicates", duplicates)
+		let myDuplicates = findNewDups(duplicates, prev, type);
+		console.log("myDuplicates", myDuplicates);
+		saveThings(key_mark, prev.concat(myDuplicates), 'PUT');
+
+	});
+}
+
+function findNewDups(duplicates, prev, type){
+	let newDups = [];
+	let checker1, checker2;
+	if(type === "tei"){
+		checker1 = "trackedEntityInstance";
+		checker2 =  "Instance";
+	}
+	if(type === "singleton"){
+		checker1 = "event";
+		checker2 =  "event";
+	}
+	console.log("prev", prev);
+	let prevLength= prev.length;
+	return duplicates.filter(function(dupGroup){
+		for(let j = 0; j < dupGroup.length; j++){
+			for(let k = 0; k < prevLength; k++){
+				for(let l= 0; l < prev[k].length; l++){
+					if((dupGroup[j][checker1] || dupGroup[j][checker2]) === (prev[k][l][checker1] || prev[k][l][checker2])){
+						return false;
+					}
+				}
 			}
 		}
+		return true;
 	});
 }

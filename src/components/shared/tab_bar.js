@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Tabs, Tab, Row, Col,} from 'react-bootstrap';
-import logo from '../../images/logo_new.png';
+import logo from '../../images/logo_new3.png';
 import '../../styles/App.css';
 
 // Import pages to be shown in the different Tabs
@@ -41,14 +41,8 @@ class TabBar extends Component {
             <div>
                 <Row>
                     <div className='App-header'>
-                        <Col sm={1}>
+                        <Col sm={12}>
                             <img src={logo} className="App-logo" alt="logo" />
-                        </Col>
-                        <Col sm={10}>
-                            <h2 className='App-header-text'>DHIS2 Deduplicator</h2>
-                        </Col>
-                        <Col sm={1}>
-                            <img src={logo} className="App-logo Logo-flip" alt="logo" />
                         </Col>
                     </div>
                 </Row>
