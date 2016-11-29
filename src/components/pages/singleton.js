@@ -51,8 +51,6 @@ class Singleton extends Component {
         //recents.push(params);
         this.setState({recents: recents});
         //saveThings("recents",recents);
-		saveThings("SNOW", {"a": 21}, 'DELETE');
-		saveThings("SNOW", {"a": 21}, 'POST');
     }
 
     findResults(params, favourite){
