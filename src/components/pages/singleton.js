@@ -91,7 +91,7 @@ class Singleton extends Component {
 				myDuplicates = this.state.results.map(function (myDupGroup){
 					if(myDupGroup !== undefined){
 						return myDupGroup.map(function (myDup){
-							myDup.Everything = JSON.stringify(myDup, null, 2);
+							myDup.Everything = JSON.stringify(myDup, null, 5);
 							return myDup;
 						});
 					}

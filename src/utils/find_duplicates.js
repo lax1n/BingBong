@@ -1,5 +1,5 @@
 import {contains} from './contains';
-import {isDuplicate} from './isDuplicate'
+import {isDuplicate} from './is_duplicate'
 //import {getNorrisJoke} from '../actions/norris_actions';
 import Moment from 'moment';
 
