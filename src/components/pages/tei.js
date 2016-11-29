@@ -99,7 +99,7 @@ class Tei extends Component {
             getThings("recents").then((recents) => {
                 this.setState({recents : recents.things,favourites: favs.things});
             });
-            
+
         });
     }
 
@@ -111,7 +111,7 @@ class Tei extends Component {
             );
         }
 		return(
-			<Col sm={12}>
+			<Col sm={12} className='text-center'>
                 <QueryArea
                     title={'Tracked Entity Instances'}
                     findResults={this.findResults}

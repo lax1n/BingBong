@@ -77,7 +77,7 @@ class Singleton extends Component {
             getThings("Srecents").then((recents) => {
                 this.setState({recents : recents.things,favourites: favs.things});
             });
-            
+
         });
     }
 
@@ -105,7 +105,7 @@ class Singleton extends Component {
 			);
 		}
 		return(
-			<Col sm={12}>
+			<Col sm={12} className='text-center'>
                 <QueryArea
                     title={'Singletons'}
                     findResults={this.findResults}
