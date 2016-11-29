@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button} from 'react-bootstrap';
+//import {Button} from 'react-bootstrap';
 
 import {
     findTEIDuplicatesByOrganizationAndProgram,
@@ -123,12 +123,12 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
-				<Button
+				{/*<Button
 					bsStyle='primary'
 					onClick={this.fixSomeStuff.bind(this)}
 				>
 					TheFixer
-				</Button>
+				</Button>*/}
 				{results}
 			</Col>
 		);
