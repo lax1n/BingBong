@@ -1,5 +1,5 @@
 import {getAllSingletonsByOrganizationAndProgram, getAllSingletonsByOrganization} from '../actions/singleton_actions';
-import {findDuplicatePeople} from './find_duplicates';
+import {findDuplicates} from './find_duplicates';
 import {parseSingletonQueryResults} from './singleton_parsers'
 
 export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program, myFilters){
@@ -10,7 +10,7 @@ export function findSingletonDuplicatesByOrganizationAndProgram(orgUnit, program
 			let singletons = some[0];
 			myFilters.strictTestParams = params;
 			myFilters.looseTestParams = [];
-			return findDuplicatePeople(singletons, myFilters);
+			return findDuplicates(singletons, myFilters);
 		});
 	});
 }
@@ -22,7 +22,7 @@ export function findSingletonDuplicatesByOrganization(orgUnit, myFilters){
 			let singletons = some[0];
 			myFilters.strictTestParams = params;
 			myFilters.looseTestParams = [];
-			return findDuplicatePeople(singletons, myFilters);
+			return findDuplicates(singletons, myFilters);
 		});
 	});
 }

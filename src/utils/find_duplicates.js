@@ -5,7 +5,7 @@ import Moment from 'moment';
 
 import {isEmpty} from 'lodash';
 
-export function findDuplicatePeople(teis, myFilters){
+export function findDuplicates(teis, myFilters){
 	let duplicates = [];
 	let duplicate_indexes = []
 	if(isEmpty(teis)){
