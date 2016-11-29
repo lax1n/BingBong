@@ -6,7 +6,7 @@ import {
 } from '../../utils/singleton_dup_finder';
 
 import {Col} from 'react-bootstrap';
-import {saveThings} from '../../actions/save_things.js';
+import {saveThings, getThings} from '../../actions/save_things.js';
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
@@ -70,6 +70,15 @@ class Singleton extends Component {
             });
         }
 
+    }
+
+    componentDidMount(){
+        getThings("Sfavs").then((favs) => {
+            getThings("Srecents").then((recents) => {
+                this.setState({recents : recents.things,favourites: favs.things});
+            });
+            
+        });
     }
 
 	render(){

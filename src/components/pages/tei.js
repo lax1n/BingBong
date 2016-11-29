@@ -6,7 +6,7 @@ import {
 } from '../../utils/tei_dup_finder';
 
 import {Col} from 'react-bootstrap';
-import {saveThings} from '../../actions/save_things.js';
+import {saveThings, getThings} from '../../actions/save_things.js';
 
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
@@ -92,6 +92,15 @@ class Tei extends Component {
                 this.setState({resultsFound: true, results: duplicates});
             });
         }
+    }
+
+    componentDidMount(){
+        getThings("favs").then((favs) => {
+            getThings("recents").then((recents) => {
+                this.setState({recents : recents.things,favourites: favs.things});
+            });
+            
+        });
     }
 
 	render(){
