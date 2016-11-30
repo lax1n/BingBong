@@ -1,6 +1,15 @@
-export const serverUrl = 'https://play.dhis2.org/demo/api/';
-//export const serverUrl = `http://localhost:8080/api/`;
-//export const serverUrl = 'https://play.dhis2.org/test/api/';
+/*
+ * Note to self & other developers:
+ * If there are preflight erros, remember to
+ * whitelist the client url in the respective server settings (e.g dhis2 demo settings)
+ */
+
+//export const serverUrl = `http://localhost:8080/api/`; // Localhost
+export const serverUrl = 'https://play.dhis2.org/demo/api/'; // Demo
+//export const serverUrl = 'https://play.dhis2.org/test/api/'; // Test
+//export const serverUrl = 'https://play.dhis2.org/dev/api/'; // Dev
+
+
 export const basicAuth = `Basic ${btoa('admin:district')}`;
 
 export const fetchOptionsGet = {
