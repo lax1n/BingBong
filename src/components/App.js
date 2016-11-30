@@ -6,13 +6,19 @@ import '../libs/bootstrap.min.css';
 
 import TabBar from './shared/tab_bar.js';
 
-/*componentDidMount(){
-  return fetch(`${serverUrl}dataStore/BingBong/${key}`, {method : 'GET'
-
-      
-    }
-    );
-}*/
+componentDidMount(){
+  try{ 
+    fetch(`${serverUrl}dataStore/BingBong/`, {method : 'GET',
+    headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json',
+    },
+    }).then(onlySuccessResponses).then(response => response.json());
+  }
+  catch(error){
+    console.log("bingbong eksisterer ikke");
+  }
+}
 
 class App extends Component {
 	render() {
