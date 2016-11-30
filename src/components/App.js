@@ -8,7 +8,6 @@ import '../libs/bootstrap.min.css';
 import TabBar from './shared/tab_bar.js';
 
 class App extends Component {
-
     componentDidMount(){
         getAllDataStores().then((response) => {
             let update = false;
@@ -38,7 +37,7 @@ class App extends Component {
         }).catch((e) => {
             console.log('Failed to fetch data stores!', e);
         });
-        
+
         /* Ideal solution to the above problem:
         getDataStore().then((response) => {
             console.log('Data store already exists, no need to create it!');
@@ -58,6 +57,7 @@ class App extends Component {
         });
         */
     }
+
 	render() {
 		console.log("Render called in App.js")
 		return (
