@@ -33,8 +33,8 @@ class Singleton extends Component {
 	}
 
     componentDidMount(){
-        getThings("Sfavs").then((favs) => {
-            getThings("Srecents").then((recents) => {
+        getThings("sinlge_favs").then((favs) => {
+            getThings("single_recents").then((recents) => {
                 if(isEqual(favs, {})){
                     favs = [];
                 }

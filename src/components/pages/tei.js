@@ -39,8 +39,8 @@ class Tei extends Component {
     }
 
     componentDidMount(){
-        getThings("favs").then((favs) => {
-            getThings("recents").then((recents) => {
+        getThings("tei_favs").then((favs) => {
+            getThings("tei_recents").then((recents) => {
                 if(isEqual(favs, {})){
                     favs = [];
                 }
