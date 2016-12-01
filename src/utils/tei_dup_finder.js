@@ -3,6 +3,7 @@ import {findDuplicates} from './find_duplicates';
 import {parseQueryResults} from './tei_parsers'
 
 export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program, filters){
+	//Finds duplicates for a given orgUnit and program. Using filters
 	filters = filters || [];
 	return getAllTEIsByOrganizationAndProgram(orgUnit, program).then((response) => {
 		const teis = parseQueryResults(response);
@@ -11,6 +12,7 @@ export function findTEIDuplicatesByOrganizationAndProgram(orgUnit, program, filt
 	});
 }
 export function findTEIDuplicatesByOrganization(orgUnit, filters){
+	//Finds duplicates for a given orgUnit. Using filters
 	filters = filters || [];
 	return getAllTEIsByOrganization(orgUnit).then((response) => {
 		const teis = parseQueryResults(response);

@@ -1,4 +1,5 @@
 export function parseQueryResults(response){
+	//Parses the tei results so that we can search for duplicates using a universal format for singletons and teis.
 	let i, j;
 	let teis = [];
 	let attributesLength;
@@ -20,6 +21,7 @@ export function parseQueryResults(response){
 }
 
 export function parseQueryResultsFromQueryFormat(response){
+	//Parses the tei results so that we can search for duplicates using a universal format for singletons and teis.
 	let i, j;
 	let teis = [];
 	let headerCount = response.headers.length;

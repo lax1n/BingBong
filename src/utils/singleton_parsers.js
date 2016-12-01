@@ -1,6 +1,7 @@
 import {includes} from 'lodash';
 import {getDataElements} from "../actions/data_element_actions"
 export function parseSingletonQueryResults(response){
+	//This funciton parses the singleton Query result so that we can use the same findDuplicates function as we use in teis.
 	let i, j;
 	let singletons = [];
 	let params = [];
@@ -39,6 +40,7 @@ export function parseSingletonQueryResults(response){
 	});
 }
 function getDisplayNameConverter(response){
+	//Creates a dictionairy for converting ids to displayNames, for a given response.
 	let i, j;
 	let param_ids = [];
 	let attributesLength;

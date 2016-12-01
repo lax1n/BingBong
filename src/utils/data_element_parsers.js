@@ -1,5 +1,9 @@
 import {getDataElements} from "../actions/data_element_actions"
 export function transformDuplicates(duplicates, type){
+	/*This function removes the extra attributes added to duplicates. Transforming them into having the same format
+	 *as they had when they were fetched.
+	 *This can be used for reconciliation
+	 */
 	let valuesToRemove;
 	if(type === "singleton"){
 		return getDisplayNameConverterFromDuplicates(duplicates).then(function(myConverter){
@@ -32,6 +36,9 @@ export function transformDuplicates(duplicates, type){
 }
 
 function getDisplayNameConverterFromDuplicates(duplicates){
+	/*Same as getDisplayNameConverter, but this loops throught the duplicates to get the relevant attributes.
+	 *It returns a dictionairy where the keys are the ids and the values are the displayNames of the teis/singletons.
+	 */
 	let i, j;
 	let param_ids = [];
 	let attributesLength;

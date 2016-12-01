@@ -5,11 +5,14 @@ import Moment from 'moment';
 
 import {isEmpty} from 'lodash';
 
-export function findDuplicates(teis, myFilters){
+export function findDuplicates(instances, myFilters){
+	/*This funciton loops through all the given instances, then compares them with each other using the imported funciton isDuplicate.
+	 *Then finally it returns an array, where the elements are arrays of the instances that may be duplicates of each other.
+	 */
 	let duplicates = [];
 	let duplicate_indexes = []
-	if(isEmpty(teis)){
-		console.log("No teis passed");
+	if(isEmpty(instances)){
+		console.log("No instances passed");
 		return undefined;//[[{}]];
 	}
 	let startDate, endDate;
@@ -21,28 +24,28 @@ export function findDuplicates(teis, myFilters){
 		console.log("Will be checking with endDate");
 		endDate = Moment(myFilters.endDate);
 	}
-	//teis.forEach((tei, i) => {
+	//instances.forEach((instance, i) => {
 	let i, j;
-	for(i = 0; i<teis.length; i++){
-		let tei = teis[i];
+	for(i = 0; i<instances.length; i++){
+		let instance = instances[i];
 		let tempDuplicates = [];
 		//Checks if it is too early
-		if(myFilters.startDate !== ""){if(Moment(tei.created).isBefore(startDate)){continue;}}
+		if(myFilters.startDate !== ""){if(Moment(instance.created).isBefore(startDate)){continue;}}
 		//Checks if it is too late
-		if(myFilters.endDate !== ""){if(endDate.isBefore(Moment(tei.created))){continue;}}
-		for(j = 0; j<teis.length; j++){
-			let tempTei = teis[j];
+		if(myFilters.endDate !== ""){if(endDate.isBefore(Moment(instance.created))){continue;}}
+		for(j = 0; j<instances.length; j++){
+			let tempInstance = instances[j];
 			//Checks if it is too early
-			if(myFilters.startDate !== ""){ if(Moment(tempTei.created).isBefore(startDate)){continue;}}
+			if(myFilters.startDate !== ""){ if(Moment(tempInstance.created).isBefore(startDate)){continue;}}
 			//Checks if it is too late
-			if(myFilters.endDate !== ""){if(endDate.isBefore(Moment(tempTei.created))){continue;}}
-			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(tei, tempTei, myFilters)){
-				tempDuplicates.push(teis[j]);
+			if(myFilters.endDate !== ""){if(endDate.isBefore(Moment(tempInstance.created))){continue;}}
+			if(i !== j && !contains(i, duplicate_indexes) && isDuplicate(instance, tempInstance, myFilters)){
+				tempDuplicates.push(instances[j]);
 				duplicate_indexes.push(j);
 			}
 		}//);
 		if (!(isEmpty(tempDuplicates))){
-			tempDuplicates.push(tei);
+			tempDuplicates.push(instance);
 			duplicates.push(tempDuplicates);
 		}
 	}//);
@@ -51,7 +54,4 @@ export function findDuplicates(teis, myFilters){
 		return undefined;//[[{}]];
 	}
 	return duplicates;
-}
-export function getTip(){
-	return "Remember to wash your hands";
 }

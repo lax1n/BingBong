@@ -1,19 +1,10 @@
 import {saveThings, getThings} from "../actions/save_things.js"
-import {includes, isEmpty} from "lodash"
 
 export function updateMarked(duplicates, type){//These duplicates have been confirmed by an admin.
+	//uploads the ones that are marked for reconciliation to the dataStore
 	let key_mark = type+"_duplicates";
-	let key_dedup = type+"_ignore_list";
-	//saveThings(key_mark, duplicates, 'POST');
-	//saveThings("tei_ignore_list",undefined, 'POST');
-	//saveThings("singletons_ignore_list",undefined, 'POST');
-	//saveThings("singletons_duplicates",undefined, 'POST');
 	return getThings(key_mark).then(function(prev){
 		console.log("prev",prev);
-
-
-		//saveThings(key, duplicates, 'DELETE');
-		//saveThings(key, duplicates, 'POST');
 		console.log("duplicates", duplicates)
 		let myDuplicates = findNewDups(duplicates, prev, type);
 		console.log("myDuplicates", myDuplicates);
@@ -23,7 +14,7 @@ export function updateMarked(duplicates, type){//These duplicates have been conf
 }
 
 function findNewDups(duplicates, prev, type){
-	let newDups = [];
+	//Checks wheter a duplicate pair is already present.
 	let checker1, checker2;
 	if(type === "tei"){
 		checker1 = "trackedEntityInstance";
