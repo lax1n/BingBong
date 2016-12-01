@@ -68,7 +68,6 @@ class Tei extends Component {
 
     findResults(params, favourite){
 		if(params.myFilters === undefined){
-			console.log("No previous filter");
 			params.myFilters = this.state.myFilters;
 			if(params.advanced){
 				if(params.advanced.typos.typos){
@@ -83,9 +82,6 @@ class Tei extends Component {
 				params.myFilters.startDate = params.startDate;
 				params.myFilters.endDate = params.endDate;
 			}
-		}
-		else{
-			console.log("Filter already exists not overwriting");
 		}
 
 		if(favourite){

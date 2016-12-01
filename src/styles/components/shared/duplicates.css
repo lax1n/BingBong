@@ -6,3 +6,15 @@ table.hover-info > tbody > tr:hover {
 	background-color: #97e3ed;
 	cursor: pointer;
 }
+
+.success-message {
+	color: green;
+}
+
+.failed-message {
+	color: red;
+}
+
+.warning-message {
+	color: orange;
+}

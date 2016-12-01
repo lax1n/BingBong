@@ -36,6 +36,7 @@ class Duplicates extends Component {
         this.state = {
             currentDetails: [],
             showDetails: false,
+            saveFeedback: '',
         }
 
         this.closeDetails = this.closeDetails.bind(this);
@@ -112,6 +113,7 @@ class Duplicates extends Component {
     saveMarkedDuplicates(){
         // Prepare marked duplicates to be saved
         let duplicates = this.props.duplicates;
+        let onlyOneSelected = false;
         let markedDuplicates = [];
         duplicates.forEach((duplicateRow) => {
             let markedRow = duplicateRow.filter((duplicate) => {
@@ -121,12 +123,23 @@ class Duplicates extends Component {
             // Must be more than 1 because to reconcile duplicates more than 1 must be found or it wouldnt be a duplicate
             if(markedRow.length > 1){
                 markedDuplicates.push(markedRow);
+            }else if(markedRow.length === 1){
+                onlyOneSelected = true;
             }
         });
-
-        console.log('Save marked duplicates', markedDuplicates);
-		updateMarked(markedDuplicates, this.props.type);
-		console.log("Done pushing to server");
+        if(markedDuplicates.length === 0){
+            if(onlyOneSelected){
+                this.setState({saveFeedback: 'only-1-selected'});
+            }else{
+                this.setState({saveFeedback: 'none-selected'});
+            }
+        }else{
+    		updateMarked(markedDuplicates, this.props.type).then((feedback) => {
+                this.setState({saveFeedback: feedback});
+            }).catch((feedback) => {
+                this.setState({saveFeedback: feedback});
+            });
+        }
     }
 	render(){
         let duplicates = this.props.duplicates;
@@ -148,6 +161,26 @@ class Duplicates extends Component {
         }else if(this.props.type === 'singletons'){
             tableAttributes = singletonTableAttributes;
             tableAttributesForShow = singletonDetailTableAttributes;
+        }
+
+        let saveFeedback = '';
+        if(this.state.saveFeedback !== ''){
+            switch(this.state.saveFeedback){
+                case 'success':
+                    saveFeedback = <span className='success-message'>Successfully saved marked duplicates!</span>;
+                    break;
+                case 'failed':
+                    saveFeedback = <span className='failed-message'>An error occurred and the marked duplicates was not saved!</span>;
+                    break;
+                case 'none-selected':
+                    saveFeedback = <span className='warning-message'>No duplicates selected.</span>;
+                    break;
+                case 'only-1-selected':
+                    saveFeedback = <span className='warning-message'>You need to select more than 1 duplicate to save.</span>;
+                    break;
+                default:
+                    break;
+            }
         }
 		return(
             <Well>
@@ -215,6 +248,9 @@ class Duplicates extends Component {
                         >
                             Save marked duplicates for reconciliation
                         </Button>
+                    </Col>
+                    <Col sm={12} className='p-t-md'>
+                        {saveFeedback}
                     </Col>
                 </Row>
             </Well>

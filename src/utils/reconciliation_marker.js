@@ -4,12 +4,14 @@ export function updateMarked(duplicates, type){//These duplicates have been conf
 	//uploads the ones that are marked for reconciliation to the dataStore
 	let key_mark = type+"_duplicates";
 	return getThings(key_mark).then(function(prev){
-		console.log("prev",prev);
-		console.log("duplicates", duplicates)
 		let myDuplicates = findNewDups(duplicates, prev, type);
-		console.log("myDuplicates", myDuplicates);
-		saveThings(key_mark, prev.concat(myDuplicates), 'PUT');
-
+		return saveThings(key_mark, prev.concat(myDuplicates), 'PUT').then((response) => {
+			return 'success';
+		}).catch((e) => {
+			return 'failed';
+		});
+	}).catch((e) => {
+		return 'failed';
 	});
 }
 
@@ -30,7 +32,7 @@ function findNewDups(duplicates, prev, type){
 			for(let k = 0; k < prevLength; k++){
 				for(let l= 0; l < prev[k].length; l++){
 					if((dupGroup[j][checker1] || dupGroup[j][checker2]) === (prev[k][l][checker1] || prev[k][l][checker2])){
-						console.log(dupGroup[j], prev[k][l]);
+						// console.log(dupGroup[j], prev[k][l]);
 						return false;
 					}
 				}
