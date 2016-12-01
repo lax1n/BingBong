@@ -1,0 +1,24 @@
+{
+   "name" : "BingBong Deduplicator",
+   "description" : "An app for finding and reconciling duplicates using the DHIS2 api",
+   "version" : "0.1",
+   "developer" : {
+      "email" : "avalds@gmail.com",
+      "name" : "Åvald Åslaugson Sommervoll",
+      "email" : "august.haug@gmail.com",
+      "name" : "August Haug Hem",
+      "email" : "mahastya@ifi.uio.no",
+      "name" : "Mahasty Assi"
+   },
+   "launch_path" : "index.html",
+   "icons" : {
+      "48" : "logo_new.png",
+      "128" : "logo_new.png"
+   },
+   "activities" : {
+      "dhis" : {
+         "href" : "*",
+         "namespace" : "BingBong"
+      }
+   }
+}
