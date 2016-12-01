@@ -10,14 +10,14 @@
       "email" : "mahastya@ifi.uio.no",
       "name" : "Mahasty Assi"
    },
-   "launch_path" : "/public/index.js", 
+   "launch_path" : "/public/index.js",
    "icons" : {
-      "48" : "/public/logo_new.png" 
+      "48" : "/public/logo_new.png"
    },
    "activities" : {
       "dhis" : {
-         "href" : "*"
-         "namespace":"BingBong"
+         "href" : "*",
+         "namespace" : "BingBong"
       }
    }
 }
