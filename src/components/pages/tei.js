@@ -65,7 +65,7 @@ class Tei extends Component {
         this.setState({recents: recents});
         saveThings("tei_recents",recents);
     }
-    
+
     findResults(params, favourite){
 		if(params.myFilters === undefined){
 			console.log("No previous filter");

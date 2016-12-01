@@ -15,24 +15,14 @@ class App extends Component {
             // Handle case when data store doesn't already exist (status code 404)
             if(e.status === 404){
                 // Let's try to initialize the data store because unfortunately the API doesn't allow us to create it and initialize it with a single action!
-                createDataStoreKey('tei_favs', []).then((response) => {
-                    console.log('Favs initialized!');
-                    createDataStoreKey('tei_recents', []).then((response) => {
-                        console.log('Recents initialized!');
-                        createDataStoreKey('teis_duplicates', []).then((response) => {
-                            console.log('TEI duplicates initialized!');
-                            createDataStoreKey('singletons_duplicates', []).then((response) => {
-                                console.log('Singleton duplicates initialized!');
-                            }).catch((e) => {
-                                console.log('Failed to initialize singleton duplicates!');
-                            });
-                        }).catch((e) => {
-                            console.log('Failed to initialize TEI duplicates!');
-                        });
-                    }).catch((e) => {
-                        console.log('Failed to initialize recents!');
-                    });
-                });
+				const entries = ['tei_favs', 'tei_recents', 'teis_duplicates', 'singleton_favs', 'singleton_recents', 'singletons_duplicates'];
+				entries.map((entry) => {
+					createDataStoreKey(entry, []).then((response) => {
+						console.log('Successfully created ' + entry + ' in data store.');
+					}).catch((e) => {
+						console.log('Failed to create ' + entry + ' in data store.');
+					});
+				});
             }else{
                 // Do nothing as of yet as we don't support all kinds of error messages,
                 // could be a server fault at certain times where the dataStore actually exists already or something else.

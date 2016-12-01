@@ -33,8 +33,8 @@ class Singleton extends Component {
 	}
 
     componentDidMount(){
-        getThings("sinlge_favs").then((favs) => {
-            getThings("single_recents").then((recents) => {
+        getThings("singleton_favs").then((favs) => {
+            getThings("singleton_recents").then((recents) => {
                 if(isEqual(favs, {})){
                     favs = [];
                 }
@@ -50,14 +50,14 @@ class Singleton extends Component {
         let favourites = this.state.favourites;
         favourites.push(params);
         this.setState({favourites: favourites});
-        saveThings("single_favs",favourites);
+        saveThings("singleton_favs",favourites);
     }
 
     saveRecent(params){
         let recents = this.state.recents;
         recents.push(params);
         this.setState({recents: recents});
-        saveThings("single_recents",recents);
+        saveThings("singleton_recents",recents);
     }
 
     findResults(params, favourite){

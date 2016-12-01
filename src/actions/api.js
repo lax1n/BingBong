@@ -5,8 +5,8 @@
  */
 
 //export const serverUrl = `http://localhost:8080/api/`; // Localhost
-//export const serverUrl = 'https://play.dhis2.org/demo/api/'; // Demo
-export const serverUrl = 'https://play.dhis2.org/test/api/'; // Test
+export const serverUrl = 'https://play.dhis2.org/demo/api/'; // Demo
+//export const serverUrl = 'https://play.dhis2.org/test/api/'; // Test
 //export const serverUrl = 'https://play.dhis2.org/dev/api/'; // Dev
 
 
