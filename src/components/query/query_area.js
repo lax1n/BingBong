@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {includes} from 'lodash';
 
-import {Well, Row, Col, Button} from 'react-bootstrap';
+import {Well, Row, Col, /*Button*/} from 'react-bootstrap';
 
 import QuerySelect from './query_select';
 import Instructions from '../shared/instructions';
@@ -49,7 +49,7 @@ class QueryArea extends Component {
         this.updateAdvancedParams = this.updateAdvancedParams.bind(this);
         this.findResults = this.findResults.bind(this);
         this.showError = this.showError.bind(this);
-        this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
+        //this.renderDeveloperShortcuts = this.renderDeveloperShortcuts.bind(this);
     }
 
     toggleAdvanced(){
@@ -110,7 +110,7 @@ class QueryArea extends Component {
         params.advanced.strictAttributes = strictAttributes;
         this.props.findResults(params, favourite);
     }
-
+/*
     renderDeveloperShortcuts(){
         return (
             <Row>
@@ -136,7 +136,7 @@ class QueryArea extends Component {
             </Row>
         );
     }
-
+*/
 	render(){
         let error = '';
         if(this.state.error !== ''){
@@ -202,7 +202,7 @@ class QueryArea extends Component {
                             />
                         </Row>
                     </Well>
-                    {this.renderDeveloperShortcuts()}
+                    {/*this.renderDeveloperShortcuts() in case of developer shortcuts for testing*/}
                 </Col>
 			</Row>
 		);

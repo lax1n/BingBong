@@ -22,9 +22,6 @@ class PreviousQueries extends Component{
 				<Panel>
 					<Row>
 						<Col sm={12}>
-							<span>¯\_(ツ)_/¯</span>
-						</Col>
-						<Col sm={12}>
 							<span>No queries here yet.</span>
 						</Col>
 					</Row>

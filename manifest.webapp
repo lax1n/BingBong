@@ -5,12 +5,12 @@
    "developer" : {
       "email" : "avalds@gmail.com",
       "name" : "Åvald Åslaugson Sommervoll",
-      "email" : "",
+      "email" : "august.haug@gmail.com",
       "name" : "August Haug Hem",
       "email" : "mahastya@ifi.uio.no",
       "name" : "Mahasty Assi"
    },
-   "launch_path" : "/public/index.html", 
+   "launch_path" : "/src/utils/index.js", 
    "icons" : {
       "48" : "/public/logo_new.png" 
    },

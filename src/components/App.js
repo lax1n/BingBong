@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {getDataStore, createDataStoreKey} from '../actions/data_store_actions';
-import {isEqual, includes} from 'lodash';
+//import {isEqual, includes} from 'lodash';
 
 import '../styles/App.css';
 import '../libs/bootstrap.min.css';

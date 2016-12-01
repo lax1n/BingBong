@@ -12,6 +12,7 @@ import {saveThings, getThings} from '../../actions/save_things.js';
 import QueryArea from '../query/query_area';
 import Duplicates from '../shared/duplicates';
 
+/*The class for the entire TEI-tab*/
 class Tei extends Component {
     constructor(props){
         super(props);
@@ -64,14 +65,7 @@ class Tei extends Component {
         this.setState({recents: recents});
         saveThings("recents",recents);
     }
-	fixSomeStuff(){
-		//saveThings("tei_duplicates",[], 'DELETE');
-		//saveThings("singletons_duplicates",[], 'DELETE');
-
-		//saveThings("tei_duplicates",[], 'POST');
-		//saveThings("singletons_duplicates",[], 'POST');
-	}
-
+    
     findResults(params, favourite){
 		if(params.myFilters === undefined){
 			console.log("No previous filter");
@@ -129,12 +123,6 @@ class Tei extends Component {
                     recents={this.state.recents}
                     favourites={this.state.favourites}
                 />
-				{/*<Button
-					bsStyle='primary'
-					onClick={this.fixSomeStuff.bind(this)}
-				>
-					TheFixer
-				</Button>*/}
 				{results}
 			</Col>
 		);
