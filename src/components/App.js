@@ -15,9 +15,9 @@ class App extends Component {
             // Handle case when data store doesn't already exist (status code 404)
             if(e.status === 404){
                 // Let's try to initialize the data store because unfortunately the API doesn't allow us to create it and initialize it with a single action!
-                createDataStoreKey('favs', []).then((response) => {
+                createDataStoreKey('tei_favs', []).then((response) => {
                     console.log('Favs initialized!');
-                    createDataStoreKey('recents', []).then((response) => {
+                    createDataStoreKey('tei_recents', []).then((response) => {
                         console.log('Recents initialized!');
                         createDataStoreKey('teis_duplicates', []).then((response) => {
                             console.log('TEI duplicates initialized!');

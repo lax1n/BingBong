@@ -50,14 +50,14 @@ class Singleton extends Component {
         let favourites = this.state.favourites;
         favourites.push(params);
         this.setState({favourites: favourites});
-        saveThings("Sfavs",favourites);
+        saveThings("single_favs",favourites);
     }
 
     saveRecent(params){
         let recents = this.state.recents;
         recents.push(params);
         this.setState({recents: recents});
-        saveThings("Srecents",recents);
+        saveThings("single_recents",recents);
     }
 
     findResults(params, favourite){
