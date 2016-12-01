@@ -57,3 +57,8 @@ export function theFixer(namespace, key, data, method){
 		body: JSON.stringify(data),
 	}).then(onlySuccessResponses).then(response => response.json());
 }
+
+
+// How to remove our dataStore:
+// Replace 'test' with whichever one that is used (e.g demo, dev)
+// curl -X DELETE -u admin:district https://play.dhis2.org/test/api/dataStore/BingBong
