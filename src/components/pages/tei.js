@@ -81,6 +81,7 @@ class Tei extends Component {
 
 				params.myFilters.startDate = params.startDate;
 				params.myFilters.endDate = params.endDate;
+				params.myFilters.maxUndefinedCount = params.advanced.attributes.maxUndefined;
 			}
 		}
 
